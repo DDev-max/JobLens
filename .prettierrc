@@ -1,0 +1,24 @@
+{
+  "overrides": [
+    {
+      "files": ["*.js", "*.ts", "*.jsx", "*.tsx"],
+      "options": {
+        "semi": false,
+        "singleQuote": true,
+        "trailingComma": "es5",
+        "tabWidth": 2,
+        "arrowParens": "avoid",
+        "printWidth": 150,
+        "bracketSpacing": true,
+        "jsxSingleQuote": true,
+        "endOfLine": "auto"
+      }
+    },
+    {
+      "files": ["*.test.js", "*.test.ts", "*.test.jsx", "*.test.tsx"],
+      "options": {
+        "semi": true
+      }
+    }
+  ]
+}
