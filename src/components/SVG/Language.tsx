@@ -8,23 +8,23 @@ export function Language(props: SVGProps<SVGSVGElement>) {
       xmlns='http://www.w3.org/2000/svg'
       aria-labelledby='languageIconTitle'
       stroke='#000000'
-      stroke-width='1'
-      stroke-linecap='square'
-      stroke-linejoin='miter'
+      strokeWidth='1'
+      strokeLinecap='square'
+      strokeLinejoin='miter'
       fill='#FFFFFF'
       color='#000000'
       {...props}
     >
-      <g stroke-width='0'></g>
-      <g stroke-linecap='round' stroke-linejoin='round'></g>
+      <g strokeWidth='0'></g>
+      <g strokeLinecap='round' strokeLinejoin='round'></g>
       <g>
         {' '}
         <title>Language</title> <circle cx='12' cy='12' r='10'></circle>{' '}
         <path
-          stroke-linecap='round'
+          strokeLinecap='round'
           d='M12,22 C14.6666667,19.5757576 16,16.2424242 16,12 C16,7.75757576 14.6666667,4.42424242 12,2 C9.33333333,4.42424242 8,7.75757576 8,12 C8,16.2424242 9.33333333,19.5757576 12,22 Z'
         ></path>{' '}
-        <path stroke-linecap='round' d='M2.5 9L21.5 9M2.5 15L21.5 15'></path>{' '}
+        <path strokeLinecap='round' d='M2.5 9L21.5 9M2.5 15L21.5 15'></path>{' '}
       </g>
     </svg>
   )
