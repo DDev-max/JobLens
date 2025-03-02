@@ -13,6 +13,7 @@
     "format:fix": "prettier --write ."
   },
   "dependencies": {
+    "@heroui/input": "^2.4.15",
     "@heroui/switch": "2.2.12",
     "@heroui/system": "2.4.10",
     "@heroui/theme": "2.4.9",
