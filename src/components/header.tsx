@@ -1,6 +1,6 @@
 import { Switch } from '@heroui/switch'
-import { MoonIcon, SunIcon } from './SVG/DarkMode'
-import { Language } from './SVG/Language'
+import { MoonSVG, SunSVG } from './SVG/DarkModeSVGs'
+import { LanguageSVG } from './SVG/LanguageSVG'
 
 export function Header() {
   return (
@@ -10,11 +10,11 @@ export function Header() {
           color='default'
           size='lg'
           defaultSelected
-          thumbIcon={({ isSelected, className }) => (isSelected ? <MoonIcon className={className} /> : <SunIcon className={className} />)}
+          thumbIcon={({ isSelected, className }) => (isSelected ? <MoonSVG className={className} /> : <SunSVG className={className} />)}
         />
 
         <button>
-          <Language className='w-10' />
+          <LanguageSVG className='w-10' />
         </button>
       </div>
     </header>

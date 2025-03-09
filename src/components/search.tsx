@@ -1,18 +1,30 @@
 import { Input } from '@heroui/input'
-import { SearchIcon } from './SVG/SerchIcon'
-import { Lens } from './SVG/Lens'
+import { SearchSVG } from './SVG/SearchSVG'
+import { LensSVG } from './SVG/LensSVG'
+import { LocationSVG } from './SVG/LocationSVG'
+import { SkillsSVG } from './SVG/SkillsSVG'
 
 export function Search() {
   return (
     <search>
-      <form className='gap-9 min-h-screen flex flex-col justify-center items-center flex-grow p-5'>
+      <form className='gap-9 flex flex-col justify-center items-center  p-5'>
         <div className='flex '>
-          <Lens className='w-20 mt-3' />
+          <LensSVG className='w-20 mt-3' />
           <h1 className='text-8xl text-center'>JobLens</h1>
         </div>
-        <div className='flex gap-x-4'>
-          <Input className='w-2/5' label='Search' startContent={<SearchIcon />} isClearable placeholder='Backend, DevOps, Android developer...' />
-          <Input label='Search' startContent={<SearchIcon />} isClearable placeholder='Python, JavaScript, Excel...' />
+
+        <div className='flex flex-col gap-3 md:flex-row'>
+          <Input size='lg' label='Title' startContent={<SearchSVG />} isClearable placeholder='Backend, DevOps, Android developer...' />
+          <div className='flex gap-x-4'>
+            <Input size='lg' label='Skills' startContent={<SkillsSVG className='w-6' />} isClearable placeholder='Python, Excel, JavaScript...' />
+            <Input
+              size='lg'
+              label='Location'
+              startContent={<LocationSVG className='w-6' />}
+              isClearable
+              placeholder='New York, Costa Rica, Maldivas'
+            />
+          </div>
         </div>
         <p className='text-center text-sm text-gray-400'>
           Enter a job title and keywords to see detailed charts and information about various roles.

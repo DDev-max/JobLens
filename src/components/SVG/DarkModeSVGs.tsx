@@ -1,6 +1,6 @@
 import type { SVGProps } from 'react'
 
-export const MoonIcon = (props: SVGProps<SVGSVGElement>) => {
+export const MoonSVG = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg aria-hidden='true' focusable='false' height='1em' role='presentation' viewBox='0 0 24 24' width='1em' {...props}>
       <path
@@ -11,7 +11,7 @@ export const MoonIcon = (props: SVGProps<SVGSVGElement>) => {
   )
 }
 
-export const SunIcon = (props: SVGProps<SVGSVGElement>) => {
+export const SunSVG = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg aria-hidden='true' focusable='false' height='1em' role='presentation' viewBox='0 0 24 24' width='1em' {...props}>
       <g fill='currentColor'>

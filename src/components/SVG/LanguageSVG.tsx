@@ -1,6 +1,6 @@
 import type { SVGProps } from 'react'
 
-export function Language(props: SVGProps<SVGSVGElement>) {
+export function LanguageSVG(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox='0 0 24 24'

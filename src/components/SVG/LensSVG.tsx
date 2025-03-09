@@ -1,6 +1,6 @@
 import type { SVGProps } from 'react'
 
-export function Lens(props: SVGProps<SVGSVGElement>) {
+export function LensSVG(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox='0 0 24 24' fill='#FFFF' xmlns='http://www.w3.org/2000/svg' {...props}>
       <g strokeWidth='0'></g>
