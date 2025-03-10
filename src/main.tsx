@@ -5,9 +5,7 @@ import './globals.css'
 import { HeroUIProvider } from '@heroui/system'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <HeroUIProvider className='flex flex-col min-h-screen'>
-      <App />
-    </HeroUIProvider>
-  </React.StrictMode>
+  <HeroUIProvider className='flex flex-col min-h-screen'>
+    <App />
+  </HeroUIProvider>
 )
