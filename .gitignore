@@ -31,4 +31,4 @@ bun.lockb
 
 .env
 scrappedPage.html
-scrappingObj.js
+scrappingObj.ts
