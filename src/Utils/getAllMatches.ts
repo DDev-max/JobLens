@@ -66,5 +66,5 @@ export function getAllMatches({ stringsToBeMatched, data, propertyToSearch, lang
     return b[1] - a[1]
   })
 
-  return nameQttySorted.slice(0, 6)
+  return nameQttySorted.slice(0, 5)
 }

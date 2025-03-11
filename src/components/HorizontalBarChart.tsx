@@ -7,19 +7,27 @@ interface HorizontalBarChartProps {
   data: [string, number][]
   title: string
   yTitle: string
+  sizePx?: number
   textColor?: string
   barColor?: string
 }
 
-export function HorizontalBarChart({ barColor = '#756793', data, textColor = '#9ca3af', title, yTitle }: HorizontalBarChartProps) {
-  const labels = data.map(el => el[0].charAt(0).toUpperCase() + el[0].slice(1))
+export function HorizontalBarChart({ barColor = '#756793', data, textColor = '#9ca3af', title, yTitle, sizePx }: HorizontalBarChartProps) {
+  const labels = data.map(el => {
+    const firstLetterUpperCase = el[0].charAt(0).toUpperCase() + el[0].slice(1)
+
+    return el[0].length <= 10 ? firstLetterUpperCase : firstLetterUpperCase.slice(0, 10) + '...'
+  })
   const values: readonly number[] = data.map(el => el[1])
 
   const sumValues = values.reduce((accumulator, value) => accumulator + value)
 
   return (
     <Bar
+      width={sizePx && sizePx * 2}
+      height={sizePx}
       options={{
+        responsive: true,
         animation: {
           delay: context => (context.type === 'data' ? context.dataIndex * 100 + context.datasetIndex * 100 : 0),
         },
@@ -43,6 +51,7 @@ export function HorizontalBarChart({ barColor = '#756793', data, textColor = '#9
 
                 return `${context.raw} (${percentageValues[context.dataIndex]}%)`
               },
+              title: context => data[context[0].dataIndex][0],
             },
           },
         },

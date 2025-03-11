@@ -13,7 +13,7 @@ export function Search() {
           <h1 className='text-8xl text-center'>JobLens</h1>
         </div>
 
-        <div className='flex flex-col gap-3 md:flex-row'>
+        <div className='flex flex-col gap-3 lg:flex-row'>
           <Input size='lg' label='Title' startContent={<SearchSVG />} isClearable placeholder='Backend, DevOps, Android developer...' />
           <div className='flex gap-x-4'>
             <Input size='lg' label='Skills' startContent={<SkillsSVG className='w-6' />} isClearable placeholder='Python, Excel, JavaScript...' />
