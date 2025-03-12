@@ -1,11 +1,12 @@
 export interface JobDescription {
-  jobTitle: string | null | undefined
-  orgName: string | null | undefined
-  location: string | null | undefined
-  salary: string | null | undefined
-  skills: string[] | null | undefined
-  jobAge: string | null | undefined
-  imgSrc: string | null | undefined
+  jobTitle: string
+  orgName: string
+  location: string
+  salary: string
+  skills: string[]
+  jobAge: string
+  imgSrc: string
+  jobLink: string
 }
 
 export type SupportedLanguages = 'ES' | 'EN'

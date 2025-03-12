@@ -13,6 +13,8 @@
     "format:fix": "prettier --write ."
   },
   "dependencies": {
+    "@heroui/card": "^2.2.15",
+    "@heroui/divider": "^2.2.11",
     "@heroui/input": "^2.4.15",
     "@heroui/switch": "2.2.12",
     "@heroui/system": "2.4.10",
