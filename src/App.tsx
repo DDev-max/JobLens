@@ -4,6 +4,8 @@ import { Search } from './components/search'
 import { MOCK_OBJ_SCRAPPING } from '../scrappingObj'
 import { getAllMatches } from './Utils/getAllMatches'
 import { JobCard } from './components/JobCard'
+import { useState } from 'react'
+import { Button } from '@heroui/button'
 
 function App() {
   const skills = getAllMatches({
@@ -19,6 +21,8 @@ function App() {
     propertyToSearch: 'orgName',
     stringsToBeMatched: ['Golabs'],
   })
+
+  const [maxItems, setMaxItems] = useState(8)
 
   return (
     <>
@@ -38,12 +42,25 @@ function App() {
 
         <p className='m-5'>{MOCK_OBJ_SCRAPPING.length} job offers have been read</p>
         <section className='grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4 '>
-          {MOCK_OBJ_SCRAPPING.map((el, idx) => (
+          {MOCK_OBJ_SCRAPPING.slice(0, maxItems).map((el, idx) => (
             <article>
               <JobCard jobData={el} key={idx} />
             </article>
           ))}
         </section>
+
+        {maxItems < MOCK_OBJ_SCRAPPING.length && (
+          <Button
+            onPress={() => {
+              setMaxItems(prev => prev + 8)
+            }}
+            size='lg'
+            className='m-4 md:w-60 ml-auto mr-auto'
+            color='primary'
+          >
+            Show more
+          </Button>
+        )}
       </main>
     </>
   )
