@@ -1,4 +1,4 @@
-import type { JobDescription, SupportedLanguages } from '@/data/types.ts'
+import type { JobDescription, SupportedLanguageKeys } from '@/data/types.ts'
 import { grammarWords } from '../data/consts'
 import { normalizeString } from './normalizeString'
 
@@ -6,7 +6,7 @@ interface GetAllMatchesProps {
   stringsToBeMatched: readonly string[]
   data: readonly JobDescription[]
   propertyToSearch: 'location' | 'skills' | 'orgName'
-  language: SupportedLanguages
+  language: SupportedLanguageKeys
 }
 
 export function getAllMatches({ stringsToBeMatched, data, propertyToSearch, language }: GetAllMatchesProps) {

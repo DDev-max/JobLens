@@ -1,6 +1,6 @@
-import type { SupportedLanguages } from '@/data/types'
+import type { SupportedLanguageKeys } from '@/data/types'
 
-export const grammarWords: Record<SupportedLanguages, string[]> = {
+export const grammarWords: Record<SupportedLanguageKeys, string[]> = {
   EN: [
     'and',
     'such',

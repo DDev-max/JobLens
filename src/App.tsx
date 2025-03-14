@@ -12,7 +12,7 @@ function App() {
     data: MOCK_OBJ_SCRAPPING,
     language: 'EN',
     propertyToSearch: 'skills',
-    stringsToBeMatched: ['react', 'angular', 'php', 'node', 'vue'],
+    stringsToBeMatched: ['react', 'zustand', 'context', 'node', 'vue'],
   })
 
   const locations = getAllMatches({
@@ -43,8 +43,8 @@ function App() {
         <p className='m-5'>{MOCK_OBJ_SCRAPPING.length} job offers have been read</p>
         <section className='grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4 '>
           {MOCK_OBJ_SCRAPPING.slice(0, maxItems).map((el, idx) => (
-            <article>
-              <JobCard jobData={el} key={idx} />
+            <article key={idx}>
+              <JobCard jobData={el} />
             </article>
           ))}
         </section>
