@@ -110,3 +110,104 @@ export const grammarWords: Record<SupportedLanguageKeys, string[]> = {
   ],
   ES: [],
 }
+
+export const languagei18n: Record<SupportedLanguageKeys, PageText> = {
+  EN: {
+    search: {
+      jobLabel: 'Position',
+      jobPlaceHolder: 'Software Engineer, DevOps, Data Scientist',
+
+      locationLabel: 'Location',
+      locationPlaceHolder: 'San Francisco, Berlin, Bangalore',
+
+      skillsLabel: 'Skills',
+      skillsPlaceHolder: 'Python, SQL, Cloud Computing',
+
+      info: 'Enter a job title and keywords to see detailed charts and information about various roles.',
+    },
+    charts: {
+      location: {
+        title: 'Job Offers by Location',
+        xTitle: 'Frequency',
+        yTitle: 'Locations',
+      },
+      skills: {
+        title: 'Job Offers by Skill',
+        xTitle: 'Frequency',
+        yTitle: 'Skills',
+      },
+      info: 'job offers have been read',
+    },
+    jobCard: {
+      age: (ageString: string) => ['Published: ', `${ageString} ago`],
+      location: ['Location', 'Unknown'],
+      salary: ['Salary', 'Unknown'],
+    },
+  },
+
+  ES: {
+    search: {
+      jobLabel: 'Puesto',
+      jobPlaceHolder: 'Ingeniero de Software, DevOps, Científico de Datos',
+
+      locationLabel: 'Ubicación',
+      locationPlaceHolder: 'Ciudad de México, Buenos Aires, Bogotá',
+
+      skillsLabel: 'Habilidades',
+      skillsPlaceHolder: 'Python, SQL, Excel',
+
+      info: 'Introduzca un puesto de trabajo y palabras clave para ver gráficos detallados e información sobre las ofertas.',
+    },
+    charts: {
+      location: {
+        title: 'Ofertas de Trabajo por Ubicación',
+        xTitle: 'Frecuencia',
+        yTitle: 'Ubicaciones',
+      },
+      skills: {
+        title: 'Ofertas de Trabajo por Habilidad',
+        xTitle: 'Frecuencia',
+        yTitle: 'Habilidades',
+      },
+      info: 'ofertas de trabajo han sido leidas',
+    },
+    jobCard: {
+      age: (ageString: string) => ['Publicado hace: ', `${ageString}`],
+      location: ['Ubicación', 'Desconocida'],
+      salary: ['Salario', 'Desconocido'],
+    },
+  },
+}
+
+interface PageText {
+  search: {
+    jobLabel: string
+    jobPlaceHolder: string
+
+    skillsLabel: string
+    skillsPlaceHolder: string
+
+    locationLabel: string
+    locationPlaceHolder: string
+
+    info: string
+  }
+
+  charts: {
+    info: string
+    skills: ChartStrings
+    location: ChartStrings
+  }
+
+  jobCard: {
+    age: (jobAge: string) => string[]
+    salary: string[]
+    location: string[]
+  }
+}
+
+interface ChartStrings {
+  title: string
+  yTitle: string
+  xTitle: string
+}
