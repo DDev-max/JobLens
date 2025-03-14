@@ -1,6 +1,9 @@
+import type { RootState } from '@/Context/store'
+import { languagei18n } from '@/data/consts'
 import type { JobDescription } from '@/data/types'
 import { Card, CardBody, CardFooter, CardHeader } from '@heroui/card'
 import { Divider } from '@heroui/divider'
+import { useSelector } from 'react-redux'
 
 interface JobCardProps {
   jobData: JobDescription
@@ -9,6 +12,13 @@ interface JobCardProps {
 export function JobCard({ jobData }: JobCardProps) {
   const skills = jobData.skills.toString()
   const cleanedSkills = skills.replace('&hellip', '').replace('…;', '')
+
+  const currentLanguage = useSelector((state: RootState) => state.languageReducer.language)
+
+  const jobSalary = jobData.salary ? `${jobData.salary}` : languagei18n[currentLanguage].jobCard.salary[1]
+
+  const [JobAgeName, JobAgeValue] = languagei18n[currentLanguage].jobCard.age(jobData.jobAge)
+
   return (
     <Card className='p-4 h-[21rem] hover:scale-105 hover:border-blue-700 hover:border-1 '>
       <CardHeader className='p-0 flex flex-col'>
@@ -19,7 +29,8 @@ export function JobCard({ jobData }: JobCardProps) {
           </div>
         </a>
         <p className='mr-auto py-2'>
-          <b>Location</b>: {jobData.location ? jobData.location : 'Unknown'}
+          <b>{languagei18n[currentLanguage].jobCard.location[0]}</b>:{' '}
+          {jobData.location ? jobData.location : languagei18n[currentLanguage].jobCard.location[1]}
         </p>
       </CardHeader>
       <Divider />
@@ -28,8 +39,14 @@ export function JobCard({ jobData }: JobCardProps) {
       </CardBody>
       <Divider />
       <CardFooter className='flex justify-between '>
-        <span> Published: {jobData.jobAge} ago</span>
-        <span> Salary: {jobData.salary ? `${jobData.salary}` : 'Unknown'}</span>
+        <span>
+          <b>{JobAgeName}</b>
+          {JobAgeValue}
+        </span>
+        <span>
+          <b>{languagei18n[currentLanguage].jobCard.salary[0] + ': '}</b>
+          {jobSalary}
+        </span>
       </CardFooter>
     </Card>
   )

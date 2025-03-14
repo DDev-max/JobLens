@@ -9,4 +9,9 @@ export interface JobDescription {
   jobLink: string
 }
 
-export type SupportedLanguages = 'ES' | 'EN'
+export enum SupportedLanguages {
+  EN = 'English',
+  ES = 'Español',
+}
+
+export type SupportedLanguageKeys = keyof typeof SupportedLanguages

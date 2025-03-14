@@ -6,23 +6,28 @@ import { getAllMatches } from './Utils/getAllMatches'
 import { JobCard } from './components/JobCard'
 import { useState } from 'react'
 import { Button } from '@heroui/button'
+import { useSelector } from 'react-redux'
+import type { RootState } from './Context/store'
+import { languagei18n } from './data/consts'
 
 function App() {
   const skills = getAllMatches({
     data: MOCK_OBJ_SCRAPPING,
     language: 'EN',
     propertyToSearch: 'skills',
-    stringsToBeMatched: ['react', 'angular', 'php', 'node', 'vue'],
+    stringsToBeMatched: ['react', 'zustand', 'context', 'node', 'vue'],
   })
 
   const locations = getAllMatches({
     data: MOCK_OBJ_SCRAPPING,
     language: 'EN',
-    propertyToSearch: 'orgName',
-    stringsToBeMatched: ['Golabs'],
+    propertyToSearch: 'location',
+    stringsToBeMatched: ['Cartago'],
   })
 
   const [maxItems, setMaxItems] = useState(8)
+
+  const currentLanguage = useSelector((state: RootState) => state.languageReducer.language)
 
   return (
     <>
@@ -32,15 +37,29 @@ function App() {
 
         <div className='flex gap-5 flex-wrap flex-col md:flex-row  my-6 mx-2 justify-around sm:items-center'>
           <div className=''>
-            <HorizontalBarChart data={skills} title='Skills for ___ Job Offers' yTitle='Skills' sizePx={220} />
+            <HorizontalBarChart
+              data={skills}
+              title={languagei18n[currentLanguage].charts.skills.title}
+              yTitle={languagei18n[currentLanguage].charts.skills.yTitle}
+              xTitle={languagei18n[currentLanguage].charts.skills.xTitle}
+              sizePx={220}
+            />
           </div>
 
           <div className=''>
-            <HorizontalBarChart data={locations} title='Locations of ___ Job Offers' yTitle='Locations' sizePx={220} />
+            <HorizontalBarChart
+              data={locations}
+              title={languagei18n[currentLanguage].charts.location.title}
+              yTitle={languagei18n[currentLanguage].charts.location.yTitle}
+              xTitle={languagei18n[currentLanguage].charts.location.xTitle}
+              sizePx={220}
+            />
           </div>
         </div>
 
-        <p className='m-5'>{MOCK_OBJ_SCRAPPING.length} job offers have been read</p>
+        <p className='m-5'>
+          {MOCK_OBJ_SCRAPPING.length} {languagei18n[currentLanguage].charts.info}
+        </p>
         <section className='grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4 '>
           {MOCK_OBJ_SCRAPPING.slice(0, maxItems).map((el, idx) => (
             <article key={idx}>

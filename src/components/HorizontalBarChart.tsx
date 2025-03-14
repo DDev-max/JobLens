@@ -7,12 +7,13 @@ interface HorizontalBarChartProps {
   data: [string, number][]
   title: string
   yTitle: string
+  xTitle: string
   sizePx?: number
   textColor?: string
   barColor?: string
 }
 
-export function HorizontalBarChart({ barColor = '#756793', data, textColor = '#9ca3af', title, yTitle, sizePx }: HorizontalBarChartProps) {
+export function HorizontalBarChart({ barColor = '#60a5fa', data, textColor = '#9ca3af', title, yTitle, sizePx, xTitle }: HorizontalBarChartProps) {
   const labels = data.map(el => {
     const firstLetterUpperCase = el[0].charAt(0).toUpperCase() + el[0].slice(1)
 
@@ -68,7 +69,7 @@ export function HorizontalBarChart({ barColor = '#756793', data, textColor = '#9
               color: textColor,
             },
             title: {
-              text: 'Frequency',
+              text: xTitle,
               display: true,
               color: textColor,
             },
