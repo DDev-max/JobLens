@@ -23,7 +23,7 @@ interface jobDescription {
   jobLink: string
 }
 
-export async function getJobStats({ jobLocation, jobPosition }: GetJobStatsProps) {
+export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps) {
   const browser = await chromium.launch()
   const context = await browser.newContext()
   const scraperApiUrl = `https://app.scrapingbee.com/api/v1/?api_key=${process.env.API_KEY}&url=`
@@ -98,4 +98,4 @@ export async function getJobStats({ jobLocation, jobPosition }: GetJobStatsProps
   }
 }
 
-console.log(await getJobStats({ jobLocation: 'Mexico', jobPosition: 'Cajero' }))
+console.log(await getJobInfo({ jobLocation: 'Mexico', jobPosition: 'Cajero' }))
