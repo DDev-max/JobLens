@@ -137,6 +137,7 @@ export const languagei18n: Record<SupportedLanguageKeys, PageText> = {
         yTitle: 'Skills',
       },
       info: 'job offers have been read',
+      average: 'Average salary is: ',
     },
     jobCard: {
       age: (ageString: string) => ['Published: ', `${ageString} ago`],
@@ -170,6 +171,7 @@ export const languagei18n: Record<SupportedLanguageKeys, PageText> = {
         yTitle: 'Habilidades',
       },
       info: 'ofertas de trabajo han sido leidas',
+      average: 'El salario promedio es de: ',
     },
     jobCard: {
       age: (ageString: string) => ['Publicado hace: ', `${ageString}`],
@@ -197,6 +199,7 @@ interface PageText {
     info: string
     skills: ChartStrings
     location: ChartStrings
+    average: string
   }
 
   jobCard: {

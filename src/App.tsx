@@ -9,6 +9,7 @@ import { Button } from '@heroui/button'
 import { useSelector } from 'react-redux'
 import type { RootState } from './Context/store'
 import { languagei18n } from './data/consts'
+import { getSalaryAvg } from './Utils/getSalaryMean'
 
 function App() {
   const skills = getAllMatches({
@@ -27,6 +28,8 @@ function App() {
 
   const [maxItems, setMaxItems] = useState(8)
 
+  const { currency, salaryAvg } = getSalaryAvg({ data: MOCK_OBJ_SCRAPPING })
+
   const currentLanguage = useSelector((state: RootState) => state.languageReducer.language)
 
   return (
@@ -36,7 +39,7 @@ function App() {
         <Search />
 
         <div className='flex gap-5 flex-wrap flex-col md:flex-row  my-6 mx-2 justify-around sm:items-center'>
-          <div className=''>
+          <div>
             <HorizontalBarChart
               data={skills}
               title={languagei18n[currentLanguage].charts.skills.title}
@@ -46,7 +49,14 @@ function App() {
             />
           </div>
 
-          <div className=''>
+          {salaryAvg && (
+            <p className='text-4xl text-center flex-1'>
+              {languagei18n[currentLanguage].charts.average}
+              <b>{currency + Number(salaryAvg).toLocaleString()}</b>
+            </p>
+          )}
+
+          <div>
             <HorizontalBarChart
               data={locations}
               title={languagei18n[currentLanguage].charts.location.title}
