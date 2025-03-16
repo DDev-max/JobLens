@@ -9,7 +9,7 @@ import { Button } from '@heroui/button'
 import { useSelector } from 'react-redux'
 import type { RootState } from './Context/store'
 import { languagei18n } from './data/consts'
-import { getSalaryAvg } from './Utils/getSalaryMean'
+import { getSalaryAvg } from './Utils/getSalaryAvg'
 
 function App() {
   const skills = getAllMatches({
@@ -73,7 +73,7 @@ function App() {
         <section className='grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4 '>
           {MOCK_OBJ_SCRAPPING.slice(0, maxItems).map((el, idx) => (
             <article key={idx}>
-              <JobCard jobData={el} />
+              <JobCard jobData={el} jobSalaryAvg={Number(salaryAvg)} currency={currency || ''} />
             </article>
           ))}
         </section>

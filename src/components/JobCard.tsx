@@ -1,23 +1,32 @@
 import type { RootState } from '@/Context/store'
-import { languagei18n } from '@/data/consts'
+import { moneyRegex, languagei18n } from '@/data/consts'
 import type { JobDescription } from '@/data/types'
+import { salaryConversion } from '@/Utils/salaryConversion'
 import { Card, CardBody, CardFooter, CardHeader } from '@heroui/card'
 import { Divider } from '@heroui/divider'
 import { useSelector } from 'react-redux'
 
 interface JobCardProps {
   jobData: JobDescription
+  jobSalaryAvg: number
+  currency: string
 }
 
-export function JobCard({ jobData }: JobCardProps) {
+export function JobCard({ jobData, jobSalaryAvg, currency }: JobCardProps) {
   const skills = jobData.skills.toString()
   const cleanedSkills = skills.replace('&hellip', '').replace('…;', '')
 
   const currentLanguage = useSelector((state: RootState) => state.languageReducer.language)
 
-  const jobSalary = jobData.salary ? `${jobData.salary}` : languagei18n[currentLanguage].jobCard.salary[1]
+  const salaryDesc = jobData.salary ? `${jobData.salary}` : languagei18n[currentLanguage].jobCard.salary[1]
 
   const [JobAgeName, JobAgeValue] = languagei18n[currentLanguage].jobCard.age(jobData.jobAge)
+
+  const salary = salaryDesc.match(moneyRegex)
+
+  const salaryPerMonth = salary?.length ? salaryConversion({ salary, currency, salaryDescription: salaryDesc }) : 0
+
+  const isAboveAvg = salaryPerMonth >= jobSalaryAvg
 
   return (
     <Card className='p-4 h-[21rem] hover:scale-105 hover:border-blue-700 hover:border-1 '>
@@ -39,14 +48,14 @@ export function JobCard({ jobData }: JobCardProps) {
       </CardBody>
       <Divider />
       <CardFooter className='flex justify-between '>
-        <span>
+        <p>
           <b>{JobAgeName}</b>
           {JobAgeValue}
-        </span>
-        <span>
+        </p>
+        <p>
           <b>{languagei18n[currentLanguage].jobCard.salary[0] + ': '}</b>
-          {jobSalary}
-        </span>
+          <span className={`${isAboveAvg ? 'text-green-300' : 'text-red-400'}`}> {salaryDesc}</span>
+        </p>
       </CardFooter>
     </Card>
   )
