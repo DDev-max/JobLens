@@ -1,5 +1,8 @@
 import type { SupportedLanguageKeys } from '@/data/types'
 
+export const currencies = '€¥₡₩$£'
+export const moneyRegex = new RegExp(`[${currencies}]\\S+`, 'g')
+
 export const grammarWords: Record<SupportedLanguageKeys, string[]> = {
   EN: [
     'and',
