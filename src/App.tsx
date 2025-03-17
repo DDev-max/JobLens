@@ -16,14 +16,14 @@ function App() {
     data: MOCK_OBJ_SCRAPPING,
     language: 'EN',
     propertyToSearch: 'skills',
-    stringsToBeMatched: ['react', 'zustand', 'context', 'node', 'vue'],
+    stringsToBeMatched: ['react', 'angular', 'astro', 'node', 'vue'],
   })
 
   const locations = getAllMatches({
     data: MOCK_OBJ_SCRAPPING,
     language: 'EN',
     propertyToSearch: 'location',
-    stringsToBeMatched: ['Cartago'],
+    stringsToBeMatched: ['Remote'],
   })
 
   const [maxItems, setMaxItems] = useState(8)
@@ -32,7 +32,7 @@ function App() {
 
   const currentLanguage = useSelector((state: RootState) => state.languageReducer.language)
 
-  const chartSize = 220 //220
+  const chartSize = 220
 
   const [isMediumScreen, setIsMediumScreen] = useState(window.innerWidth > 710 && window.innerWidth < 1020)
 
@@ -54,7 +54,7 @@ function App() {
       <main className=' flex flex-col bg-background dark text-foreground flex-1 justify-center px-3'>
         <Search />
 
-        <div className='flex gap-5 flex-wrap  my-6 mx-2 justify-around sm:items-center flex-col lg:flex-row items-center'>
+        <div className='flex gap-5 flex-wrap  my-8 mx-2 justify-around sm:items-center flex-col lg:flex-row items-center'>
           <div className='overflow-x-auto max-sm:w-full max-sm:justify-center flex'>
             <HorizontalBarChart
               isMediumScreen={isMediumScreen}
@@ -69,7 +69,7 @@ function App() {
           {salaryAvg && (
             <p className='text-4xl text-center flex-1 min-[1023px]:order-1 min-[1162px]:order-none my-8'>
               {languagei18n[currentLanguage].charts.average}
-              <b>{currency + Number(salaryAvg).toLocaleString()}</b>
+              <b className='text-green-300'>{currency + Number(salaryAvg).toLocaleString()}</b>
             </p>
           )}
 

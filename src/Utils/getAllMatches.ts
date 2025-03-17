@@ -13,9 +13,13 @@ export function getAllMatches({ stringsToBeMatched, data, propertyToSearch, lang
   const cleanStrs2BMatched = stringsToBeMatched.map(string => normalizeString(string))
   const nameQttyObj: Record<string, number> = {}
 
-  const flatCleanValues = data.flatMap(({ [propertyToSearch]: value }) => {
-    if (!value) return []
-    return Array.isArray(value) ? value.map(normalizeString) : [normalizeString(value)]
+  const flatCleanValues = data.flatMap(({ [propertyToSearch]: value, jobTitle }) => {
+    const values = []
+
+    values.push(...(Array.isArray(value) ? value.map(normalizeString) : [normalizeString(value)]))
+    if (propertyToSearch === 'skills') values.push(normalizeString(jobTitle))
+
+    return values
   })
 
   const noGrammarRegexp = new RegExp(`\\b(${grammarWords[language].join('|')})\\b`, 'gi')
