@@ -54,7 +54,9 @@ export function JobCard({ jobData, jobSalaryAvg, currency }: JobCardProps) {
         </p>
         <p>
           <b>{languagei18n[currentLanguage].jobCard.salary[0] + ': '}</b>
-          <span className={`${isAboveAvg ? 'text-green-300' : 'text-red-400'}`}> {salaryDesc}</span>
+          <span className={`${isAboveAvg ? 'text-green-300' : 'text-red-400'}`}>
+            {salaryDesc.length < 15 ? salaryDesc : salaryDesc.slice(0, 15) + '...'}
+          </span>
         </p>
       </CardFooter>
     </Card>

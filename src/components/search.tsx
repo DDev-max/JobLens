@@ -14,12 +14,13 @@ export function Search() {
     <search>
       <form className='gap-9 flex flex-col justify-center items-center  p-5'>
         <div className='flex '>
-          <LensSVG className='w-20 mt-3' />
-          <h1 className='text-8xl text-center'>JobLens</h1>
+          <LensSVG className='w-20 mt-3 max-sm:w-12' />
+          <h1 className='text-8xl text-center max-sm:text-6xl'>JobLens</h1>
         </div>
 
         <div className='flex flex-col gap-3 lg:flex-row'>
           <Input
+            className='lg:w-[45rem]'
             size='lg'
             label={languagei18n[currentLanguage].search.jobLabel}
             startContent={<SearchSVG />}

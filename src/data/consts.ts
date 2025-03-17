@@ -146,6 +146,7 @@ export const languagei18n: Record<SupportedLanguageKeys, PageText> = {
       age: (ageString: string) => ['Published: ', `${ageString} ago`],
       location: ['Location', 'Unknown'],
       salary: ['Salary', 'Unknown'],
+      showMore: 'Show more',
     },
   },
 
@@ -180,6 +181,7 @@ export const languagei18n: Record<SupportedLanguageKeys, PageText> = {
       age: (ageString: string) => ['Publicado hace: ', `${ageString}`],
       location: ['Ubicación', 'Desconocida'],
       salary: ['Salario', 'Desconocido'],
+      showMore: 'Ver más',
     },
   },
 }
@@ -209,6 +211,7 @@ interface PageText {
     age: (jobAge: string) => string[]
     salary: string[]
     location: string[]
+    showMore: string
   }
 }
 
