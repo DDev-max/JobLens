@@ -8,12 +8,22 @@ interface HorizontalBarChartProps {
   title: string
   yTitle: string
   xTitle: string
-  sizePx?: number
+  sizePx: number
   textColor?: string
   barColor?: string
+  isMediumScreen: boolean
 }
 
-export function HorizontalBarChart({ barColor = '#60a5fa', data, textColor = '#9ca3af', title, yTitle, sizePx, xTitle }: HorizontalBarChartProps) {
+export function HorizontalBarChart({
+  barColor = '#60a5fa',
+  data,
+  textColor = '#9ca3af',
+  title,
+  yTitle,
+  sizePx,
+  xTitle,
+  isMediumScreen,
+}: HorizontalBarChartProps) {
   const labels = data.map(el => {
     const firstLetterUpperCase = el[0].charAt(0).toUpperCase() + el[0].slice(1)
 
@@ -25,10 +35,10 @@ export function HorizontalBarChart({ barColor = '#60a5fa', data, textColor = '#9
 
   return (
     <Bar
-      width={sizePx && sizePx * 2}
+      width={isMediumScreen ? sizePx * 3 : sizePx * 2}
       height={sizePx}
       options={{
-        responsive: true,
+        responsive: false,
         animation: {
           delay: context => (context.type === 'data' ? context.dataIndex * 100 + context.datasetIndex * 100 : 0),
         },

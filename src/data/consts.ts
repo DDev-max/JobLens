@@ -1,5 +1,8 @@
 import type { SupportedLanguageKeys } from '@/data/types'
 
+export const currencies = '€¥₡₩$£'
+export const moneyRegex = new RegExp(`[${currencies}]\\S+`, 'g')
+
 export const grammarWords: Record<SupportedLanguageKeys, string[]> = {
   EN: [
     'and',
@@ -137,11 +140,13 @@ export const languagei18n: Record<SupportedLanguageKeys, PageText> = {
         yTitle: 'Skills',
       },
       info: 'job offers have been read',
+      average: 'Average salary is: ',
     },
     jobCard: {
       age: (ageString: string) => ['Published: ', `${ageString} ago`],
       location: ['Location', 'Unknown'],
       salary: ['Salary', 'Unknown'],
+      showMore: 'Show more',
     },
   },
 
@@ -170,11 +175,13 @@ export const languagei18n: Record<SupportedLanguageKeys, PageText> = {
         yTitle: 'Habilidades',
       },
       info: 'ofertas de trabajo han sido leidas',
+      average: 'El salario promedio es de: ',
     },
     jobCard: {
       age: (ageString: string) => ['Publicado hace: ', `${ageString}`],
       location: ['Ubicación', 'Desconocida'],
       salary: ['Salario', 'Desconocido'],
+      showMore: 'Ver más',
     },
   },
 }
@@ -197,12 +204,14 @@ interface PageText {
     info: string
     skills: ChartStrings
     location: ChartStrings
+    average: string
   }
 
   jobCard: {
     age: (jobAge: string) => string[]
     salary: string[]
     location: string[]
+    showMore: string
   }
 }
 
