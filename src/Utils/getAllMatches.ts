@@ -32,7 +32,7 @@ export function getAllMatches({ stringsToBeMatched, data, propertyToSearch, lang
 
   noGrammarWords.forEach(el => {
     if (!el) return
-    const cleanElement = normalizeString(el).replace('hellip', '') // &hellip; (ellipsis)  Their HTML seems to be broken
+    const cleanElement = normalizeString(el)
 
     if (!cleanElement) return
 
