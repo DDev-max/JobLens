@@ -1,6 +1,7 @@
 import type { RootState } from '@/Context/store'
 import { moneyRegex, languagei18n } from '@/data/consts'
 import type { JobDescription } from '@/data/types'
+import { normalizeString } from '@/Utils/normalizeString'
 import { salaryConversion } from '@/Utils/salaryConversion'
 import { Card, CardBody, CardFooter, CardHeader } from '@heroui/card'
 import { Divider } from '@heroui/divider'
@@ -14,7 +15,7 @@ interface JobCardProps {
 
 export function JobCard({ jobData, jobSalaryAvg, currency }: JobCardProps) {
   const skills = jobData.skills.toString()
-  const cleanedSkills = skills.replace('&hellip', '').replace('…;', '')
+  const cleanedSkills = normalizeString(skills)
 
   const currentLanguage = useSelector((state: RootState) => state.languageReducer.language)
 

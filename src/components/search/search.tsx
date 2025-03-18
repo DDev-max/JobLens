@@ -1,66 +1,38 @@
 import { Input } from '@heroui/input'
-import { SearchSVG } from './SVG/SearchSVG'
-import { LensSVG } from './SVG/LensSVG'
-import { LocationSVG } from './SVG/LocationSVG'
-import { SkillsSVG } from './SVG/SkillsSVG'
+import { SearchSVG } from '../SVG/SearchSVG'
+import { LensSVG } from '../SVG/LensSVG'
+import { LocationSVG } from '../SVG/LocationSVG'
+import { SkillsSVG } from '../SVG/SkillsSVG'
 import { useSelector } from 'react-redux'
 import type { RootState } from '@/Context/store'
 import { languagei18n } from '@/data/consts'
-import React, { useState } from 'react'
-
-type InputsNames = 'position' | 'skills' | 'location'
+import { useState } from 'react'
+import type { InputsSearch } from '@/data/types'
+import { validateForm } from './validateForm'
+import { handleInputChange } from './handleInputChange'
 
 export function Search() {
   const currentLanguage = useSelector((state: RootState) => state.languageReducer.language)
 
-  const formInputs: Record<InputsNames, string> = {
+  const formInputs: Record<InputsSearch, string> = {
     position: '',
     skills: '',
     location: '',
   }
-  const isInvalidInput: Record<InputsNames, boolean> = {
+  const isInvalidInput: Record<InputsSearch, boolean> = {
     position: false,
     skills: false,
     location: false,
   }
 
-  const validators: Record<InputsNames, (value: string) => boolean> = {
-    position: value => value.trim().length <= 3,
-    skills: value => !/\S+,\S+/.test(value.replaceAll(' ', '')),
-    location: value => value.trim().length <= 2,
-  }
-
   const [formValues, setFormValues] = useState(formInputs)
   const [formErrors, setFormErrors] = useState(isInvalidInput)
-
-  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const { name, value } = e.target
-    setFormValues(prev => ({ ...prev, [name]: value }))
-
-    if (validators[name as InputsNames]) {
-      setFormErrors(prev => ({ ...prev, [name]: validators[name as InputsNames](value) }))
-    }
-  }
-
-  function validateForm(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-
-    const newErrors = Object.fromEntries(Object.entries(formValues).map(([key, value]) => [key, !value]))
-
-    setFormErrors(newErrors as typeof formErrors)
-
-    const formIsValid = Object.values(newErrors).every(error => error === false)
-
-    if (formIsValid) {
-      console.log('ENVIADO')
-    }
-  }
 
   return (
     <search>
       <form
         onSubmit={e => {
-          validateForm(e)
+          validateForm({ e, formValues, setFormErrors })
         }}
         className='gap-9 flex flex-col justify-center items-center  p-5'
       >
@@ -73,7 +45,7 @@ export function Search() {
           <Input
             required
             onChange={e => {
-              handleInputChange(e)
+              handleInputChange({ e, setFormErrors, setFormValues })
             }}
             isInvalid={formErrors.position}
             errorMessage={languagei18n[currentLanguage].search.positionError}
@@ -91,8 +63,9 @@ export function Search() {
           />
           <div className='flex gap-x-4'>
             <Input
+              required
               onChange={e => {
-                handleInputChange(e)
+                handleInputChange({ e, setFormErrors, setFormValues })
               }}
               isInvalid={formErrors.skills}
               errorMessage={languagei18n[currentLanguage].search.skillsError}
@@ -108,8 +81,9 @@ export function Search() {
               placeholder={`${languagei18n[currentLanguage].search.skillsPlaceHolder}...`}
             />
             <Input
+              required
               onChange={e => {
-                handleInputChange(e)
+                handleInputChange({ e, setFormErrors, setFormValues })
               }}
               isInvalid={formErrors.location}
               errorMessage={languagei18n[currentLanguage].search.locationError}

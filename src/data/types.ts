@@ -14,4 +14,6 @@ export enum SupportedLanguages {
   ES = 'Español',
 }
 
+export type InputsSearch = 'position' | 'skills' | 'location'
+
 export type SupportedLanguageKeys = keyof typeof SupportedLanguages
