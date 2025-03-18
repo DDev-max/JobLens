@@ -111,20 +111,138 @@ export const grammarWords: Record<SupportedLanguageKeys, string[]> = {
     'intermediate',
     'basic',
   ],
-  ES: [],
+
+  ES: [
+    'y',
+    'a',
+    'o',
+    'de',
+    'para',
+    'en',
+    'con',
+    'por',
+    'sobre',
+    'entre',
+    'durante',
+    'antes',
+    'después',
+    'al',
+    'como',
+    'si',
+    'aunque',
+    'mientras',
+    'cada',
+    'algún',
+    'mucho',
+    'poco',
+    'varios',
+    'todos',
+    'uno',
+    'dos',
+    'primero',
+    'segundo',
+    'último',
+    'nuevo',
+    'antiguo',
+    'actual',
+    'anterior',
+    'requerido',
+    'preferido',
+    'deseado',
+    'necesario',
+    'capaz',
+    'responsable',
+    'dedicado',
+    'enfocado',
+    'calificado',
+    'profesional',
+    'habilidoso',
+    'experimentado',
+    'motivados',
+    'competente',
+    'conocimiento',
+    'fuerte',
+    'bueno',
+    'excelente',
+    'avanzado',
+    'intermedio',
+    'básico',
+    'necesita',
+    'requiere',
+    'esperado',
+    'disponible',
+    'posible',
+    'potencial',
+    'enfocar',
+    'trabajar',
+    'aplicar',
+    'gestionar',
+    'supervisar',
+    'coordinar',
+    'desarrollar',
+    'ejecutar',
+    'realizar',
+    'liderar',
+    'contribuir',
+    'colaborar',
+    'adaptarse',
+    'cumplir',
+    'apoyar',
+    'demostrar',
+    'promover',
+    'analizar',
+    'organizar',
+    'presentar',
+    'comunicar',
+    'planificar',
+    'incluir',
+    'exigir',
+    'mostrar',
+    'crear',
+    'priorizar',
+    'comprometido',
+    'constante',
+    'flexible',
+    'innovador',
+    'entusiasta',
+    'proactivo',
+    'disciplinado',
+    'orientado',
+    'objetivos',
+    'trabajo en equipo',
+    'proyectos',
+    'responsabilidad',
+    'desafíos',
+    'iniciativa',
+    'creatividad',
+    'oportunidades',
+    'ambiente',
+    'exitoso',
+    'resultados',
+    'capacitación',
+    'desarrollo',
+    'crecimiento',
+    'experiencia',
+    'formación',
+    'educación',
+    'habilidades',
+  ],
 }
 
 export const languagei18n: Record<SupportedLanguageKeys, PageText> = {
   EN: {
     search: {
-      jobLabel: 'Position',
-      jobPlaceHolder: 'Software Engineer, DevOps, Data Scientist',
+      positionLabel: 'Position',
+      positionPlaceholder: 'Software Engineer, DevOps, Data Scientist',
+      positionError: 'Enter a valid job position.',
 
       locationLabel: 'Location',
       locationPlaceHolder: 'San Francisco, Berlin, Bangalore',
+      locationError: 'Enter a valid location',
 
       skillsLabel: 'Skills',
       skillsPlaceHolder: 'Python, SQL, Cloud Computing',
+      skillsError: 'Enter at least two skills separated by commas.',
 
       info: 'Enter a job title and keywords to see detailed charts and information about various roles.',
     },
@@ -140,7 +258,7 @@ export const languagei18n: Record<SupportedLanguageKeys, PageText> = {
         yTitle: 'Skills',
       },
       info: 'job offers have been read',
-      average: 'Average salary is: ',
+      average: 'The average monthly salary is: ',
     },
     jobCard: {
       age: (ageString: string) => ['Published: ', `${ageString} ago`],
@@ -152,14 +270,17 @@ export const languagei18n: Record<SupportedLanguageKeys, PageText> = {
 
   ES: {
     search: {
-      jobLabel: 'Puesto',
-      jobPlaceHolder: 'Ingeniero de Software, DevOps, Científico de Datos',
+      positionLabel: 'Puesto',
+      positionPlaceholder: 'Ingeniero de Software, DevOps, Científico de Datos',
+      positionError: 'Ingrese un puesto de trabajo válido',
 
       locationLabel: 'Ubicación',
       locationPlaceHolder: 'Ciudad de México, Buenos Aires, Bogotá',
+      locationError: 'Ingrese una ubicacion válida.',
 
       skillsLabel: 'Habilidades',
       skillsPlaceHolder: 'Python, SQL, Excel',
+      skillsError: 'Ingrese al menos dos habilidades separadas por comas.',
 
       info: 'Introduzca un puesto de trabajo y palabras clave para ver gráficos detallados e información sobre las ofertas.',
     },
@@ -175,10 +296,10 @@ export const languagei18n: Record<SupportedLanguageKeys, PageText> = {
         yTitle: 'Habilidades',
       },
       info: 'ofertas de trabajo han sido leidas',
-      average: 'El salario promedio es de: ',
+      average: 'El salario promedio por mes es de: ',
     },
     jobCard: {
-      age: (ageString: string) => ['Publicado hace: ', `${ageString}`],
+      age: (ageString: string) => ['Hace: ', `${ageString}`],
       location: ['Ubicación', 'Desconocida'],
       salary: ['Salario', 'Desconocido'],
       showMore: 'Ver más',
@@ -188,14 +309,17 @@ export const languagei18n: Record<SupportedLanguageKeys, PageText> = {
 
 interface PageText {
   search: {
-    jobLabel: string
-    jobPlaceHolder: string
+    positionLabel: string
+    positionError: string
+    positionPlaceholder: string
 
     skillsLabel: string
     skillsPlaceHolder: string
+    skillsError: string
 
     locationLabel: string
     locationPlaceHolder: string
+    locationError: string
 
     info: string
   }

@@ -12,25 +12,25 @@ import { languagei18n } from './data/consts'
 import { getSalaryAvg } from './Utils/getSalaryAvg'
 
 function App() {
+  const [maxItems, setMaxItems] = useState(8)
+
+  const { currency, salaryAvg } = getSalaryAvg({ data: MOCK_OBJ_SCRAPPING })
+
+  const currentLanguage = useSelector((state: RootState) => state.languageReducer.language)
+
   const skills = getAllMatches({
     data: MOCK_OBJ_SCRAPPING,
-    language: 'EN',
+    language: currentLanguage,
     propertyToSearch: 'skills',
     stringsToBeMatched: ['react', 'angular', 'astro', 'node', 'vue'],
   })
 
   const locations = getAllMatches({
     data: MOCK_OBJ_SCRAPPING,
-    language: 'EN',
+    language: currentLanguage,
     propertyToSearch: 'location',
     stringsToBeMatched: ['Remote'],
   })
-
-  const [maxItems, setMaxItems] = useState(8)
-
-  const { currency, salaryAvg } = getSalaryAvg({ data: MOCK_OBJ_SCRAPPING })
-
-  const currentLanguage = useSelector((state: RootState) => state.languageReducer.language)
 
   const chartSize = 220
 
