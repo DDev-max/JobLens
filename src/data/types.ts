@@ -1,4 +1,5 @@
 export interface JobDescription {
+  id: string
   jobTitle: string
   orgName: string
   location: string

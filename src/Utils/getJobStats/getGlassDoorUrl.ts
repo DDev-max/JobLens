@@ -24,7 +24,9 @@ interface LocationApi {
 }
 
 export async function getGlassDoorUrl({ jobLocation, jobPosition, scraperApiUrl }: GetGlassDoorUrlProps) {
-  const locationApiUrl = `https://www.glassdoor.com/autocomplete/location?locationTypeFilters=CITY,STATE,COUNTRY&caller=jobs&term=${jobLocation}`
+  const cleanedJobLocation = jobLocation.toLowerCase().replace(/\s+/g, '-')
+
+  const locationApiUrl = `https://www.glassdoor.com/autocomplete/location?locationTypeFilters=CITY,STATE,COUNTRY&caller=jobs&term=${cleanedJobLocation}`
 
   const locationApiData = await fetchData<LocationApi[]>({
     responseType: 'json',
@@ -42,8 +44,8 @@ export async function getGlassDoorUrl({ jobLocation, jobPosition, scraperApiUrl 
   const locationName = bestResult.longName.toLowerCase().replace(/[(),]/g, '').replace(/\s+/g, '-')
   const countryIdx = `0,${locationName.length}`
   const jobTitleIdx = `${locationName.length + 1},${locationName.length + 1 + jobPosition.length}`
-  const encodedJobTitle = jobPosition.toLowerCase().replace(/\s+/g, '-')
-  const pageToScrape = `https://www.glassdoor.com/Job/${locationName}-${encodedJobTitle}-jobs-SRCH_IL.${countryIdx}_I${locationCode}_KO${jobTitleIdx}.htm?sortBy=date_desc`
+  const cleanedJobTitle = jobPosition.toLowerCase().replace(/\s+/g, '-')
+  const pageToScrape = `https://www.glassdoor.com/Job/${locationName}-${cleanedJobTitle}-jobs-SRCH_IL.${countryIdx}_I${locationCode}_KO${jobTitleIdx}.htm?sortBy=date_desc`
 
   return encodeURIComponent(pageToScrape)
 }

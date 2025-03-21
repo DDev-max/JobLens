@@ -3,16 +3,17 @@ import { SearchSVG } from '../SVG/SearchSVG'
 import { LensSVG } from '../SVG/LensSVG'
 import { LocationSVG } from '../SVG/LocationSVG'
 import { SkillsSVG } from '../SVG/SkillsSVG'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '@/Context/store'
 import { languagei18n } from '@/data/consts'
 import { useState } from 'react'
 import type { InputsSearch } from '@/data/types'
-import { validateForm } from './validateForm'
+import { handleSubmit } from './handleSubmit'
 import { handleInputChange } from './handleInputChange'
 
 export function Search() {
   const currentLanguage = useSelector((state: RootState) => state.languageReducer.language)
+  const dispatch = useDispatch()
 
   const formInputs: Record<InputsSearch, string> = {
     position: '',
@@ -32,7 +33,7 @@ export function Search() {
     <search>
       <form
         onSubmit={e => {
-          validateForm({ e, formValues, setFormErrors })
+          handleSubmit({ e, formValues, setFormErrors, dispatch })
         }}
         className='gap-9 flex flex-col justify-center items-center  p-5'
       >

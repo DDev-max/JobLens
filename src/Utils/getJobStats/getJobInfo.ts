@@ -1,101 +1,61 @@
-import { chromium } from 'playwright'
-import { config } from 'dotenv'
-config()
-import fs from 'fs/promises'
-import path from 'path'
-import { fileURLToPath } from 'url'
-//import { fetchData } from '../fetchData/fetchData.ts'
+import { fetchData } from '../fetchData/fetchData.ts'
 import { getGlassDoorUrl } from './getGlassDoorUrl.ts'
+import type { JobDescription } from '@/data/types.ts'
 
 interface GetJobStatsProps {
   jobPosition: string
   jobLocation: string
 }
 
-interface jobDescription {
-  jobTitle: string
-  orgName: string
-  location: string
-  salary: string
-  skills: string[]
-  jobAge: string
-  imgSrc: string
-  jobLink: string
-}
-
 export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps) {
-  const browser = await chromium.launch()
-  const context = await browser.newContext()
-  const scraperApiUrl = `https://app.scrapingbee.com/api/v1/?api_key=${process.env.API_KEY}&url=`
-  try {
-    const encodedUrl = await getGlassDoorUrl({ jobLocation, jobPosition, scraperApiUrl })
+  const scraperApiUrl = `https://app.scrapingbee.com/api/v1/?api_key=${import.meta.env.VITE_API_KEY}&url=`
 
-    const __dirname = path.dirname(fileURLToPath(import.meta.url))
-    const htmlContent = await fs.readFile(path.join(__dirname, 'scrappedPage.html'), 'utf8')
+  const encodedUrl = await getGlassDoorUrl({ jobLocation, jobPosition, scraperApiUrl })
+  if (!encodedUrl) return
 
-    const pageUrl = scraperApiUrl + encodedUrl + '&premium_proxy=True'
-    console.log(pageUrl.slice(0, 1))
+  const pageUrl = scraperApiUrl + encodedUrl + '&premium_proxy=True'
 
-    // const htmlContent = await fetchData<string>({ URL: pageUrl, responseType: 'text', retries: 2 })
-    if (!htmlContent) return
+  const htmlContent = await fetchData<string>({ URL: pageUrl, responseType: 'text', retries: 2 })
+  if (!htmlContent) return
+  const parsedDoc = new DOMParser().parseFromString(htmlContent, 'text/html')
 
-    const jobPage = await context.newPage()
-    jobPage.setContent(htmlContent)
+  const allResults = Array.from(parsedDoc.querySelectorAll('ul[aria-label="Jobs List"]>li'))
+  const jobInfo: JobDescription[] = []
 
-    const jobLi = jobPage.locator('ul[aria-label="Jobs List"]>li')
-    const allResults = await jobLi.all()
+  for (const elmnt of allResults) {
+    const jobTitle = elmnt.querySelector('[id^="job-title"]')?.textContent || ''
+    const orgName = elmnt.querySelector('[class^="EmployerProfile_compactEmployerName"]')?.textContent || ''
+    const linkElement = elmnt.querySelector('a[data-test="job-link"]')
+    const jobLink = linkElement instanceof HTMLAnchorElement ? `https://www.glassdoor.com${linkElement.href}` : ''
 
-    const jobInfo: jobDescription[] = []
+    const id = new URL(jobLink).search
 
-    for (const elmnt of allResults) {
-      const jobTitle = (await elmnt.locator('[id^="job-title"]').textContent()) || ''
-      const orgName = (await elmnt.locator('[class^="EmployerProfile_compactEmployerName"]').textContent()) || ''
-      const jobLink = await elmnt.evaluate(li => {
-        const linkElement = li.querySelector('a[data-test="job-link"]')
-        return linkElement instanceof HTMLAnchorElement ? `https://www.glassdoor.com${linkElement.href}` : ''
-      })
+    const imgElement = elmnt.querySelector("[class^='avatar_AvatarContainer'] img")
+    const imgSrc = imgElement instanceof HTMLImageElement ? imgElement.src : ''
 
-      const imgSrc = await elmnt.evaluate(li => {
-        const imgElement = li.querySelector("[class^='avatar_AvatarContainer'] img")
-        return imgElement instanceof HTMLImageElement ? imgElement.src : ''
-      })
+    const location = elmnt.querySelector("[id^='job-location']")?.textContent || ''
 
-      const location = (await elmnt.locator("[id^='job-location']").textContent()) || ''
+    const salary = elmnt.querySelector('[id^="job-salary"]')?.textContent || ''
 
-      const salary = await elmnt.evaluate(li => {
-        const salaryElement = li.querySelector('[id^="job-salary"]')
-        return salaryElement?.textContent ?? ''
-      })
+    const jobDescriptionElement = elmnt.querySelector('[class^="JobCard_jobDescriptionSnippet"] div:last-of-type')
+    const jobDescriptionNodes = jobDescriptionElement ? jobDescriptionElement.childNodes : []
+    const lastNode = jobDescriptionNodes[jobDescriptionNodes.length - 1]
 
-      const skills = await elmnt.evaluate(li => {
-        const jobDescriptionElement = li.querySelector('[class^="JobCard_jobDescriptionSnippet"] div:last-of-type')
-        if (!jobDescriptionElement) return []
-        const jobDescriptionNodes = jobDescriptionElement.childNodes
-        const lastNode = jobDescriptionNodes[jobDescriptionNodes.length - 1]
-        return lastNode.textContent?.split(',') || []
-      })
+    const skills = lastNode.textContent?.split(',') || []
+    const jobAge = elmnt.querySelector('[class^="JobCard_listingAge"]')?.textContent || ''
 
-      const jobAge = (await elmnt.locator('[class^="JobCard_listingAge"]').textContent()) || ''
-
-      jobInfo.push({
-        jobAge,
-        jobTitle,
-        location,
-        orgName,
-        skills,
-        salary,
-        imgSrc,
-        jobLink,
-      })
-    }
-
-    return jobInfo
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error(error)
-  } finally {
-    browser.close()
+    jobInfo.push({
+      id,
+      jobAge,
+      jobTitle,
+      location,
+      orgName,
+      skills,
+      salary,
+      imgSrc,
+      jobLink,
+    })
   }
-}
 
-console.log(await getJobInfo({ jobLocation: 'Mexico', jobPosition: 'Cajero' }))
+  return jobInfo
+}
