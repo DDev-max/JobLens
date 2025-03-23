@@ -1,5 +1,3 @@
-import { Switch } from '@heroui/switch'
-import { MoonSVG, SunSVG } from './SVG/DarkModeSVGs'
 import { LanguageSVG } from './SVG/LanguageSVG'
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@heroui/dropdown'
 import { Button } from '@heroui/button'
@@ -19,13 +17,6 @@ export function Header() {
   return (
     <header className='flex dark bg-background border-b-1 border-gray-500'>
       <div className=' ml-auto flex gap-4 p-2'>
-        <Switch
-          color='default'
-          size='lg'
-          defaultSelected
-          thumbIcon={({ isSelected, className }) => (isSelected ? <MoonSVG className={className} /> : <SunSVG className={className} />)}
-        />
-
         <Dropdown className='dark text-foreground border-1 '>
           <DropdownTrigger>
             <Button isIconOnly className='bg-transparent'>
