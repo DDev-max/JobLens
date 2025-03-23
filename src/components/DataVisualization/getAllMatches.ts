@@ -5,7 +5,7 @@ import { normalizeString } from '@/Utils/normalizeString'
 interface GetAllMatchesProps {
   stringsToBeMatched: readonly string[]
   data: readonly JobDescription[]
-  propertyToSearch: 'location' | 'skills' | 'orgName'
+  propertyToSearch: 'location' | 'skills'
   language: SupportedLanguageKeys
 }
 
@@ -16,8 +16,14 @@ export function getAllMatches({ stringsToBeMatched, data, propertyToSearch, lang
   const flatCleanValues = data.flatMap(({ [propertyToSearch]: value, jobTitle }) => {
     const values = []
 
+    const parsedString = Array.isArray(value) ? value.map(el => normalizeString(el)).join('|') : normalizeString(value)
+
+    const skillRegexp = new RegExp(`\\b(${parsedString})\\b`)
+
+    const isInTitleAndSkills = skillRegexp.test(normalizeString(jobTitle))
+
     values.push(...(Array.isArray(value) ? value.map(normalizeString) : [normalizeString(value)]))
-    if (propertyToSearch === 'skills') values.push(normalizeString(jobTitle))
+    if (propertyToSearch === 'skills' && !isInTitleAndSkills) values.push(normalizeString(jobTitle))
 
     return values
   })
@@ -65,10 +71,17 @@ export function getAllMatches({ stringsToBeMatched, data, propertyToSearch, lang
     }
   })
 
-  const nameQttySorted = nameQttyArray.sort((a, b) => {
+  const nameQttySorted = nameQttyArray.toSorted((a, b) => {
     if (cleanStrs2BMatched.some(str => str === a[0] || str === b[0])) return 1
     return b[1] - a[1]
   })
 
-  return nameQttySorted.slice(0, 5)
+  const otherValues = nameQttySorted.slice(5)
+
+  const sumOthers = otherValues.reduce((prev, next) => prev + next[1], 0)
+
+  const top5 = nameQttySorted.slice(0, 4)
+  top5.push(['others', sumOthers])
+
+  return top5
 }

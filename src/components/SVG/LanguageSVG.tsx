@@ -6,7 +6,6 @@ export function LanguageSVG(props: SVGProps<SVGSVGElement>) {
       viewBox='0 0 24 24'
       role='img'
       xmlns='http://www.w3.org/2000/svg'
-      aria-labelledby='languageIconTitle'
       stroke='#000000'
       strokeWidth='1'
       strokeLinecap='square'

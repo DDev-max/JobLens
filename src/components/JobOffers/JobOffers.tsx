@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import type { RootState } from '@/Context/store'
 import { useState } from 'react'
 import { JobCard } from './JobCard'
+import { Filters } from './Filters/Filters'
 
 export function JobOffers() {
   const [maxItems, setMaxItems] = useState(8)
@@ -12,19 +13,11 @@ export function JobOffers() {
   const { currency, salaryAvg } = useSelector((state: RootState) => state.jobDataReducer.salary)
 
   const jobData = useSelector((state: RootState) => state.jobDataReducer.data)
+
   if (!jobData?.length) return
-
-  // console.clear()
-  // console.log(String(MOCK_OBJ_SCRAPPING[0].jobLink))
-
-  // console.log(
-  //   MOCK_OBJ_SCRAPPING.filter(el => {
-  //     return el.skills.some(el => el.match(/react/i))
-  //   })
-  // )
-
   return (
     <>
+      <Filters />
       <p className='m-5'>
         {jobData.length} {languagei18n[currentLanguage].charts.info}
       </p>

@@ -55,6 +55,7 @@ export function DataVisualization() {
           title={languagei18n[currentLanguage].charts.skills.title}
           yTitle={languagei18n[currentLanguage].charts.skills.yTitle}
           xTitle={languagei18n[currentLanguage].charts.skills.xTitle}
+          othersLabel={languagei18n[currentLanguage].charts.others}
           sizePx={chartSize}
         />
       </div>
@@ -73,6 +74,7 @@ export function DataVisualization() {
           title={languagei18n[currentLanguage].charts.location.title}
           yTitle={languagei18n[currentLanguage].charts.location.yTitle}
           xTitle={languagei18n[currentLanguage].charts.location.xTitle}
+          othersLabel={languagei18n[currentLanguage].charts.others}
           sizePx={chartSize}
         />
       </div>

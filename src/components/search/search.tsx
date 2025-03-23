@@ -16,9 +16,9 @@ export function Search() {
   const dispatch = useDispatch()
 
   const formInputs: Record<InputsSearch, string> = {
-    position: '',
-    skills: '',
-    location: '',
+    position: 'Example',
+    skills: 'CSS,react',
+    location: 'Remote,Toronto',
   }
   const isInvalidInput: Record<InputsSearch, boolean> = {
     position: false,

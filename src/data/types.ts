@@ -8,6 +8,13 @@ export interface JobDescription {
   jobAge: string
   imgSrc: string
   jobLink: string
+  salaryPerMonth: number
+}
+
+export interface Filters {
+  salaryDesc: boolean[]
+  location: string[]
+  skills: string[]
 }
 
 export enum SupportedLanguages {

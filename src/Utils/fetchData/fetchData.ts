@@ -9,6 +9,7 @@ type ResponseTypes = 'json' | 'text'
 let attemptCounter = 0
 
 export async function fetchData<TFetchReturn>({ URL, responseType, retries }: FetchFnProps) {
+  return
   const validTypes: readonly [ResponseTypes, ResponseTypes] = ['json', 'text']
 
   try {

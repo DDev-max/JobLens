@@ -259,12 +259,18 @@ export const languagei18n: Record<SupportedLanguageKeys, PageText> = {
       },
       info: 'job offers have been read',
       average: 'The average monthly salary is: ',
+      others: 'Others',
     },
     jobCard: {
       age: (ageString: string) => ['Published: ', `${ageString} ago`],
       location: ['Location', 'Unknown'],
       salary: ['Salary', 'Unknown'],
       showMore: 'Show more',
+    },
+    filters: {
+      filterName: 'Filters: ',
+      salaryAsc: 'Salary ⬆️',
+      salaryDesc: 'Salary ⬇️',
     },
   },
 
@@ -297,12 +303,18 @@ export const languagei18n: Record<SupportedLanguageKeys, PageText> = {
       },
       info: 'ofertas de trabajo han sido leidas',
       average: 'El salario promedio por mes es de: ',
+      others: 'Otros',
     },
     jobCard: {
       age: (ageString: string) => ['Hace: ', `${ageString}`],
       location: ['Ubicación', 'Desconocida'],
       salary: ['Salario', 'Desconocido'],
       showMore: 'Ver más',
+    },
+    filters: {
+      filterName: 'Filtros: ',
+      salaryAsc: 'Salario ⬆️',
+      salaryDesc: 'Salario ⬇️',
     },
   },
 }
@@ -325,10 +337,11 @@ interface PageText {
   }
 
   charts: {
-    info: string
     skills: ChartStrings
     location: ChartStrings
+    info: string
     average: string
+    others: string
   }
 
   jobCard: {
@@ -336,6 +349,12 @@ interface PageText {
     salary: string[]
     location: string[]
     showMore: string
+  }
+
+  filters: {
+    filterName: string
+    salaryDesc: string
+    salaryAsc: string
   }
 }
 

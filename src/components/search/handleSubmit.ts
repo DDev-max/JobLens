@@ -1,8 +1,9 @@
-import { setJobData, setJobLocation, setJobSalary, setJobSkills } from '@/Context/jobDataSlice'
+import { defaultFilters, setFilters, setJobData, setJobLocation, setJobSalary, setJobSkills } from '@/Context/jobDataSlice'
 import type { InputsSearch } from '@/data/types'
 import { getJobInfo } from '@/Utils/getJobStats/getJobInfo'
 import { getSalaryAvg } from '@/Utils/getSalaryAvg'
 import type { Dispatch, UnknownAction } from '@reduxjs/toolkit'
+import { filterOffers } from '../JobOffers/Filters/filterOffers'
 
 interface HandleSubmitarams {
   e: React.FormEvent<HTMLFormElement>
@@ -23,10 +24,13 @@ export async function handleSubmit({ e, setFormErrors, formValues, dispatch }: H
   if (formIsValid) {
     const jobData = await getJobInfo({ jobLocation: formValues.location, jobPosition: formValues.position })
 
+    // const jobData = MOCK_OBJ_SCRAPPING
+
     if (!jobData) return
-    dispatch(setJobData(jobData))
     dispatch(setJobLocation(formValues.location.split(',')))
     dispatch(setJobSkills(formValues.skills.split(',')))
+    dispatch(setFilters(defaultFilters))
+    dispatch(setJobData(filterOffers({ newFilters: defaultFilters, originalData: jobData })))
 
     const { currency, salaryAvg } = getSalaryAvg({ data: jobData })
     dispatch(setJobSalary({ currency: currency || '', salaryAvg: salaryAvg || '' }))

@@ -1,6 +1,9 @@
-import { fetchData } from '../fetchData/fetchData.ts'
-import { getGlassDoorUrl } from './getGlassDoorUrl.ts'
+// import { fetchData } from '../fetchData/fetchData.ts'
+// import { getGlassDoorUrl } from './getGlassDoorUrl.ts'
 import type { JobDescription } from '@/data/types.ts'
+import { HTML } from './scrappedPage'
+import { salaryConversion } from '../salaryConversion'
+import { moneyRegex } from '@/data/consts'
 
 interface GetJobStatsProps {
   jobPosition: string
@@ -10,13 +13,14 @@ interface GetJobStatsProps {
 export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps) {
   const scraperApiUrl = `https://app.scrapingbee.com/api/v1/?api_key=${import.meta.env.VITE_API_KEY}&url=`
 
-  const encodedUrl = await getGlassDoorUrl({ jobLocation, jobPosition, scraperApiUrl })
-  if (!encodedUrl) return
+  // const encodedUrl = await getGlassDoorUrl({ jobLocation, jobPosition, scraperApiUrl })
+  // if (!encodedUrl) return
 
-  const pageUrl = scraperApiUrl + encodedUrl + '&premium_proxy=True'
+  // const pageUrl = scraperApiUrl + encodedUrl + '&premium_proxy=True'
 
-  const htmlContent = await fetchData<string>({ URL: pageUrl, responseType: 'text', retries: 2 })
-  if (!htmlContent) return
+  // const htmlContent = await fetchData<string>({ URL: pageUrl, responseType: 'text', retries: 2 })
+  // if (!htmlContent) return
+  const htmlContent = HTML
   const parsedDoc = new DOMParser().parseFromString(htmlContent, 'text/html')
 
   const allResults = Array.from(parsedDoc.querySelectorAll('ul[aria-label="Jobs List"]>li'))
@@ -43,6 +47,9 @@ export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps)
 
     const skills = lastNode.textContent?.split(',') || []
     const jobAge = elmnt.querySelector('[class^="JobCard_listingAge"]')?.textContent || ''
+    const salaryMatch = salary.match(moneyRegex) || []
+
+    const salaryPerMonth = salary ? salaryConversion({ salary: salaryMatch, currency: '$', salaryDescription: salary }) : 0
 
     jobInfo.push({
       id,
@@ -54,6 +61,7 @@ export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps)
       salary,
       imgSrc,
       jobLink,
+      salaryPerMonth,
     })
   }
 
