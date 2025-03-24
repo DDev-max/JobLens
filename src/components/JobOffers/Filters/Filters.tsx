@@ -50,7 +50,9 @@ export function Filters() {
               color = isActive ? 'success' : 'danger'
             }
 
-            const salaryText = isActive ? languagei18n[currentLanguage].filters.salaryAsc : languagei18n[currentLanguage].filters.salaryDesc
+            const salaryText = isActive
+              ? languagei18n[currentLanguage].filters.salaryAsc
+              : languagei18n[currentLanguage].filters.salaryDesc
 
             const uiString = String(value).trim().charAt(0).toUpperCase() + String(value).trim().slice(1)
 
@@ -64,7 +66,14 @@ export function Filters() {
             return (
               <Button
                 onPress={() => {
-                  handlePress({ isActive, filterName: name, value: String(value), dispatch, filters, originalData })
+                  handlePress({
+                    isActive,
+                    filterName: name,
+                    value: String(value),
+                    dispatch,
+                    filters,
+                    originalData,
+                  })
                 }}
                 key={index}
                 variant={variant}
