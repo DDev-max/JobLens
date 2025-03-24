@@ -1,18 +1,18 @@
-import type { Filters, JobDescription } from '@/data/types'
+import type { FiltersType, JobDescription } from '@/data/types'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
 
-const skills: readonly string[] = ['react', 'Angular']
-const location: readonly string[] = ['san jose', 'casa']
+const skills: readonly string[] = []
+const location: readonly string[] = []
 
 const salary = {
   currency: '',
   salaryAvg: '',
 }
 
-export const defaultFilters: Filters = {
-  location: [''],
-  skills: [''],
+const currentFilters: FiltersType = {
+  location: [],
+  skills: [],
   salaryDesc: [false],
 }
 
@@ -23,7 +23,7 @@ const initialState = {
   skills,
   location,
   salary,
-  defaultFilters,
+  currentFilters,
 }
 
 const jobDatalice = createSlice({
@@ -42,8 +42,8 @@ const jobDatalice = createSlice({
     setJobSalary: (state, action: PayloadAction<typeof salary>) => {
       state.salary = action.payload
     },
-    setFilters: (state, action: PayloadAction<Filters>) => {
-      state.defaultFilters = action.payload
+    setFilters: (state, action: PayloadAction<FiltersType>) => {
+      state.currentFilters = action.payload
     },
   },
 })

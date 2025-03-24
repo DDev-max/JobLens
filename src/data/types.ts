@@ -11,9 +11,9 @@ export interface JobDescription {
   salaryPerMonth: number
 }
 
-export interface Filters {
-  salaryDesc: boolean[]
-  location: string[]
+export interface FiltersType {
+  salaryDesc: [boolean] | []
+  location: [string] | []
   skills: string[]
 }
 
@@ -22,6 +22,6 @@ export enum SupportedLanguages {
   ES = 'Español',
 }
 
-export type InputsSearch = 'position' | 'skills' | 'location'
+export type InputsSearchName = 'position' | 'skills' | 'location'
 
 export type SupportedLanguageKeys = keyof typeof SupportedLanguages

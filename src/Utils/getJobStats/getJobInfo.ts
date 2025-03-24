@@ -2,8 +2,6 @@
 // import { getGlassDoorUrl } from './getGlassDoorUrl.ts'
 import type { JobDescription } from '@/data/types.ts'
 import { HTML } from './scrappedPage'
-import { salaryConversion } from '../salaryConversion'
-import { moneyRegex } from '@/data/consts'
 
 interface GetJobStatsProps {
   jobPosition: string
@@ -24,6 +22,7 @@ export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps)
   const parsedDoc = new DOMParser().parseFromString(htmlContent, 'text/html')
 
   const allResults = Array.from(parsedDoc.querySelectorAll('ul[aria-label="Jobs List"]>li'))
+
   const jobInfo: JobDescription[] = []
 
   for (const elmnt of allResults) {
@@ -50,11 +49,6 @@ export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps)
 
     const skills = lastNode.textContent?.split(',') || []
     const jobAge = elmnt.querySelector('[class^="JobCard_listingAge"]')?.textContent || ''
-    const salaryMatch = salary.match(moneyRegex) || []
-
-    const salaryPerMonth = salary
-      ? salaryConversion({ salary: salaryMatch, currency: '$', salaryDescription: salary })
-      : 0
 
     jobInfo.push({
       id,
@@ -66,7 +60,7 @@ export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps)
       salary,
       imgSrc,
       jobLink,
-      salaryPerMonth,
+      salaryPerMonth: 0, // declaring the property, later on we will put the real value
     })
   }
 

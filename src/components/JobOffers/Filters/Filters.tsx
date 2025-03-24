@@ -5,8 +5,12 @@ import type { ButtonProps } from '@heroui/button'
 import { Button } from '@heroui/button'
 import { useDispatch, useSelector } from 'react-redux'
 import { useRef } from 'react'
-import type { Filters } from '@/data/types'
 import { handlePress } from './handlePress'
+import type { FiltersType } from '@/data/types'
+
+interface FilterButtons extends Omit<FiltersType, 'location'> {
+  location: string[]
+}
 
 export function Filters() {
   const jobData = useSelector((state: RootState) => state.jobDataReducer.data)
@@ -16,15 +20,17 @@ export function Filters() {
   const originalData = originalDataRef.current
 
   const skillsInput = useSelector((state: RootState) => state.jobDataReducer.skills)
-
+  const cleanedSkills = [...new Set(skillsInput.map(str => normalizeString(str)))]
   const locations = useSelector((state: RootState) => state.jobDataReducer.location)
+  const cleanedLocations = [...new Set(locations.map(str => normalizeString(str)))]
+
   const dispatch = useDispatch()
 
-  const filters = useSelector((state: RootState) => state.jobDataReducer.defaultFilters)
-  const filterButtons = {
+  const filters = useSelector((state: RootState) => state.jobDataReducer.currentFilters)
+  const filterButtons: FilterButtons = {
     salaryDesc: [false],
-    skills: skillsInput,
-    location: locations,
+    skills: cleanedSkills,
+    location: cleanedLocations,
   }
 
   const currentLanguage = useSelector((state: RootState) => state.languageReducer.language)
@@ -34,11 +40,12 @@ export function Filters() {
       <p className='m-2'>{languagei18n[currentLanguage].filters.filterName}</p>
       <div className='gap-2 flex flex-wrap'>
         {Object.entries(filterButtons).map(([filterName, valuesArray]) =>
-          valuesArray.map((value, index) => {
+          valuesArray.map((value: string | boolean, index: number) => {
             const cleanedString = normalizeString(String(value))
-            const name = filterName as keyof Filters
+            const name = filterName as keyof FilterButtons
 
             let color: ButtonProps['color'] = 'primary'
+
             const isActive =
               name === 'skills'
                 ? filters.skills.some(el => normalizeString(el) === cleanedString)

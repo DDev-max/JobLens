@@ -6,6 +6,8 @@ interface SalaryConversionParams {
 }
 
 export function salaryConversion({ salary, currency, descIndex, salaryDescription }: SalaryConversionParams) {
+  if (!salary.length || !currency || !salaryDescription) return 0
+
   const noCurrency = salary.map(el => el.replaceAll(currency, ''))
 
   const numberConversion = noCurrency.map(el => {

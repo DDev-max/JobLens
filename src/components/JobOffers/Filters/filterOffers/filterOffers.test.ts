@@ -1,12 +1,12 @@
-import type { Filters } from '@/data/types.ts';
+import type { FiltersType } from '@/data/types.ts';
 import { filterOffers } from './filterOffers';
 import originalData from '@/__mocks__/scrappedPage.json';
 import { normalizeString } from '@/Utils/normalizeString';
 
 describe('salary filter', () => {
   it('should order the offers by salary in ascending order.', () => {
-    const newFilters: Filters = {
-      location: [],
+    const newFilters: FiltersType = {
+      location: [''],
       salaryDesc: [false],
       skills: [],
     };
@@ -19,7 +19,7 @@ describe('salary filter', () => {
   });
 
   it('should order the offers by salary in descending  order.', () => {
-    const newFilters: Filters = {
+    const newFilters: FiltersType = {
       location: [],
       salaryDesc: [true],
       skills: [],
@@ -35,7 +35,7 @@ describe('salary filter', () => {
 
 describe('skills filter', () => {
   it('should filter offers by skills when they are in the skills field.', () => {
-    const newFilters: Filters = {
+    const newFilters: FiltersType = {
       location: [],
       salaryDesc: [false],
       skills: ['css'],
@@ -51,7 +51,7 @@ describe('skills filter', () => {
   });
 
   it('should filter job offers by skills, even if the skill is in the title.', () => {
-    const newFilters: Filters = {
+    const newFilters: FiltersType = {
       location: [],
       salaryDesc: [false],
       skills: ['REACT'],
@@ -74,7 +74,7 @@ describe('skills filter', () => {
   });
 
   it('should filter multiple skills', () => {
-    const newFilters: Filters = {
+    const newFilters: FiltersType = {
       location: [],
       salaryDesc: [false],
       skills: ['php', 'javascript'],
@@ -95,7 +95,7 @@ describe('skills filter', () => {
 });
 
 it('should filter by location', () => {
-  const newFilters: Filters = {
+  const newFilters: FiltersType = {
     location: ['Remote'],
     salaryDesc: [false],
     skills: [],
@@ -103,7 +103,7 @@ it('should filter by location', () => {
 
   const filteredData = filterOffers({ newFilters, originalData });
 
-  const locationRegexp = new RegExp(`\\b${normalizeString(newFilters.location[0])}\\b`);
+  const locationRegexp = new RegExp(`\\b${normalizeString(newFilters.location[0] || '')}\\b`);
 
   expect(filteredData).toHaveLength(2);
   expect(filteredData.every(obj => locationRegexp.test(normalizeString(obj.location)))).toBeTruthy();

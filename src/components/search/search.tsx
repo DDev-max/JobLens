@@ -7,20 +7,21 @@ import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '@/Context/store'
 import { languagei18n } from '@/data/consts'
 import { useState } from 'react'
-import type { InputsSearch } from '@/data/types'
+import type { InputsSearchName } from '@/data/types'
 import { handleSubmit } from './handleSubmit'
 import { handleInputChange } from './handleInputChange'
+import { InputSearch } from './InputSearch'
 
 export function Search() {
   const currentLanguage = useSelector((state: RootState) => state.languageReducer.language)
   const dispatch = useDispatch()
 
-  const formInputs: Record<InputsSearch, string> = {
+  const formInputs: Record<InputsSearchName, string> = {
     position: 'Example',
-    skills: 'CSS,react',
+    skills: 'CSS,react, react  ',
     location: 'Remote,Toronto',
   }
-  const isInvalidInput: Record<InputsSearch, boolean> = {
+  const isInvalidInput: Record<InputsSearchName, boolean> = {
     position: false,
     skills: false,
     location: false,
@@ -43,7 +44,7 @@ export function Search() {
         </div>
 
         <div className='flex flex-col gap-3 lg:flex-row'>
-          <Input
+          <InputSearch
             required
             onChange={e => {
               handleInputChange({ e, setFormErrors, setFormValues })
@@ -63,7 +64,7 @@ export function Search() {
             placeholder={`${languagei18n[currentLanguage].search.positionPlaceholder}...`}
           />
           <div className='flex gap-x-4'>
-            <Input
+            <InputSearch
               required
               onChange={e => {
                 handleInputChange({ e, setFormErrors, setFormValues })
