@@ -15,11 +15,16 @@ export function filterOffers({ originalData, newFilters }: FilterOffersParams) {
     const isSkillInDescription = skillRegexp.test(normalizeString(job.skills.toString()))
     const isSkillInTitle = skillRegexp.test(normalizeString(job.jobTitle.toString()))
     const hasSameSkills = isSkillInDescription || isSkillInTitle
-    return (newFilters.location.length ? hasSameLocation : true) && (newFilters.skills.length ? hasSameSkills : true)
+    return (
+      (newFilters.location.length ? hasSameLocation : true) &&
+      (newFilters.skills.length ? hasSameSkills : true)
+    )
   })
 
   const sortedData = filteredData.toSorted((a, b) => {
-    return newFilters.salaryDesc[0] ? a.salaryPerMonth - b.salaryPerMonth : b.salaryPerMonth - a.salaryPerMonth
+    return newFilters.salaryDesc[0]
+      ? a.salaryPerMonth - b.salaryPerMonth
+      : b.salaryPerMonth - a.salaryPerMonth
   })
 
   return sortedData

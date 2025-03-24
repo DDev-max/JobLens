@@ -30,7 +30,8 @@ export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps)
     const jobTitle = elmnt.querySelector('[id^="job-title"]')?.textContent || ''
     const orgName = elmnt.querySelector('[class^="EmployerProfile_compactEmployerName"]')?.textContent || ''
     const linkElement = elmnt.querySelector('a[data-test="job-link"]')
-    const jobLink = linkElement instanceof HTMLAnchorElement ? `https://www.glassdoor.com${linkElement.href}` : ''
+    const jobLink =
+      linkElement instanceof HTMLAnchorElement ? `https://www.glassdoor.com${linkElement.href}` : ''
 
     const id = new URL(jobLink).search
 
@@ -41,7 +42,9 @@ export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps)
 
     const salary = elmnt.querySelector('[id^="job-salary"]')?.textContent || ''
 
-    const jobDescriptionElement = elmnt.querySelector('[class^="JobCard_jobDescriptionSnippet"] div:last-of-type')
+    const jobDescriptionElement = elmnt.querySelector(
+      '[class^="JobCard_jobDescriptionSnippet"] div:last-of-type'
+    )
     const jobDescriptionNodes = jobDescriptionElement ? jobDescriptionElement.childNodes : []
     const lastNode = jobDescriptionNodes[jobDescriptionNodes.length - 1]
 
@@ -49,7 +52,9 @@ export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps)
     const jobAge = elmnt.querySelector('[class^="JobCard_listingAge"]')?.textContent || ''
     const salaryMatch = salary.match(moneyRegex) || []
 
-    const salaryPerMonth = salary ? salaryConversion({ salary: salaryMatch, currency: '$', salaryDescription: salary }) : 0
+    const salaryPerMonth = salary
+      ? salaryConversion({ salary: salaryMatch, currency: '$', salaryDescription: salary })
+      : 0
 
     jobInfo.push({
       id,

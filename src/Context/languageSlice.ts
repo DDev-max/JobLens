@@ -8,7 +8,8 @@ interface LanguageState {
 
 const userLanguage = navigator.language
 const languageCode = userLanguage.split('-')[0].toUpperCase()
-const initialLanguage: SupportedLanguageKeys = languageCode in SupportedLanguages ? (languageCode as SupportedLanguageKeys) : 'EN'
+const initialLanguage: SupportedLanguageKeys =
+  languageCode in SupportedLanguages ? (languageCode as SupportedLanguageKeys) : 'EN'
 
 const initialState: LanguageState = {
   language: initialLanguage,

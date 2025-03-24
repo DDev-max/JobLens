@@ -1,9 +1,16 @@
-import { defaultFilters, setFilters, setJobData, setJobLocation, setJobSalary, setJobSkills } from '@/Context/jobDataSlice'
+import {
+  defaultFilters,
+  setFilters,
+  setJobData,
+  setJobLocation,
+  setJobSalary,
+  setJobSkills,
+} from '@/Context/jobDataSlice'
 import type { InputsSearch } from '@/data/types'
 import { getJobInfo } from '@/Utils/getJobStats/getJobInfo'
 import { getSalaryAvg } from '@/Utils/getSalaryAvg'
 import type { Dispatch, UnknownAction } from '@reduxjs/toolkit'
-import { filterOffers } from '../JobOffers/Filters/filterOffers'
+import { filterOffers } from '../JobOffers/Filters/filterOffers/filterOffers'
 
 interface HandleSubmitarams {
   e: React.FormEvent<HTMLFormElement>

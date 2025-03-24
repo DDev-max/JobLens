@@ -1,6 +1,6 @@
 import type { Filters, JobDescription } from '@/data/types'
 import { normalizeString } from '@/Utils/normalizeString'
-import { filterOffers } from './filterOffers'
+import { filterOffers } from './filterOffers/filterOffers'
 import { setFilters, setJobData } from '@/Context/jobDataSlice'
 import type { Dispatch, UnknownAction } from '@reduxjs/toolkit'
 
@@ -13,7 +13,14 @@ interface handlePressParams {
   filters: Filters
 }
 
-export function handlePress({ filterName, isActive, value, dispatch, originalData, filters }: handlePressParams) {
+export function handlePress({
+  filterName,
+  isActive,
+  value,
+  dispatch,
+  originalData,
+  filters,
+}: handlePressParams) {
   let newFilters: Filters = { location: [], salaryDesc: [], skills: [] }
 
   if (filterName === 'location') {
@@ -22,7 +29,10 @@ export function handlePress({ filterName, isActive, value, dispatch, originalDat
     newFilters = { ...filters, salaryDesc: [!filters.salaryDesc[0]] }
   } else if (filterName === 'skills') {
     newFilters = isActive
-      ? { ...filters, skills: filters.skills.filter(skill => normalizeString(skill) !== normalizeString(value)) }
+      ? {
+          ...filters,
+          skills: filters.skills.filter(skill => normalizeString(skill) !== normalizeString(value)),
+        }
       : { ...filters, skills: [...filters.skills, value] }
   }
 

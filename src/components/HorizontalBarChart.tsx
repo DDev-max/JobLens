@@ -45,7 +45,8 @@ export function HorizontalBarChart({
       options={{
         responsive: false,
         animation: {
-          delay: context => (context.type === 'data' ? context.dataIndex * 100 + context.datasetIndex * 100 : 0),
+          delay: context =>
+            context.type === 'data' ? context.dataIndex * 100 + context.datasetIndex * 100 : 0,
         },
         indexAxis: 'y',
         plugins: {

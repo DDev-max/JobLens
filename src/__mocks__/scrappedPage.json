@@ -1,88 +1,83 @@
 [
-    {
-        "id": "1",
-        "jobAge": "24h",
-        "jobTitle": "Junior React Developer",
-        "location": "Tampa, FL",
-        "orgName": "American Partner Solutions",
-        "skills": [
-            " PHP",
-            " JavaScript",
-            " Software development",
-            " HTML\n      "
-        ],
-        "salary": "$56K - $91K (Glassdoor est.)",
-        "imgSrc": "https://image.com/1",
-        "jobLink": "https://example.com/2",
-        "salaryPerMonth": 73500
-    },
-    {
-        "id": "2",
-        "jobAge": "24h",
-        "jobTitle": "Application Developer (ServiceNow)-Veterans Affairs (REMOTE)",
-        "location": "Remote",
-        "orgName": "THUNDERYARD SOLUTIONS",
-        "skills": [
-            " CAD",
-            " IT service management",
-            " cSs",
-            " JavaScript",
-            " Conflict management\n      "
-        ],
-        "salary": "$130K - $145K (Employer est.)",
-        "imgSrc": "https://image.com/2",
-        "jobLink": "https://example.com/2",
-        "salaryPerMonth": 137500
-    },
-    {
-        "id": "3",
-        "jobAge": "24h",
-        "jobTitle": "Front End Service Team Supervisor",
-        "location": "Pompano Beach, FL",
-        "orgName": "Walmart",
-        "skills": [
-            "PHP",
-            " greet and thank customers",
-            " process returns / refunds",
-            " and carry out financial transactions. Programs range from high school completion to bachelor's…&hellip;"
-        ],
-        "salary": "$20.00 - $33.00 Per Hour (Employer est.)",
-        "imgSrc": "https://image.com/3",
-        "jobLink": "https://example.com/3",
-        "salaryPerMonth": 4240
-    },
-    {
-        "id": "4",
-        "jobAge": "24h",
-        "jobTitle": "Front End Supervisor",
-        "location": "Wilkes-Barre, PA",
-        "orgName": "Jetro / Restaurant Depot",
-        "skills": [
-            " Customer service",
-            " Computer literacy",
-            " Communication skills\n      "
-        ],
-        "salary": "$14.75 - $15.24 Per Hour (Employer est.)",
-        "imgSrc": "https://image.com/4",
-        "jobLink": "https://example.com/4",
-        "salaryPerMonth": 2399.2000000000003
-    },
-    {
-        "id": "5",
-        "jobAge": "24h",
-        "jobTitle": "Frontend Engineer",
-        "location": "Irvine, CA (Remote)",
-        "orgName": "Beacon Talent",
-        "skills": [
-            " React",
-            " Web development",
-            " JavaScript",
-            " REST",
-            " Redux\n      "
-        ],
-        "salary": "$153K - $177K (Employer est.)",
-        "imgSrc": "https://image.com/5",
-        "jobLink": "https://example.com/4",
-        "salaryPerMonth": 165000
-    }
+  {
+    "id": "1",
+    "jobAge": "24h",
+    "jobTitle": "Junior React Developer",
+    "location": "Tampa, FL",
+    "orgName": "American Partner Solutions",
+    "skills": [" PHP", " JavaScript", " Software development", " HTML\n      "],
+    "salary": "$56K - $91K (Glassdoor est.)",
+    "imgSrc": "https://image.com/1",
+    "jobLink": "https://example.com/2",
+    "salaryPerMonth": 73500
+  },
+  {
+    "id": "2",
+    "jobAge": "24h",
+    "jobTitle": "Application Developer (ServiceNow)-Veterans Affairs (REMOTE)",
+    "location": "Remote",
+    "orgName": "THUNDERYARD SOLUTIONS",
+    "skills": [
+      " CAD",
+      " IT service management",
+      " cSs",
+      " JavaScript",
+      " Conflict management\n      "
+    ],
+    "salary": "$130K - $145K (Employer est.)",
+    "imgSrc": "https://image.com/2",
+    "jobLink": "https://example.com/2",
+    "salaryPerMonth": 137500
+  },
+  {
+    "id": "3",
+    "jobAge": "24h",
+    "jobTitle": "Front End Service Team Supervisor",
+    "location": "Pompano Beach, FL",
+    "orgName": "Walmart",
+    "skills": [
+      "PHP",
+      " greet and thank customers",
+      " process returns / refunds",
+      " and carry out financial transactions. Programs range from high school completion to bachelor's…&hellip;"
+    ],
+    "salary": "$20.00 - $33.00 Per Hour (Employer est.)",
+    "imgSrc": "https://image.com/3",
+    "jobLink": "https://example.com/3",
+    "salaryPerMonth": 4240
+  },
+  {
+    "id": "4",
+    "jobAge": "24h",
+    "jobTitle": "Front End Supervisor",
+    "location": "Wilkes-Barre, PA",
+    "orgName": "Jetro / Restaurant Depot",
+    "skills": [
+      " Customer service",
+      " Computer literacy",
+      " Communication skills\n      "
+    ],
+    "salary": "$14.75 - $15.24 Per Hour (Employer est.)",
+    "imgSrc": "https://image.com/4",
+    "jobLink": "https://example.com/4",
+    "salaryPerMonth": 2399.2000000000003
+  },
+  {
+    "id": "5",
+    "jobAge": "24h",
+    "jobTitle": "Frontend Engineer",
+    "location": "Irvine, CA (Remote)",
+    "orgName": "Beacon Talent",
+    "skills": [
+      " React",
+      " Web development",
+      " JavaScript",
+      " REST",
+      " Redux\n      "
+    ],
+    "salary": "$153K - $177K (Employer est.)",
+    "imgSrc": "https://image.com/5",
+    "jobLink": "https://example.com/4",
+    "salaryPerMonth": 165000
+  }
 ]

@@ -15,7 +15,8 @@ export function salaryConversion({ salary, currency, descIndex, salaryDescriptio
     return Number(el)
   })
 
-  const sum = numberConversion.length > 1 ? numberConversion.reduce((prev, next) => prev + next) : numberConversion[0]
+  const sum =
+    numberConversion.length > 1 ? numberConversion.reduce((prev, next) => prev + next) : numberConversion[0]
 
   const rangeAvg = sum / numberConversion.length
 

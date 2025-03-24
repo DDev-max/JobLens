@@ -16,7 +16,9 @@ export function getAllMatches({ stringsToBeMatched, data, propertyToSearch, lang
   const flatCleanValues = data.flatMap(({ [propertyToSearch]: value, jobTitle }) => {
     const values = []
 
-    const parsedString = Array.isArray(value) ? value.map(el => normalizeString(el)).join('|') : normalizeString(value)
+    const parsedString = Array.isArray(value)
+      ? value.map(el => normalizeString(el)).join('|')
+      : normalizeString(value)
 
     const skillRegexp = new RegExp(`\\b(${parsedString})\\b`)
 

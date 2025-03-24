@@ -39,7 +39,12 @@ export function getSalaryAvg({ data }: GetSalaryMeanProps) {
   salaries.forEach((salary, descIndex) => {
     if (!salary.some(el => el.includes(mostUsedCurrency))) return
 
-    const rangeAvg = salaryConversion({ salary, currency: mostUsedCurrency, descIndex, salaryDescription: salariesOriginal })
+    const rangeAvg = salaryConversion({
+      salary,
+      currency: mostUsedCurrency,
+      descIndex,
+      salaryDescription: salariesOriginal,
+    })
 
     salariesPerMonth.push(rangeAvg)
   })
