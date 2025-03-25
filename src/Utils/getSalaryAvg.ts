@@ -1,38 +1,19 @@
-import { currencies, moneyRegex } from '@/data/consts'
-import type { JobDescription } from '@/data/types'
-import { salaryConversion } from './salaryConversion'
+import { moneyRegex } from '@/data/consts'
+import { salaryConversion } from './salaryConversion/salaryConversion'
 
 interface GetSalaryMeanProps {
-  data: readonly JobDescription[]
+  salaryDescription: string[]
+  mostUsedCurrency: string
 }
 
-export function getSalaryAvg({ data }: GetSalaryMeanProps) {
-  const salariesOriginal = data.map(obj => obj.salary).filter(salary => salary)
-
-  if (!salariesOriginal.length) return {}
-
+export function getSalaryAvg({ mostUsedCurrency, salaryDescription }: GetSalaryMeanProps) {
   const salaries: string[][] = []
-  salariesOriginal.forEach(el => {
+  salaryDescription.forEach(el => {
     const match = el.match(moneyRegex)
     if (match) {
       salaries.push([...match])
     }
   })
-
-  const currenciesCoincidences: Record<string, number> = {}
-
-  salaries.flat().map(el => {
-    const onlyCurrency = el.replace(new RegExp(`[^${currencies}]\\S+`, 'g'), '')
-    if (currenciesCoincidences[onlyCurrency]) {
-      currenciesCoincidences[onlyCurrency] += 1
-    } else {
-      currenciesCoincidences[onlyCurrency] = 1
-    }
-  })
-
-  const sortedCurrencies = Object.entries(currenciesCoincidences).sort((a, b) => b[1] - a[1])
-
-  const mostUsedCurrency = sortedCurrencies[0][0]
 
   const salariesPerMonth: number[] = []
 
@@ -40,10 +21,8 @@ export function getSalaryAvg({ data }: GetSalaryMeanProps) {
     if (!salary.some(el => el.includes(mostUsedCurrency))) return
 
     const rangeAvg = salaryConversion({
-      salary,
       currency: mostUsedCurrency,
-      descIndex,
-      salaryDescription: salariesOriginal,
+      salaryDescription: salaryDescription[descIndex],
     })
 
     salariesPerMonth.push(rangeAvg)
@@ -52,5 +31,5 @@ export function getSalaryAvg({ data }: GetSalaryMeanProps) {
 
   const salaryAvg = (salariesSum / salariesPerMonth.length).toFixed(2)
 
-  return { salaryAvg, currency: mostUsedCurrency }
+  return salaryAvg
 }

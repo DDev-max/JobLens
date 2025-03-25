@@ -1,6 +1,11 @@
 import type { SupportedLanguageKeys } from '@/data/types'
 
 export const currencies = '€¥₡₩$£'
+export const hoursPerDay = 8
+export const daysPerWeek = 5
+export const weeksPerMonth = 4
+export const thousandAbbreviation = 1000
+
 export const moneyRegex = new RegExp(`[${currencies}]\\S+`, 'g')
 
 export const grammarWords: Record<SupportedLanguageKeys, string[]> = {

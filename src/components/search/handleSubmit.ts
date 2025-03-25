@@ -4,8 +4,8 @@ import { getJobInfo } from '@/Utils/getJobStats/getJobInfo'
 import { getSalaryAvg } from '@/Utils/getSalaryAvg'
 import type { Dispatch, UnknownAction } from '@reduxjs/toolkit'
 import { filterOffers } from '../JobOffers/Filters/filterOffers/filterOffers'
-import { salaryConversion } from '@/Utils/salaryConversion'
-import { moneyRegex } from '@/data/consts'
+import { salaryConversion } from '@/Utils/salaryConversion/salaryConversion'
+import { getMostUsedCurrency } from '@/Utils/getMostUsedCurrency/getMostUsedCurrency'
 
 interface HandleSubmitarams {
   e: React.FormEvent<HTMLFormElement>
@@ -27,13 +27,14 @@ export async function handleSubmit({ e, setFormErrors, formValues, dispatch }: H
     const jobData = await getJobInfo({ jobLocation: formValues.location, jobPosition: formValues.position })
     if (!jobData || !jobData.length) return
 
-    const { currency, salaryAvg } = getSalaryAvg({ data: jobData })
+    const salaryDescription = jobData.map(obj => obj.salary).filter(salary => salary)
+
+    const mostUsedCurrency = getMostUsedCurrency({ salaryDescription })
+    const salaryAvg = getSalaryAvg({ mostUsedCurrency, salaryDescription })
 
     const dataWithSalaryAvg = jobData.map(job => {
-      const salaryMatch = job.salary?.match(moneyRegex) || []
       job.salaryPerMonth = salaryConversion({
-        currency: currency || '',
-        salary: salaryMatch,
+        currency: mostUsedCurrency || '',
         salaryDescription: job.salary,
       })
       return job
@@ -49,7 +50,6 @@ export async function handleSubmit({ e, setFormErrors, formValues, dispatch }: H
     dispatch(setJobSkills(formValues.skills.split(',')))
     dispatch(setFilters(defaultFilters))
     dispatch(setJobData(filterOffers({ newFilters: defaultFilters, originalData: dataWithSalaryAvg })))
-
-    dispatch(setJobSalary({ currency: currency || '', salaryAvg: salaryAvg || '' }))
+    dispatch(setJobSalary({ currency: mostUsedCurrency || '', salaryAvg: salaryAvg || '' }))
   }
 }
