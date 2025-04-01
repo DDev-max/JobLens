@@ -29,10 +29,14 @@ export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps)
     const jobTitle = elmnt.querySelector('[id^="job-title"]')?.textContent || ''
     const orgName = elmnt.querySelector('[class^="EmployerProfile_compactEmployerName"]')?.textContent || ''
     const linkElement = elmnt.querySelector('a[data-test="job-link"]')
-    const jobLink =
-      linkElement instanceof HTMLAnchorElement ? `https://www.glassdoor.com${linkElement.href}` : ''
 
-    const id = new URL(jobLink).search
+    const jobLink =
+      linkElement instanceof HTMLAnchorElement
+        ? `https://www.glassdoor.com${linkElement.getAttribute('href')}`
+        : ''
+
+    const urlSearch = new URL(jobLink).search
+    const id = urlSearch.slice(urlSearch.lastIndexOf('-') + 1)
 
     const imgElement = elmnt.querySelector("[class^='avatar_AvatarContainer'] img")
     const imgSrc = imgElement instanceof HTMLImageElement ? imgElement.src : ''
@@ -50,6 +54,8 @@ export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps)
     const skills = lastNode.textContent?.split(',') || []
     const jobAge = elmnt.querySelector('[class^="JobCard_listingAge"]')?.textContent || ''
 
+    console.log(jobLink)
+
     jobInfo.push({
       id,
       jobAge,
@@ -63,6 +69,8 @@ export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps)
       salaryPerMonth: 0, // declaring the property, later on we will put the real value
     })
   }
+
+  console.log(jobInfo)
 
   return jobInfo
 }
