@@ -1,39 +1,33 @@
-import type { RootState } from '@/Context/store'
 import { languagei18n } from '@/data/consts'
 import { normalizeString } from '@/Utils/normalizeString'
 import type { ButtonProps } from '@heroui/button'
 import { Button } from '@heroui/button'
-import { useDispatch, useSelector } from 'react-redux'
 import { useRef } from 'react'
 import { handlePress } from './handlePress'
 import type { FiltersType } from '@/data/types'
+import { useAppSelector } from '@/Context/hooks/storeHooks'
+import { useJobActions } from '@/Context/hooks/useJobActions'
 
 interface FilterButtons extends Omit<FiltersType, 'location'> {
   location: string[]
 }
 
 export function Filters() {
-  const jobData = useSelector((state: RootState) => state.jobDataReducer.data)
+  const jobActions = useJobActions()
 
-  const originalDataRef = useRef(jobData)
+  const { skills, location, currentFilters, data } = useAppSelector(state => state.jobDataReducer)
+  const currentLanguage = useAppSelector(state => state.languageReducer.language)
 
-  const originalData = originalDataRef.current
-
-  const skillsInput = useSelector((state: RootState) => state.jobDataReducer.skills)
-  const cleanedSkills = [...new Set(skillsInput.map(str => normalizeString(str)))]
-  const locations = useSelector((state: RootState) => state.jobDataReducer.location)
-  const cleanedLocations = [...new Set(locations.map(str => normalizeString(str)))]
-
-  const dispatch = useDispatch()
-
-  const filters = useSelector((state: RootState) => state.jobDataReducer.currentFilters)
+  const cleanedLocations = [...new Set(location.map(str => normalizeString(str)))]
+  const cleanedSkills = [...new Set(skills.map(str => normalizeString(str)))]
   const filterButtons: FilterButtons = {
     salaryDesc: [false],
     skills: cleanedSkills,
     location: cleanedLocations,
   }
 
-  const currentLanguage = useSelector((state: RootState) => state.languageReducer.language)
+  const originalDataRef = useRef(data)
+  const originalData = originalDataRef.current
 
   return (
     <div className='flex my-4'>
@@ -48,8 +42,8 @@ export function Filters() {
 
             const isActive =
               name === 'skills'
-                ? filters.skills.some(el => normalizeString(el) === cleanedString)
-                : normalizeString(String(filters[name][0])) === cleanedString
+                ? currentFilters.skills.some(el => normalizeString(el) === cleanedString)
+                : normalizeString(String(currentFilters[name][0])) === cleanedString
 
             if (name === 'location') {
               color = 'secondary'
@@ -77,9 +71,9 @@ export function Filters() {
                     isActive,
                     filterName: name,
                     value: String(value),
-                    dispatch,
-                    filters,
+                    filters: currentFilters,
                     originalData,
+                    jobActions,
                   })
                 }}
                 key={index}

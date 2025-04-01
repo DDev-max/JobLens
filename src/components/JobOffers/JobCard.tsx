@@ -1,10 +1,9 @@
-import type { RootState } from '@/Context/store'
+import { useAppSelector } from '@/Context/hooks/storeHooks'
 import { moneyRegex, languagei18n } from '@/data/consts'
 import type { JobDescription } from '@/data/types'
 import { salaryConversion } from '@/Utils/salaryConversion/salaryConversion'
 import { Card, CardBody, CardFooter, CardHeader } from '@heroui/card'
 import { Divider } from '@heroui/divider'
-import { useSelector } from 'react-redux'
 
 interface JobCardProps {
   jobData: JobDescription
@@ -16,7 +15,7 @@ export function JobCard({ jobData, jobSalaryAvg, currency }: JobCardProps) {
   const skills = jobData.skills.toString()
   const cleanedSkills = skills.replace('&hellip', '').replace('…;', '')
 
-  const currentLanguage = useSelector((state: RootState) => state.languageReducer.language)
+  const currentLanguage = useAppSelector(state => state.languageReducer.language)
 
   const salaryDescription = jobData.salary
     ? `${jobData.salary}`

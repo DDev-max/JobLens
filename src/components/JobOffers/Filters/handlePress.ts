@@ -1,25 +1,24 @@
 import type { FiltersType, JobDescription } from '@/data/types'
 import { normalizeString } from '@/Utils/normalizeString'
 import { filterOffers } from './filterOffers/filterOffers'
-import { setFilters, setJobData } from '@/Context/jobDataSlice'
-import type { Dispatch, UnknownAction } from '@reduxjs/toolkit'
+import type { useJobActions } from '@/Context/hooks/useJobActions'
 
 interface handlePressParams {
   isActive: boolean
   filterName: keyof FiltersType
   value: string
-  dispatch: Dispatch<UnknownAction>
   originalData: readonly JobDescription[]
   filters: FiltersType
+  jobActions: ReturnType<typeof useJobActions>
 }
 
 export function handlePress({
   filterName,
   isActive,
   value,
-  dispatch,
   originalData,
   filters,
+  jobActions,
 }: handlePressParams) {
   let newFilters: FiltersType = { location: [], salaryDesc: [], skills: [] }
 
@@ -36,8 +35,8 @@ export function handlePress({
       : { ...filters, skills: [...filters.skills, value] }
   }
 
-  dispatch(setFilters(newFilters))
+  const { setFilters, setJobData } = jobActions
 
-  const sortedData = filterOffers({ newFilters, originalData })
-  dispatch(setJobData(sortedData))
+  setFilters(newFilters)
+  setJobData(filterOffers({ newFilters, originalData }))
 }

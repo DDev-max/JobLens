@@ -2,12 +2,12 @@ import type { FiltersType, JobDescription } from '@/data/types'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
 
-const skills: readonly string[] = []
-const location: readonly string[] = []
+const skills: string[] = []
+const location: string[] = []
 
-const salary = {
+const salaryInfo = {
   currency: '',
-  salaryAvg: '',
+  average: '',
 }
 
 const currentFilters: FiltersType = {
@@ -20,33 +20,33 @@ const data: readonly JobDescription[] = []
 
 const initialState = {
   data,
+  currentFilters,
   skills,
   location,
-  salary,
-  currentFilters,
+  salaryInfo,
 }
+
+export type SharedValues = Omit<typeof initialState, 'data' | 'currentFilters'>
 
 const jobDatalice = createSlice({
   name: 'jobData',
   initialState,
   reducers: {
-    setJobData: (state, action: PayloadAction<JobDescription[]>) => {
+    setData: (state, action: PayloadAction<JobDescription[]>) => {
       state.data = action.payload
     },
-    setJobSkills: (state, action: PayloadAction<string[]>) => {
-      state.skills = action.payload
+
+    setGlobalValues: (state, action: PayloadAction<SharedValues>) => {
+      state.location = action.payload.location
+      state.skills = action.payload.skills
+      state.salaryInfo = action.payload.salaryInfo
     },
-    setJobLocation: (state, action: PayloadAction<string[]>) => {
-      state.location = action.payload
-    },
-    setJobSalary: (state, action: PayloadAction<typeof salary>) => {
-      state.salary = action.payload
-    },
-    setFilters: (state, action: PayloadAction<FiltersType>) => {
+
+    setCurrentFilters: (state, action: PayloadAction<FiltersType>) => {
       state.currentFilters = action.payload
     },
   },
 })
 
-export const { setJobData, setJobSkills, setJobLocation, setJobSalary, setFilters } = jobDatalice.actions
+export const { setCurrentFilters, setData, setGlobalValues } = jobDatalice.actions
 export default jobDatalice.reducer

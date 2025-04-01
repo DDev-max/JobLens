@@ -1,18 +1,17 @@
 import { Button } from '@heroui/button'
 import { languagei18n } from '@/data/consts'
-import { useSelector } from 'react-redux'
-import type { RootState } from '@/Context/store'
 import { useState } from 'react'
 import { JobCard } from './JobCard'
 import { Filters } from './Filters/Filters'
+import { useAppSelector } from '@/Context/hooks/storeHooks'
 
 export function JobOffers() {
   const [maxItems, setMaxItems] = useState(8)
 
-  const currentLanguage = useSelector((state: RootState) => state.languageReducer.language)
-  const { currency, salaryAvg } = useSelector((state: RootState) => state.jobDataReducer.salary)
+  const currentLanguage = useAppSelector(state => state.languageReducer.language)
+  const { currency, average } = useAppSelector(state => state.jobDataReducer.salaryInfo)
 
-  const jobData = useSelector((state: RootState) => state.jobDataReducer.data)
+  const jobData = useAppSelector(state => state.jobDataReducer.data)
 
   if (!jobData?.length) return
   return (
@@ -24,7 +23,7 @@ export function JobOffers() {
       <section className='grid grid-cols-[repeat(auto-fit,minmax(290px,1fr))] gap-4 '>
         {jobData.slice(0, maxItems).map((el, idx) => (
           <article key={idx}>
-            <JobCard jobData={el} jobSalaryAvg={Number(salaryAvg)} currency={currency || ''} />
+            <JobCard jobData={el} jobSalaryAvg={Number(average)} currency={currency || ''} />
           </article>
         ))}
       </section>

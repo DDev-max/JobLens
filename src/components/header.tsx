@@ -1,18 +1,18 @@
 import { LanguageSVG } from './SVG/LanguageSVG'
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@heroui/dropdown'
 import { Button } from '@heroui/button'
-import { useDispatch, useSelector } from 'react-redux'
-import { setLanguage } from '@/Context/languageSlice'
-import type { RootState } from '@/Context/store'
 import type { SupportedLanguageKeys } from '@/data/types'
 import { SupportedLanguages } from '@/data/types'
+import { useAppSelector } from '@/Context/hooks/storeHooks'
+import { useLanguageActions } from '@/Context/hooks/useLanguageActions'
 
 export function Header() {
-  const dispatch = useDispatch()
-  const currentLanguage = useSelector((state: RootState) => state.languageReducer.language)
+  const currentLanguage = useAppSelector(state => state.languageReducer.language)
 
   const ESKey: SupportedLanguageKeys = 'ES'
   const ENKey: SupportedLanguageKeys = 'EN'
+
+  const { setLanguage } = useLanguageActions()
 
   return (
     <header className='flex dark bg-background border-b-1 border-gray-500'>
@@ -26,7 +26,7 @@ export function Header() {
           <DropdownMenu
             selectionMode='single'
             selectedKeys={[`${currentLanguage}`]}
-            onAction={key => dispatch(setLanguage(key as SupportedLanguageKeys))}
+            onAction={key => setLanguage(key as SupportedLanguageKeys)}
           >
             <DropdownItem key={ESKey}>{SupportedLanguages[ESKey]}</DropdownItem>
             <DropdownItem key={ENKey}>{SupportedLanguages[ENKey]}</DropdownItem>

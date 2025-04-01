@@ -3,18 +3,17 @@ import { SearchSVG } from '../SVG/SearchSVG'
 import { LensSVG } from '../SVG/LensSVG'
 import { LocationSVG } from '../SVG/LocationSVG'
 import { SkillsSVG } from '../SVG/SkillsSVG'
-import { useDispatch, useSelector } from 'react-redux'
-import type { RootState } from '@/Context/store'
 import { languagei18n } from '@/data/consts'
 import { useState } from 'react'
 import type { InputsSearchName } from '@/data/types'
 import { handleSubmit } from './handleSubmit'
 import { handleInputChange } from './handleInputChange'
 import { InputSearch } from './InputSearch'
+import { useAppSelector } from '@/Context/hooks/storeHooks'
+import { useJobActions } from '@/Context/hooks/useJobActions'
 
 export function Search() {
-  const currentLanguage = useSelector((state: RootState) => state.languageReducer.language)
-  const dispatch = useDispatch()
+  const currentLanguage = useAppSelector(state => state.languageReducer.language)
 
   const formInputs: Record<InputsSearchName, string> = {
     position: 'Example',
@@ -30,11 +29,13 @@ export function Search() {
   const [formValues, setFormValues] = useState(formInputs)
   const [formErrors, setFormErrors] = useState(isInvalidInput)
 
+  const jobActions = useJobActions()
+
   return (
     <search>
       <form
         onSubmit={e => {
-          handleSubmit({ e, formValues, setFormErrors, dispatch })
+          handleSubmit({ e, formValues, setFormErrors, jobActions })
         }}
         className='gap-9 flex flex-col justify-center items-center  p-5'
       >

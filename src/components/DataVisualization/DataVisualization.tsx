@@ -1,40 +1,35 @@
-import type { RootState } from '@/Context/store'
 import { languagei18n } from '@/data/consts'
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
 import { HorizontalBarChart } from '../HorizontalBarChart'
 import { getAllMatches } from './getAllMatches'
+import { useAppSelector } from '@/Context/hooks/storeHooks'
 
 export function DataVisualization() {
   const [isMediumScreen, setIsMediumScreen] = useState(window.innerWidth > 710 && window.innerWidth < 1020)
 
-  const currentLanguage = useSelector((state: RootState) => state.languageReducer.language)
-  const { currency, salaryAvg } = useSelector((state: RootState) => state.jobDataReducer.salary)
+  const currentLanguage = useAppSelector(state => state.languageReducer.language)
+  const { data, skills, location, salaryInfo } = useAppSelector(state => state.jobDataReducer)
 
-  const jobData = useSelector((state: RootState) => state.jobDataReducer.data)
-  const jobSkills = useSelector((state: RootState) => state.jobDataReducer.skills)
-  const jobLocation = useSelector((state: RootState) => state.jobDataReducer.location)
-
-  if (!jobData?.length) return
+  if (!data?.length) return
 
   const chartSize = 220
 
-  const skills = getAllMatches({
-    data: jobData,
+  const skillsMatches = getAllMatches({
+    data,
     language: currentLanguage,
     propertyToSearch: 'skills',
-    stringsToBeMatched: jobSkills,
+    stringsToBeMatched: skills,
   })
 
-  const locations = getAllMatches({
-    data: jobData,
+  const locationsMatches = getAllMatches({
+    data,
     language: currentLanguage,
     propertyToSearch: 'location',
-    stringsToBeMatched: jobLocation,
+    stringsToBeMatched: location,
   })
 
   window.addEventListener('resize', () => {
-    if (jobData.length) return
+    if (data.length) return
     if (window.innerWidth > 710 && window.innerWidth < 1020) {
       if (isMediumScreen) return
       window.location.reload()
@@ -51,7 +46,7 @@ export function DataVisualization() {
       <div className='overflow-x-auto max-sm:w-full max-sm:justify-center flex'>
         <HorizontalBarChart
           isMediumScreen={isMediumScreen}
-          data={skills}
+          data={skillsMatches}
           title={languagei18n[currentLanguage].charts.skills.title}
           yTitle={languagei18n[currentLanguage].charts.skills.yTitle}
           xTitle={languagei18n[currentLanguage].charts.skills.xTitle}
@@ -60,17 +55,19 @@ export function DataVisualization() {
         />
       </div>
 
-      {salaryAvg && (
+      {salaryInfo.average && (
         <p className='text-4xl text-center flex-1 min-[1023px]:order-1 min-[1162px]:order-none my-8'>
           {languagei18n[currentLanguage].charts.average}
-          <b className='text-green-300'>{currency + Number(salaryAvg).toLocaleString()}</b>
+          <b className='text-green-300'>
+            {salaryInfo.currency + Number(salaryInfo.average).toLocaleString()}
+          </b>
         </p>
       )}
 
       <div className='overflow-x-auto max-sm:w-full max-sm:justify-center flex'>
         <HorizontalBarChart
           isMediumScreen={isMediumScreen}
-          data={locations}
+          data={locationsMatches}
           title={languagei18n[currentLanguage].charts.location.title}
           yTitle={languagei18n[currentLanguage].charts.location.yTitle}
           xTitle={languagei18n[currentLanguage].charts.location.xTitle}
