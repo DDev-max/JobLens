@@ -8,6 +8,10 @@ const responseType = 'json';
 global.fetch = jest.fn();
 const fakeFetch = fetch as jest.MockedFunction<typeof fetch>;
 
+// eslint-disable-next-line no-console
+jest.spyOn(console, 'error').mockImplementation(() => console.log('Mock console error'));
+//to avoid long error messages on the console caused on purpose
+
 it('should return data', async () => {
   fakeFetch.mockResolvedValueOnce({
     json: () => Promise.resolve({ title: 'Hello' }),
