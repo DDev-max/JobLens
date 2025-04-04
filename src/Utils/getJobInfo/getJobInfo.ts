@@ -1,7 +1,7 @@
-// import { fetchData } from '../fetchData/fetchData.ts'
-// import { getGlassDoorUrl } from './getGlassDoorUrl.ts'
+import { getApiKey } from '@/data/getApiKey.ts'
+import { fetchData } from '../fetchData/fetchData.ts'
+import { getGlassDoorUrl } from '../getGlassDoorUrl/getGlassDoorUrl.ts'
 import type { JobDescription } from '@/data/types.ts'
-import { HTML } from './scrappedPage'
 
 interface GetJobStatsProps {
   jobPosition: string
@@ -9,16 +9,16 @@ interface GetJobStatsProps {
 }
 
 export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps) {
-  const scraperApiUrl = `https://app.scrapingbee.com/api/v1/?api_key=${import.meta.env.VITE_API_KEY}&url=`
+  const scraperApiUrl = `https://app.scrapingbee.com/api/v1/?api_key=${getApiKey()}&url=`
 
-  // const encodedUrl = await getGlassDoorUrl({ jobLocation, jobPosition, scraperApiUrl })
-  // if (!encodedUrl) return
+  const encodedUrl = await getGlassDoorUrl({ jobLocation, jobPosition, scraperApiUrl })
+  if (!encodedUrl) return
 
-  // const pageUrl = scraperApiUrl + encodedUrl + '&premium_proxy=True'
+  const pageUrl = scraperApiUrl + encodedUrl + '&premium_proxy=True'
 
-  // const htmlContent = await fetchData<string>({ URL: pageUrl, responseType: 'text', retries: 2 })
-  // if (!htmlContent) return
-  const htmlContent = HTML
+  const htmlContent = await fetchData<string>({ URL: pageUrl, responseType: 'text', retries: 2 })
+
+  if (!htmlContent) return
   const parsedDoc = new DOMParser().parseFromString(htmlContent, 'text/html')
 
   const allResults = Array.from(parsedDoc.querySelectorAll('ul[aria-label="Jobs List"]>li'))
@@ -43,7 +43,7 @@ export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps)
 
     const location = elmnt.querySelector("[id^='job-location']")?.textContent || ''
 
-    const salary = elmnt.querySelector('[id^="job-salary"]')?.textContent || ''
+    const salary = elmnt.querySelector('[id^="job-salary"]')?.textContent?.replace(/\s/g, ' ') || '' // to use the same type of spacing between words
 
     const jobDescriptionElement = elmnt.querySelector(
       '[class^="JobCard_jobDescriptionSnippet"] div:last-of-type'
@@ -53,8 +53,6 @@ export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps)
 
     const skills = lastNode.textContent?.split(',') || []
     const jobAge = elmnt.querySelector('[class^="JobCard_listingAge"]')?.textContent || ''
-
-    console.log(jobLink)
 
     jobInfo.push({
       id,
@@ -69,8 +67,6 @@ export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps)
       salaryPerMonth: 0, // declaring the property, later on we will put the real value
     })
   }
-
-  console.log(jobInfo)
 
   return jobInfo
 }

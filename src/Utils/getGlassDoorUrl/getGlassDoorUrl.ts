@@ -1,26 +1,10 @@
+import type { LocationApi } from '@/data/types.ts'
 import { fetchData } from '../fetchData/fetchData.ts'
 
 interface GetGlassDoorUrlProps {
   jobLocation: string
   jobPosition: string
   scraperApiUrl: string
-}
-
-interface LocationApi {
-  id: number
-  label: string
-  locationId: number
-  metroId: number
-  stateId: number
-  countryId: number
-  locationType: string
-  locationName: string
-  longName: string
-  cityName: null | string
-  stateName: null | string
-  countryName: string
-  stateAbbreviation: null | string
-  country2LetterIso: string
 }
 
 export async function getGlassDoorUrl({ jobLocation, jobPosition, scraperApiUrl }: GetGlassDoorUrlProps) {
@@ -39,7 +23,7 @@ export async function getGlassDoorUrl({ jobLocation, jobPosition, scraperApiUrl 
 
   //All these parameters are necessary to obtain good search results
   const locationType = bestResult.locationType
-  const locationID = bestResult.stateId || bestResult.countryId || bestResult.locationId
+  const locationID = bestResult.locationId || bestResult.stateId || bestResult.countryId
   const locationCode = locationType + locationID
   const locationName = bestResult.longName.toLowerCase().replace(/[(),]/g, '').replace(/\s+/g, '-')
   const countryIdx = `0,${locationName.length}`

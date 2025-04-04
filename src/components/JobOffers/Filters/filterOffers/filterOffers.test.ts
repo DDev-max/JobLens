@@ -1,7 +1,16 @@
 import type { FiltersType } from '@/data/types.ts';
 import { filterOffers } from './filterOffers';
-import originalData from '@/__mocks__/scrappedPage.json';
+import dataNoSalary from '@/__mocks__/scrappedPage.json';
 import { normalizeString } from '@/Utils/normalizeString';
+import { salaryConversion } from '@/Utils/salaryConversion/salaryConversion';
+
+const dataWithSalaryAvg = dataNoSalary.map(job => {
+  job.salaryPerMonth = salaryConversion({
+    currency: '$',
+    salaryDescription: job.salary,
+  });
+  return job;
+});
 
 describe('salary filter', () => {
   it('should order the offers by salary in ascending order.', () => {
@@ -11,9 +20,9 @@ describe('salary filter', () => {
       skills: [],
     };
 
-    const sortedData = originalData.toSorted((a, b) => b.salaryPerMonth - a.salaryPerMonth);
+    const sortedData = dataWithSalaryAvg.toSorted((a, b) => b.salaryPerMonth - a.salaryPerMonth);
 
-    const filteredData = filterOffers({ newFilters, originalData });
+    const filteredData = filterOffers({ newFilters, originalData: dataWithSalaryAvg });
 
     expect(filteredData).toStrictEqual(sortedData);
   });
@@ -25,9 +34,9 @@ describe('salary filter', () => {
       skills: [],
     };
 
-    const sortedData = originalData.toSorted((a, b) => a.salaryPerMonth - b.salaryPerMonth);
+    const sortedData = dataWithSalaryAvg.toSorted((a, b) => a.salaryPerMonth - b.salaryPerMonth);
 
-    const filteredData = filterOffers({ newFilters, originalData });
+    const filteredData = filterOffers({ newFilters, originalData: dataWithSalaryAvg });
 
     expect(filteredData).toStrictEqual(sortedData);
   });
@@ -38,9 +47,9 @@ describe('skills filter', () => {
     const newFilters: FiltersType = {
       location: [],
       salaryDesc: [false],
-      skills: ['css'],
+      skills: ['javaScript'],
     };
-    const filteredData = filterOffers({ newFilters, originalData });
+    const filteredData = filterOffers({ newFilters, originalData: dataWithSalaryAvg });
 
     const skillRegexp = new RegExp(`\\b${normalizeString(newFilters.skills[0])}\\b`);
 
@@ -54,16 +63,16 @@ describe('skills filter', () => {
     const newFilters: FiltersType = {
       location: [],
       salaryDesc: [false],
-      skills: ['REACT'],
+      skills: ['FRONTEND'],
     };
 
     const skillsRegexp = new RegExp(
       `\\b(${newFilters.skills.map(skill => normalizeString(skill)).join('|')})\\b`
     );
 
-    const filteredData = filterOffers({ newFilters, originalData });
+    const filteredData = filterOffers({ newFilters, originalData: dataWithSalaryAvg });
 
-    expect(filteredData).toHaveLength(2);
+    expect(filteredData).toHaveLength(1);
     expect(
       filteredData.every(
         obj =>
@@ -77,9 +86,9 @@ describe('skills filter', () => {
     const newFilters: FiltersType = {
       location: [],
       salaryDesc: [false],
-      skills: ['php', 'javascript'],
+      skills: ['rEaCt', 'iOS'],
     };
-    const filteredData = filterOffers({ newFilters, originalData });
+    const filteredData = filterOffers({ newFilters, originalData: dataWithSalaryAvg });
     const firstSkillRegexp = new RegExp(`\\b${normalizeString(newFilters.skills[0])}\\b`);
     const secondSkillRegexp = new RegExp(`\\b${normalizeString(newFilters.skills[1])}\\b`);
 
@@ -94,17 +103,19 @@ describe('skills filter', () => {
   });
 });
 
-it('should filter by location', () => {
-  const newFilters: FiltersType = {
-    location: ['Remote'],
-    salaryDesc: [false],
-    skills: [],
-  };
+describe('location filter', () => {
+  it('should filter by location', () => {
+    const newFilters: FiltersType = {
+      location: ['Remote'],
+      salaryDesc: [false],
+      skills: [],
+    };
 
-  const filteredData = filterOffers({ newFilters, originalData });
+    const filteredData = filterOffers({ newFilters, originalData: dataWithSalaryAvg });
 
-  const locationRegexp = new RegExp(`\\b${normalizeString(newFilters.location[0] || '')}\\b`);
+    const locationRegexp = new RegExp(`\\b${normalizeString(newFilters.location[0] || '')}\\b`);
 
-  expect(filteredData).toHaveLength(2);
-  expect(filteredData.every(obj => locationRegexp.test(normalizeString(obj.location)))).toBeTruthy();
+    expect(filteredData).toHaveLength(1);
+    expect(filteredData.every(obj => locationRegexp.test(normalizeString(obj.location)))).toBeTruthy();
+  });
 });

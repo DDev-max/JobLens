@@ -11,6 +11,23 @@ export interface JobDescription {
   salaryPerMonth: number
 }
 
+export interface LocationApi {
+  id: number
+  label: string
+  locationId: number
+  metroId: number
+  stateId: number
+  countryId: number
+  locationType: string
+  locationName: string
+  longName: string
+  cityName: null | string
+  stateName: null | string
+  countryName: string
+  stateAbbreviation: null | string
+  country2LetterIso: string
+}
+
 export interface FiltersType {
   salaryDesc: [boolean] | []
   location: [string] | []
