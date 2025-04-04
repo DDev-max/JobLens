@@ -1,5 +1,5 @@
 import type { FiltersType, JobDescription } from '@/data/types'
-import { normalizeString } from '@/Utils/normalizeString'
+import { normalizeString } from '@/Utils/normalizeString/normalizeString'
 import { filterOffers } from './filterOffers/filterOffers'
 import type { useJobActions } from '@/Context/hooks/useJobActions'
 

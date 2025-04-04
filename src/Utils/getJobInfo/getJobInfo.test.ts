@@ -1,5 +1,5 @@
 import { getJobInfo } from './getJobInfo';
-import { HTML } from '../../__mocks__/scrappedPage';
+import { HTML } from '../../__mocks__/pageHtml';
 import { fetchData } from '../fetchData/fetchData';
 import { getGlassDoorUrl } from '../getGlassDoorUrl/getGlassDoorUrl';
 import expectedJobInfo from '@/__mocks__/scrappedPage.json';

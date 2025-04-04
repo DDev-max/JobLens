@@ -1,6 +1,6 @@
 import type { FiltersType, InputsSearchName } from '@/data/types'
 import { getJobInfo } from '@/Utils/getJobInfo/getJobInfo'
-import { getSalaryAvg } from '@/Utils/getSalaryAvg'
+import { getSalaryAvg } from '@/Utils/getSalaryAvg/getSalaryAvg'
 import { filterOffers } from '../JobOffers/Filters/filterOffers/filterOffers'
 import { salaryConversion } from '@/Utils/salaryConversion/salaryConversion'
 import { getMostUsedCurrency } from '@/Utils/getMostUsedCurrency/getMostUsedCurrency'

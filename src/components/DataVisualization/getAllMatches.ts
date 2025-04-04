@@ -1,6 +1,6 @@
 import { grammarWords } from '@/data/consts'
 import type { JobDescription, SupportedLanguageKeys } from '@/data/types.ts'
-import { normalizeString } from '@/Utils/normalizeString'
+import { normalizeString } from '@/Utils/normalizeString/normalizeString'
 
 interface GetAllMatchesProps {
   stringsToBeMatched: readonly string[]

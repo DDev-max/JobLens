@@ -1,5 +1,5 @@
 import type { FiltersType, JobDescription } from '@/data/types'
-import { normalizeString } from '@/Utils/normalizeString'
+import { normalizeString } from '@/Utils/normalizeString/normalizeString'
 
 interface FilterOffersParams {
   originalData: readonly JobDescription[]
