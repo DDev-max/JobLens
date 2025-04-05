@@ -16,10 +16,13 @@ export async function fetchData<TFetchReturn>({ URL, responseType, retries }: Fe
       if (!validTypes.includes(responseType)) {
         throw new ResponseTypeError(`"${responseType}" is an invalid response type.`)
       }
+
       const response = await fetch('URL')
+
       if (!response.ok) {
         throw new Error(`Fetch error: ${response.status}, ${response.statusText}`)
       }
+
       const format: TFetchReturn = await response[responseType]()
       return format
     } catch (error) {

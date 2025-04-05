@@ -1,4 +1,3 @@
-import { Input } from '@heroui/input'
 import { SearchSVG } from '../SVG/SearchSVG'
 import { LensSVG } from '../SVG/LensSVG'
 import { LocationSVG } from '../SVG/LocationSVG'
@@ -15,10 +14,14 @@ import { useJobActions } from '@/Context/hooks/useJobActions'
 export function Search() {
   const currentLanguage = useAppSelector(state => state.languageReducer.language)
 
+  // position: 'Example',
+  // skills: 'CSS,react, react  ',
+  // location: 'Remote,Toronto',
+
   const formInputs: Record<InputsSearchName, string> = {
-    position: 'Example',
-    skills: 'CSS,react, react  ',
-    location: 'Remote,Toronto',
+    position: '',
+    skills: '',
+    location: '',
   }
   const isInvalidInput: Record<InputsSearchName, boolean> = {
     position: false,
@@ -83,7 +86,7 @@ export function Search() {
               isClearable
               placeholder={`${languagei18n[currentLanguage].search.skillsPlaceHolder}...`}
             />
-            <Input
+            <InputSearch
               required
               onChange={e => {
                 handleInputChange({ e, setFormErrors, setFormValues })

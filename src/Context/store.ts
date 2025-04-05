@@ -1,12 +1,18 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import languageReducer from './languageSlice'
 import jobDataReducer from './jobDataSlice'
-export const store = configureStore({
-  reducer: {
-    languageReducer,
-    jobDataReducer,
-  },
+
+const rootReducer = combineReducers({
+  languageReducer,
+  jobDataReducer,
 })
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export function setupStore(preloadedState?: Partial<RootState>) {
+  return configureStore({
+    reducer: rootReducer,
+    preloadedState,
+  })
+}
+export type RootState = ReturnType<typeof rootReducer>
+export type AppStore = ReturnType<typeof setupStore>
+export type AppDispatch = AppStore['dispatch']

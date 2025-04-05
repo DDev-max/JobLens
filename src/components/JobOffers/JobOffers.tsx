@@ -5,10 +5,11 @@ import { JobCard } from './JobCard'
 import { Filters } from './Filters/Filters'
 import { useAppSelector } from '@/Context/hooks/storeHooks'
 
-export function JobOffers() {
-  const [maxItems, setMaxItems] = useState(8)
+export function JobOffers({ maximumItems = 2 }: { maximumItems?: number }) {
+  const [maxItems, setMaxItems] = useState(maximumItems)
 
   const currentLanguage = useAppSelector(state => state.languageReducer.language)
+
   const { currency, average } = useAppSelector(state => state.jobDataReducer.salaryInfo)
 
   const jobData = useAppSelector(state => state.jobDataReducer.data)
@@ -31,7 +32,7 @@ export function JobOffers() {
       {maxItems < jobData.length && (
         <Button
           onPress={() => {
-            setMaxItems(prev => prev + 8)
+            setMaxItems(prev => prev + maximumItems)
           }}
           size='lg'
           className='m-4 md:w-60 ml-auto mr-auto'

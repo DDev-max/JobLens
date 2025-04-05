@@ -1,7 +1,7 @@
 import { languagei18n } from '@/data/consts'
 import { useState } from 'react'
-import { HorizontalBarChart } from '../HorizontalBarChart'
-import { getAllMatches } from './getAllMatches'
+import { HorizontalBarChart } from './HorizontalBarChart'
+import { getAllMatches } from '../../Utils/getAllMatches/getAllMatches'
 import { useAppSelector } from '@/Context/hooks/storeHooks'
 
 export function DataVisualization() {

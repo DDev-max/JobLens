@@ -1,5 +1,5 @@
 import { Header } from './components/header'
-import { Search } from './components/search/search'
+import { Search } from './components/search/Search'
 import { DataVisualization } from './components/DataVisualization/DataVisualization'
 import { JobOffers } from './components/JobOffers/JobOffers'
 

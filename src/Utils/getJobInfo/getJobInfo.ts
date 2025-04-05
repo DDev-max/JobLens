@@ -2,6 +2,7 @@ import { getApiKey } from '@/data/getApiKey.ts'
 import { fetchData } from '../fetchData/fetchData.ts'
 import { getGlassDoorUrl } from '../getGlassDoorUrl/getGlassDoorUrl.ts'
 import type { JobDescription } from '@/data/types.ts'
+// import { HTML } from '@/__mocks__/pageHtml.ts'
 
 interface GetJobStatsProps {
   jobPosition: string
@@ -14,9 +15,10 @@ export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps)
   const encodedUrl = await getGlassDoorUrl({ jobLocation, jobPosition, scraperApiUrl })
   if (!encodedUrl) return
 
-  const pageUrl = scraperApiUrl + encodedUrl + '&premium_proxy=True'
+  const pageUrl = scraperApiUrl + 'encodedUrl' + '&premium_proxy=True'
 
   const htmlContent = await fetchData<string>({ URL: pageUrl, responseType: 'text', retries: 2 })
+  // const htmlContent = HTML
 
   if (!htmlContent) return
   const parsedDoc = new DOMParser().parseFromString(htmlContent, 'text/html')
