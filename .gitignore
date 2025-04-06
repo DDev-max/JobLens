@@ -32,3 +32,4 @@ bun.lockb
 .env
 scrappedPage.html
 scrappingObj.ts
+coverage

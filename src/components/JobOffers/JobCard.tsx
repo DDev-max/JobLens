@@ -1,10 +1,9 @@
-import type { RootState } from '@/Context/store'
+import { useAppSelector } from '@/Context/hooks/storeHooks'
 import { moneyRegex, languagei18n } from '@/data/consts'
 import type { JobDescription } from '@/data/types'
-import { salaryConversion } from '@/Utils/salaryConversion'
+import { salaryConversion } from '@/Utils/salaryConversion/salaryConversion'
 import { Card, CardBody, CardFooter, CardHeader } from '@heroui/card'
 import { Divider } from '@heroui/divider'
-import { useSelector } from 'react-redux'
 
 interface JobCardProps {
   jobData: JobDescription
@@ -16,15 +15,17 @@ export function JobCard({ jobData, jobSalaryAvg, currency }: JobCardProps) {
   const skills = jobData.skills.toString()
   const cleanedSkills = skills.replace('&hellip', '').replace('…;', '')
 
-  const currentLanguage = useSelector((state: RootState) => state.languageReducer.language)
+  const currentLanguage = useAppSelector(state => state.languageReducer.language)
 
-  const salaryDesc = jobData.salary ? `${jobData.salary}` : languagei18n[currentLanguage].jobCard.salary[1]
+  const salaryDescription = jobData.salary
+    ? `${jobData.salary}`
+    : languagei18n[currentLanguage].jobCard.salary[1]
 
   const [JobAgeName, JobAgeValue] = languagei18n[currentLanguage].jobCard.age(jobData.jobAge)
 
-  const salary = salaryDesc.match(moneyRegex)
+  const salary = salaryDescription.match(moneyRegex)
 
-  const salaryPerMonth = salary?.length ? salaryConversion({ salary, currency, salaryDescription: salaryDesc }) : 0
+  const salaryPerMonth = salary?.length ? salaryConversion({ currency, salaryDescription }) : 0
 
   const isAboveAvg = salaryPerMonth >= jobSalaryAvg
 
@@ -32,7 +33,11 @@ export function JobCard({ jobData, jobSalaryAvg, currency }: JobCardProps) {
     <Card className='p-4 h-[21rem] hover:scale-105 hover:border-blue-700 hover:border-1 '>
       <CardHeader className='p-0 flex flex-col'>
         <a className='flex justify-start w-full' href={jobData.jobLink} target='_blank'>
-          <img src={jobData.imgSrc} alt={jobData.imgSrc ? `Logo: ${jobData.orgName}` : ''} className='rounded-lg min-w-20 max-w-20 min-h-20' />
+          <img
+            src={jobData.imgSrc}
+            alt={jobData.imgSrc ? `Logo: ${jobData.orgName}` : ''}
+            className='rounded-lg min-w-20 max-w-20 min-h-20'
+          />
           <div className='flex flex-col gap-2 px-3 justify-around'>
             <h2 className=' font-bold  text-blue-400'>{jobData.jobTitle}</h2>
           </div>
@@ -55,7 +60,7 @@ export function JobCard({ jobData, jobSalaryAvg, currency }: JobCardProps) {
         <p>
           <b>{languagei18n[currentLanguage].jobCard.salary[0] + ': '}</b>
           <span className={` ${isAboveAvg ? 'text-green-300' : 'text-red-400'}`}>
-            {salaryDesc.length < 15 ? salaryDesc : salaryDesc.slice(0, 15) + '...'}
+            {salaryDescription.length < 15 ? salaryDescription : salaryDescription.slice(0, 15) + '...'}
           </span>
         </p>
       </CardFooter>

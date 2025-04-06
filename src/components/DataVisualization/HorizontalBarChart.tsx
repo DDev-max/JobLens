@@ -11,6 +11,7 @@ interface HorizontalBarChartProps {
   sizePx: number
   textColor?: string
   barColor?: string
+  othersLabel: string
   isMediumScreen: boolean
 }
 
@@ -23,9 +24,13 @@ export function HorizontalBarChart({
   sizePx,
   xTitle,
   isMediumScreen,
+  othersLabel,
 }: HorizontalBarChartProps) {
-  const labels = data.map(el => {
+  const labels = data.map((el, index) => {
     const firstLetterUpperCase = el[0].charAt(0).toUpperCase() + el[0].slice(1)
+    if (index + 1 === data.length) {
+      return othersLabel
+    }
 
     return el[0].length <= 10 ? firstLetterUpperCase : firstLetterUpperCase.slice(0, 10) + '...'
   })
@@ -40,7 +45,8 @@ export function HorizontalBarChart({
       options={{
         responsive: false,
         animation: {
-          delay: context => (context.type === 'data' ? context.dataIndex * 100 + context.datasetIndex * 100 : 0),
+          delay: context =>
+            context.type === 'data' ? context.dataIndex * 100 + context.datasetIndex * 100 : 0,
         },
         indexAxis: 'y',
         plugins: {
@@ -62,7 +68,7 @@ export function HorizontalBarChart({
 
                 return `${context.raw} (${percentageValues[context.dataIndex]}%)`
               },
-              title: context => data[context[0].dataIndex][0],
+              // title: context => data[context[0].dataIndex][0],
             },
           },
         },

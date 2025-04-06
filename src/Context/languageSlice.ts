@@ -8,7 +8,8 @@ interface LanguageState {
 
 const userLanguage = navigator.language
 const languageCode = userLanguage.split('-')[0].toUpperCase()
-const initialLanguage: SupportedLanguageKeys = languageCode in SupportedLanguages ? (languageCode as SupportedLanguageKeys) : 'EN'
+const initialLanguage: SupportedLanguageKeys =
+  languageCode in SupportedLanguages ? (languageCode as SupportedLanguageKeys) : 'EN'
 
 const initialState: LanguageState = {
   language: initialLanguage,
@@ -18,11 +19,11 @@ const languageSlice = createSlice({
   name: 'language',
   initialState,
   reducers: {
-    setLanguage: (state, action: PayloadAction<SupportedLanguageKeys>) => {
+    setCurrentLanguage: (state, action: PayloadAction<SupportedLanguageKeys>) => {
       state.language = action.payload
     },
   },
 })
 
-export const { setLanguage } = languageSlice.actions
+export const { setCurrentLanguage } = languageSlice.actions
 export default languageSlice.reducer
