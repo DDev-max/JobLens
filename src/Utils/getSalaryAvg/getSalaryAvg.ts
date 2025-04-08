@@ -1,4 +1,4 @@
-import { moneyRegex } from '@/data/consts'
+import { moneyRegex } from '#data/consts'
 import { salaryConversion } from '../salaryConversion/salaryConversion'
 
 interface GetSalaryMeanProps {

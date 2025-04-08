@@ -1,2 +1,2 @@
-export const getApiKey = () => import.meta.env.VITE_API_KEY
+export const getApiKey = () => process.env.API_KEY
 //easier to test

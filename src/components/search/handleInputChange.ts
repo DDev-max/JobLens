@@ -1,4 +1,4 @@
-import type { InputsSearchName } from '@/data/types'
+import type { InputsSearchName } from '#data/types'
 
 interface HandleInputChangeParams {
   e: React.ChangeEvent<HTMLInputElement>

@@ -2,14 +2,14 @@ import { SearchSVG } from '../SVG/SearchSVG'
 import { LensSVG } from '../SVG/LensSVG'
 import { LocationSVG } from '../SVG/LocationSVG'
 import { SkillsSVG } from '../SVG/SkillsSVG'
-import { languagei18n } from '@/data/consts'
 import { useState } from 'react'
-import type { InputsSearchName } from '@/data/types'
 import { handleSubmit } from './handleSubmit'
 import { handleInputChange } from './handleInputChange'
 import { InputSearch } from './InputSearch'
-import { useAppSelector } from '@/Context/hooks/storeHooks'
-import { useJobActions } from '@/Context/hooks/useJobActions'
+import { useAppSelector } from '#Context/hooks/storeHooks.ts'
+import type { InputsSearchName } from '#data/types.ts'
+import { useJobActions } from '#Context/hooks/useJobActions.ts'
+import { languagei18n } from '#data/consts.ts'
 
 export function Search() {
   const currentLanguage = useAppSelector(state => state.languageReducer.language)
@@ -32,13 +32,15 @@ export function Search() {
   const [formValues, setFormValues] = useState(formInputs)
   const [formErrors, setFormErrors] = useState(isInvalidInput)
 
+  const [isLoading, setIsLoading] = useState(false)
+
   const jobActions = useJobActions()
 
   return (
     <search>
       <form
         onSubmit={e => {
-          handleSubmit({ e, formValues, setFormErrors, jobActions })
+          handleSubmit({ e, formValues, setFormErrors, jobActions, setIsLoading })
         }}
         className='gap-9 flex flex-col justify-center items-center  p-5'
       >

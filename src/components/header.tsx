@@ -1,10 +1,10 @@
 import { LanguageSVG } from './SVG/LanguageSVG'
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@heroui/dropdown'
 import { Button } from '@heroui/button'
-import type { SupportedLanguageKeys } from '@/data/types'
-import { SupportedLanguages } from '@/data/types'
-import { useAppSelector } from '@/Context/hooks/storeHooks'
-import { useLanguageActions } from '@/Context/hooks/useLanguageActions'
+import type { SupportedLanguageKeys } from '#data/types'
+import { SupportedLanguages } from '#data/types'
+import { useAppSelector } from '#Context/hooks/storeHooks'
+import { useLanguageActions } from '#Context/hooks/useLanguageActions'
 
 export function Header() {
   const currentLanguage = useAppSelector(state => state.languageReducer.language)

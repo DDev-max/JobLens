@@ -1,4 +1,4 @@
-import type { FiltersType, JobDescription } from '@/data/types'
+import type { FiltersType, JobDescription } from '#data/types'
 import type { SharedValues } from '../jobDataSlice'
 import { setCurrentFilters, setData, setGlobalValues } from '../jobDataSlice'
 import { useAppDispatch } from './storeHooks'

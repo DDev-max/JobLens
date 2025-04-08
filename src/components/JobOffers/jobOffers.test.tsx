@@ -1,10 +1,10 @@
 import userEvent from '@testing-library/user-event';
-import data from '@/__mocks__/scrappedPage.json';
+import data from '#__mocks__/scrappedPage.json';
 import '@testing-library/jest-dom';
 import { screen } from '@testing-library/react';
 import { JobOffers } from './JobOffers';
-import { renderWithProviders } from '@/Utils/test-utils';
-import type { RootState } from '@/Context/store';
+import { renderWithProviders } from '#Utils/test-utils';
+import type { RootState } from '#Context/store';
 
 const preloadedState: RootState = {
   languageReducer: {

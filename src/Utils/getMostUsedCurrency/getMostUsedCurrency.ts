@@ -1,4 +1,4 @@
-import { currencies, moneyRegex } from '@/data/consts'
+import { currencies, moneyRegex } from '#data/consts'
 
 interface GetMostUsedCurrencyParams {
   salaryDescription: string[]

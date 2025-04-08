@@ -1,4 +1,4 @@
-import type { SupportedLanguageKeys } from '@/data/types'
+import type { SupportedLanguageKeys } from '#data/types'
 import { useDispatch } from 'react-redux'
 import { setCurrentLanguage } from '../languageSlice'
 

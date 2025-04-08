@@ -2,10 +2,10 @@ import { getJobInfo } from './getJobInfo';
 import { HTML } from '../../__mocks__/pageHtml';
 import { fetchData } from '../fetchData/fetchData';
 import { getGlassDoorUrl } from '../getGlassDoorUrl/getGlassDoorUrl';
-import expectedJobInfo from '@/__mocks__/scrappedPage.json';
+import expectedJobInfo from '#__mocks__/scrappedPage.json';
 
 jest.mock('../getGlassDoorUrl/getGlassDoorUrl');
-jest.mock('@/data/getApiKey', () => ({ getApiKey: () => 'fake-api-key' }));
+jest.mock('#data/getApiKey', () => ({ getApiKey: () => 'fake-api-key' }));
 jest.mock('../fetchData/fetchData');
 
 const jobLocation = 'Canada';

@@ -1,7 +1,7 @@
-import { Header } from './components/header'
-import { Search } from './components/search/Search'
-import { DataVisualization } from './components/DataVisualization/DataVisualization'
-import { JobOffers } from './components/JobOffers/JobOffers'
+import { DataVisualization } from '#components/DataVisualization/DataVisualization.tsx'
+import { Header } from '#components/header.tsx'
+import { JobOffers } from '#components/JobOffers/JobOffers.tsx'
+import { Search } from '#components/search/search.tsx'
 
 function App() {
   return (

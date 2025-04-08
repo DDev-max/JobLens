@@ -1,8 +1,8 @@
-import { languagei18n } from '@/data/consts'
+import { languagei18n } from '#data/consts.ts'
 import { useState } from 'react'
 import { HorizontalBarChart } from './HorizontalBarChart'
 import { getAllMatches } from '../../Utils/getAllMatches/getAllMatches'
-import { useAppSelector } from '@/Context/hooks/storeHooks'
+import { useAppSelector } from '#Context/hooks/storeHooks'
 
 export function DataVisualization() {
   const [isMediumScreen, setIsMediumScreen] = useState(window.innerWidth > 710 && window.innerWidth < 1020)

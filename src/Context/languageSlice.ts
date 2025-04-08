@@ -1,4 +1,4 @@
-import { SupportedLanguages, type SupportedLanguageKeys } from '@/data/types'
+import { SupportedLanguages, type SupportedLanguageKeys } from '#data/types'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
 

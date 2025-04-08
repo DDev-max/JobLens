@@ -13,6 +13,9 @@
     "format": "prettier --check .",
     "format:fix": "prettier --write ."
   },
+  "imports": {
+    "#*": "./src/*"
+  },
   "dependencies": {
     "@heroui/button": "^2.2.16",
     "@heroui/card": "^2.2.15",

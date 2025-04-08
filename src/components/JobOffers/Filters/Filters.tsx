@@ -1,12 +1,12 @@
-import { languagei18n } from '@/data/consts'
-import { normalizeString } from '@/Utils/normalizeString/normalizeString'
+import { languagei18n } from '#data/consts'
+import { normalizeString } from '#Utils/normalizeString/normalizeString'
 import type { ButtonProps } from '@heroui/button'
 import { Button } from '@heroui/button'
 import { useRef } from 'react'
 import { handlePress } from './handlePress'
-import type { FiltersType } from '@/data/types'
-import { useAppSelector } from '@/Context/hooks/storeHooks'
-import { useJobActions } from '@/Context/hooks/useJobActions'
+import type { FiltersType } from '#data/types'
+import { useAppSelector } from '#Context/hooks/storeHooks'
+import { useJobActions } from '#Context/hooks/useJobActions'
 
 interface FilterButtons extends Omit<FiltersType, 'location'> {
   location: string[]

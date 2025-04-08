@@ -1,4 +1,4 @@
-import { daysPerWeek, hoursPerDay, thousandAbbreviation, weeksPerMonth } from '@/data/consts';
+import { daysPerWeek, hoursPerDay, thousandAbbreviation, weeksPerMonth } from '#data/consts';
 import { salaryConversion } from './salaryConversion';
 
 const currency = '$';
@@ -39,4 +39,3 @@ it('should return a 0 if the salary does not match the current currency', () => 
 
   expect(salaryAvg).toBe(0);
 });
-//PROBAR CAMBIAR A LOWERCASE  ASI...

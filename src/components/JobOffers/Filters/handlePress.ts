@@ -1,7 +1,7 @@
-import type { FiltersType, JobDescription } from '@/data/types'
-import { normalizeString } from '@/Utils/normalizeString/normalizeString'
+import type { FiltersType, JobDescription } from '#data/types'
+import { normalizeString } from '#Utils/normalizeString/normalizeString'
 import { filterOffers } from './filterOffers/filterOffers'
-import type { useJobActions } from '@/Context/hooks/useJobActions'
+import type { useJobActions } from '#Context/hooks/useJobActions'
 
 interface handlePressParams {
   isActive: boolean

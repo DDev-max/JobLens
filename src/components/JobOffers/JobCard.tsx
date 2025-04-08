@@ -1,7 +1,7 @@
-import { useAppSelector } from '@/Context/hooks/storeHooks'
-import { moneyRegex, languagei18n } from '@/data/consts'
-import type { JobDescription } from '@/data/types'
-import { salaryConversion } from '@/Utils/salaryConversion/salaryConversion'
+import { useAppSelector } from '#Context/hooks/storeHooks'
+import { moneyRegex, languagei18n } from '#data/consts'
+import type { JobDescription } from '#data/types'
+import { salaryConversion } from '#Utils/salaryConversion/salaryConversion'
 import { Card, CardBody, CardFooter, CardHeader } from '@heroui/card'
 import { Divider } from '@heroui/divider'
 

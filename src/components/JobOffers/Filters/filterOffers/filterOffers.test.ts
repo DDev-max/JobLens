@@ -1,8 +1,8 @@
-import type { FiltersType } from '@/data/types.ts';
+import type { FiltersType } from '#data/types.ts';
 import { filterOffers } from './filterOffers';
-import dataNoSalary from '@/__mocks__/scrappedPage.json';
-import { normalizeString } from '@/Utils/normalizeString/normalizeString';
-import { salaryConversion } from '@/Utils/salaryConversion/salaryConversion';
+import dataNoSalary from '#__mocks__/scrappedPage.json';
+import { normalizeString } from '#Utils/normalizeString/normalizeString';
+import { salaryConversion } from '#Utils/salaryConversion/salaryConversion';
 
 const dataWithSalaryAvg = dataNoSalary.map(job => {
   job.salaryPerMonth = salaryConversion({

@@ -1,4 +1,4 @@
-import type { LocationApi } from '@/data/types.ts'
+import type { LocationApi } from '#/data/types.ts'
 import { fetchData } from '../fetchData/fetchData.ts'
 
 interface GetGlassDoorUrlProps {

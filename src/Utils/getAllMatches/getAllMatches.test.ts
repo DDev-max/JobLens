@@ -1,5 +1,5 @@
 import { getAllMatches } from './getAllMatches';
-import data from '@/__mocks__/scrappedPage.json';
+import data from '#__mocks__/scrappedPage.json';
 
 const language = 'EN';
 const propertyToSearch = 'skills';

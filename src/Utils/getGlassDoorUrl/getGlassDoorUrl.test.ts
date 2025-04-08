@@ -1,6 +1,6 @@
 import { fetchData } from '../fetchData/fetchData';
 import { getGlassDoorUrl } from './getGlassDoorUrl';
-import locationsMock from '@/__mocks__/locationApi.json';
+import locationsMock from '#__mocks__/locationApi.json';
 
 const jobLocation = 'Los angeles';
 const jobPosition = 'Accountant';

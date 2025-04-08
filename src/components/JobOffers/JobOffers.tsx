@@ -1,9 +1,9 @@
 import { Button } from '@heroui/button'
-import { languagei18n } from '@/data/consts'
+import { languagei18n } from '#data/consts'
 import { useState } from 'react'
 import { JobCard } from './JobCard'
 import { Filters } from './Filters/Filters'
-import { useAppSelector } from '@/Context/hooks/storeHooks'
+import { useAppSelector } from '#Context/hooks/storeHooks'
 
 export function JobOffers({ maximumItems = 2 }: { maximumItems?: number }) {
   const [maxItems, setMaxItems] = useState(maximumItems)

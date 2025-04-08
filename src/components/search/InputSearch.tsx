@@ -1,4 +1,4 @@
-import type { InputsSearchName } from '@/data/types'
+import type { InputsSearchName } from '#data/types'
 import type { InputProps } from '@heroui/input'
 import { Input } from '@heroui/input'
 

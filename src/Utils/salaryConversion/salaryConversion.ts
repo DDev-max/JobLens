@@ -1,4 +1,4 @@
-import { thousandAbbreviation, daysPerWeek, hoursPerDay, weeksPerMonth, moneyRegex } from '@/data/consts'
+import { thousandAbbreviation, daysPerWeek, hoursPerDay, weeksPerMonth, moneyRegex } from '#data/consts'
 
 interface SalaryConversionParams {
   currency: string

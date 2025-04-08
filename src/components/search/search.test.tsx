@@ -1,13 +1,13 @@
 import { screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import { Search } from './Search';
-import { languagei18n } from '@/data/consts';
-import { renderWithProviders } from '@/Utils/test-utils';
+import { languagei18n } from '#data/consts';
+import { renderWithProviders } from '#Utils/test-utils';
+import { Search } from './search';
 
 const english = languagei18n['EN'].search;
 
-jest.mock('@/data/getApiKey', () => ({ getApiKey: () => 'fake-api-key' }));
+jest.mock('#data/getApiKey', () => ({ getApiKey: () => 'fake-api-key' }));
 (global.fetch as jest.Mock) = jest.fn(() => ({
   ok: true,
   json: () => {},

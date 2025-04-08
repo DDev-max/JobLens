@@ -1,8 +1,8 @@
-import { getApiKey } from '@/data/getApiKey.ts'
-import { fetchData } from '../fetchData/fetchData.ts'
-import { getGlassDoorUrl } from '../getGlassDoorUrl/getGlassDoorUrl.ts'
-import type { JobDescription } from '@/data/types.ts'
-// import { HTML } from '@/__mocks__/pageHtml.ts'
+import type { JobDescription } from '#/data/types.ts'
+// import { HTML } from '../../__mocks__/pageHtml.ts'
+import { getApiKey } from '#data/getApiKey.ts'
+import { getGlassDoorUrl } from '#Utils/getGlassDoorUrl/getGlassDoorUrl.ts'
+import { fetchData } from '#Utils/fetchData/fetchData.ts'
 
 interface GetJobStatsProps {
   jobPosition: string

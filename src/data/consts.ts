@@ -1,4 +1,4 @@
-import type { SupportedLanguageKeys } from '@/data/types'
+import type { SupportedLanguageKeys } from '#data/types'
 
 export const currencies = '€¥₡₩$£'
 export const hoursPerDay = 8

@@ -3,8 +3,8 @@ import React from 'react'
 import { render } from '@testing-library/react'
 import type { RenderOptions } from '@testing-library/react'
 import { Provider } from 'react-redux'
-import { setupStore } from '@/Context/store'
-import type { AppStore, RootState } from '@/Context/store'
+import { setupStore } from '#Context/store'
+import type { AppStore, RootState } from '#Context/store'
 import { HeroUIProvider } from '@heroui/system'
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {

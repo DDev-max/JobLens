@@ -1,4 +1,4 @@
-import { daysPerWeek, hoursPerDay, thousandAbbreviation, weeksPerMonth } from '@/data/consts';
+import { daysPerWeek, hoursPerDay, thousandAbbreviation, weeksPerMonth } from '#data/consts';
 import { getSalaryAvg } from './getSalaryAvg';
 
 const mostUsedCurrency = '$';
