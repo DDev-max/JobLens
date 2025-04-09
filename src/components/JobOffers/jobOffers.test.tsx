@@ -1,6 +1,5 @@
 import userEvent from '@testing-library/user-event';
 import data from '#__mocks__/scrappedPage.json';
-import '@testing-library/jest-dom';
 import { screen } from '@testing-library/react';
 import { JobOffers } from './JobOffers';
 import { renderWithProviders } from '#Utils/test-utils';

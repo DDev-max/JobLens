@@ -1,5 +1,4 @@
 import { screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import { renderWithProviders, simulateSubmitForm } from '#Utils/test-utils';
 import { Search } from './search';
