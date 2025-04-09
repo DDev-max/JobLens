@@ -33,6 +33,12 @@ export const languagei18n: Record<SupportedLanguageKeys, PageText> = {
       skillsError: 'Enter at least two skills separated by commas.',
 
       info: 'Enter a job title and keywords to see detailed charts and information about various roles.',
+      loading: {
+        firstMsg: 'Finding the best locations...',
+        secondMsg: 'Reading the job pages...',
+        thirdMsg: 'Charting the offers...',
+      },
+      error: 'An unexpected error occurred',
     },
     charts: {
       location: {
@@ -77,6 +83,12 @@ export const languagei18n: Record<SupportedLanguageKeys, PageText> = {
       skillsError: 'Ingrese al menos dos habilidades separadas por comas.',
 
       info: 'Introduzca un puesto de trabajo y palabras clave para ver gráficos detallados e información sobre las ofertas.',
+      loading: {
+        firstMsg: 'Buscando las mejores ubicaciones...',
+        secondMsg: 'Leyendo las paginas de trabajo...',
+        thirdMsg: 'Graficando las ofertas...',
+      },
+      error: 'Ha ocurrido un error',
     },
     charts: {
       location: {
@@ -122,6 +134,12 @@ interface PageText {
     locationError: string
 
     info: string
+    loading: {
+      firstMsg: string
+      secondMsg: string
+      thirdMsg: string
+    }
+    error: string
   }
 
   charts: {

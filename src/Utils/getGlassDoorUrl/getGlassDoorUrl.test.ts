@@ -1,4 +1,3 @@
-import { fetchData } from '../fetchData/fetchData';
 import { getGlassDoorUrl } from './getGlassDoorUrl';
 import locationsMock from '#__mocks__/locationApi.json';
 
@@ -6,10 +5,15 @@ const jobLocation = 'Los angeles';
 const jobPosition = 'Accountant';
 const scraperApiUrl = 'https://scraper.com';
 
-jest.mock('../fetchData/fetchData');
+global.fetch = jest.fn();
+const fakeFetch = fetch as jest.MockedFunction<typeof fetch>;
 
 it('should return the correct link to the results page from the parameters', async () => {
-  (fetchData as jest.Mock).mockReturnValueOnce(locationsMock);
+  fakeFetch.mockResolvedValueOnce({
+    json: () => Promise.resolve(locationsMock),
+    ok: true,
+  } as Response);
+
   const url = await getGlassDoorUrl({ jobLocation, jobPosition, scraperApiUrl });
 
   const encodedURL = encodeURIComponent(
@@ -20,7 +24,10 @@ it('should return the correct link to the results page from the parameters', asy
 });
 
 it('shouldnt return if theres no api data', async () => {
-  (fetchData as jest.Mock).mockReturnValueOnce(undefined);
+  fakeFetch.mockResolvedValueOnce({
+    json: () => Promise.resolve(undefined),
+    ok: true,
+  } as Response);
 
   const url = await getGlassDoorUrl({ jobLocation, jobPosition, scraperApiUrl });
 

@@ -17,14 +17,14 @@ export async function fetchData<TFetchReturn>({ URL, responseType, retries }: Fe
         throw new ResponseTypeError(`"${responseType}" is an invalid response type.`)
       }
 
-      const response = await fetch('URL')
+      const response = await fetch(URL)
 
       if (!response.ok) {
         throw new Error(`Fetch error: ${response.status}, ${response.statusText}`)
       }
 
       const format: TFetchReturn = await response[responseType]()
-      return format
+      return { data: format }
     } catch (error) {
       /* eslint-disable no-console */
       if (error instanceof Error) {
@@ -33,7 +33,7 @@ export async function fetchData<TFetchReturn>({ URL, responseType, retries }: Fe
           if (attemptCounter >= retries) {
             console.error(`Fetch has failed after ${retries} tries`)
           }
-          throw error
+          return { error: error.name }
         }
       }
     }

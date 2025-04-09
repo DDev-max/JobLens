@@ -1,3 +1,4 @@
+import jsDom from 'jsdom'
 import type { JobDescription } from '#/data/types.ts'
 // import { HTML } from '../../__mocks__/pageHtml.ts'
 import { getApiKey } from '#data/getApiKey.ts'
@@ -20,8 +21,10 @@ export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps)
   const htmlContent = await fetchData<string>({ URL: pageUrl, responseType: 'text', retries: 2 })
   // const htmlContent = HTML
 
-  if (!htmlContent) return
-  const parsedDoc = new DOMParser().parseFromString(htmlContent, 'text/html')
+  if (!htmlContent?.data) return
+  const { JSDOM } = jsDom
+
+  const parsedDoc = new JSDOM(htmlContent.data).window.document
 
   const allResults = Array.from(parsedDoc.querySelectorAll('ul[aria-label="Jobs List"]>li'))
 
@@ -33,15 +36,13 @@ export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps)
     const linkElement = elmnt.querySelector('a[data-test="job-link"]')
 
     const jobLink =
-      linkElement instanceof HTMLAnchorElement
-        ? `https://www.glassdoor.com${linkElement.getAttribute('href')}`
-        : ''
+      linkElement?.tagName === 'A' ? `https://www.glassdoor.com${linkElement.getAttribute('href')}` : ''
 
     const urlSearch = new URL(jobLink).search
     const id = urlSearch.slice(urlSearch.lastIndexOf('-') + 1)
 
     const imgElement = elmnt.querySelector("[class^='avatar_AvatarContainer'] img")
-    const imgSrc = imgElement instanceof HTMLImageElement ? imgElement.src : ''
+    const imgSrc = imgElement?.tagName === 'IMG' ? (imgElement as HTMLImageElement).src : ''
 
     const location = elmnt.querySelector("[id^='job-location']")?.textContent || ''
 

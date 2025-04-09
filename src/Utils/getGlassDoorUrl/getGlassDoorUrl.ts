@@ -18,8 +18,8 @@ export async function getGlassDoorUrl({ jobLocation, jobPosition, scraperApiUrl 
     retries: 3,
   })
 
-  if (!locationApiData) return
-  const bestResult = locationApiData[0]
+  if (!locationApiData?.data) return
+  const bestResult = locationApiData.data[0]
 
   //All these parameters are necessary to obtain good search results
   const locationType = bestResult.locationType
