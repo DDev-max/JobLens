@@ -131,7 +131,7 @@ export function Search() {
           label={
             loadingValue < 30
               ? languagei18n[currentLanguage].search.loading.firstMsg
-              : loadingValue < 60
+              : loadingValue < 85
                 ? languagei18n[currentLanguage].search.loading.secondMsg
                 : languagei18n[currentLanguage].search.loading.thirdMsg
           }

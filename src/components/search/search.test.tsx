@@ -1,11 +1,8 @@
 import { screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import { languagei18n } from '#data/consts';
-import { renderWithProviders } from '#Utils/test-utils';
+import { renderWithProviders, simulateSubmitForm } from '#Utils/test-utils';
 import { Search } from './search';
-
-const english = languagei18n['EN'].search;
 
 jest.mock('#data/getApiKey', () => ({ getApiKey: () => 'fake-api-key' }));
 (global.fetch as jest.Mock) = jest.fn(() => ({
@@ -22,21 +19,13 @@ it('should submit the form', async () => {
 
   renderWithProviders(<Search />);
 
-  const inputPosition = screen.getByLabelText(english.positionLabel);
-  const inputSkills = screen.getByLabelText(english.skillsLabel);
-  const inputLocation = screen.getByLabelText(english.locationLabel);
-
-  await user.type(inputPosition, 'Back end');
-  await user.type(inputSkills, 'Python, Sql, JavaScript');
-  await user.type(inputLocation, 'Canada');
+  const { inputLocation, inputPosition, inputSkills } = await simulateSubmitForm({ user });
 
   expect(inputPosition).not.toBeInvalid();
   expect(inputSkills).not.toBeInvalid();
   expect(inputLocation).not.toBeInvalid();
 
-  await user.keyboard('[Enter]');
-
-  expect(fetch).toHaveBeenCalled();
+  expect(fetch).toHaveBeenCalledTimes(1);
 });
 
 it('shouldnt submit the form if its not valid', async () => {
@@ -44,19 +33,49 @@ it('shouldnt submit the form if its not valid', async () => {
 
   renderWithProviders(<Search />);
 
-  const inputPosition = screen.getByLabelText(english.positionLabel);
-  const inputSkills = screen.getByLabelText(english.skillsLabel);
-  const inputLocation = screen.getByLabelText(english.locationLabel);
-
-  await user.type(inputPosition, 'x');
-  await user.type(inputSkills, 'skill');
-  await user.type(inputLocation, ' ');
+  const { inputLocation, inputPosition, inputSkills } = await simulateSubmitForm({
+    user,
+    values: { location: ' ', skills: 'skill', position: 'x' },
+  });
 
   expect(inputPosition).toBeInvalid();
   expect(inputSkills).toBeInvalid();
   expect(inputLocation).toBeInvalid();
 
-  await user.keyboard('[Enter]');
-
   expect(fetch).not.toHaveBeenCalled();
+});
+
+it('should display a message when the search is loading', async () => {
+  (global.fetch as jest.Mock) = jest.fn(
+    () =>
+      new Promise(resolve => {
+        setTimeout(() => {
+          resolve({
+            ok: true,
+            json: () => {},
+            text: () => {},
+          });
+        }, 1000);
+      })
+  );
+
+  const user = userEvent.setup();
+
+  renderWithProviders(<Search />);
+
+  await simulateSubmitForm({ user });
+
+  const loader = screen.getByRole('progressbar');
+  expect(loader).toBeInTheDocument();
+});
+
+it('should display an error message when the fetch fails', async () => {
+  (global.fetch as jest.Mock) = jest.fn().mockResolvedValue({ ok: false });
+  const user = userEvent.setup();
+
+  renderWithProviders(<Search />);
+  await simulateSubmitForm({ user });
+
+  const errorMsg = screen.getByText(/unexpected error/i);
+  expect(errorMsg).toBeInTheDocument();
 });
