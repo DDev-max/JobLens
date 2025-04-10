@@ -47,11 +47,11 @@ export function JobCard({ jobData, jobSalaryAvg, currency }: JobCardProps) {
           {jobData.location ? jobData.location : languagei18n[currentLanguage].jobCard.location[1]}
         </p>
       </CardHeader>
-      <Divider />
+      <Divider aria-hidden />
       <CardBody className='flex justify-center overflow-y-hidden'>
         {cleanedSkills.length <= 125 ? cleanedSkills : cleanedSkills.slice(0, 125) + '...'}
       </CardBody>
-      <Divider />
+      <Divider aria-hidden />
       <CardFooter className='flex justify-between '>
         <p>
           <b>{JobAgeName}</b>

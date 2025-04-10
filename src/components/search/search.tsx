@@ -121,13 +121,14 @@ export function Search() {
             </div>
           </div>
           <p className='text-center text-sm text-gray-400'>{languagei18n[currentLanguage].search.info}</p>
-          <button type='submit' />
+          <button type='submit' hidden />
         </form>
       </search>
       {fetchStatus.isLoading && (
         <CircularProgress
           className='ml-auto mr-auto scale-125'
           size='lg'
+          aria-label='Loading...'
           label={
             loadingValue < 30
               ? languagei18n[currentLanguage].search.loading.firstMsg

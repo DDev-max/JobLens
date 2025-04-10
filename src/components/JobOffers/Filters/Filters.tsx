@@ -32,7 +32,7 @@ export function Filters() {
   return (
     <div className='flex my-4'>
       <p className='m-2'>{languagei18n[currentLanguage].filters.filterName}</p>
-      <div className='gap-2 flex flex-wrap'>
+      <div aria-live='polite' className='gap-2 flex flex-wrap'>
         {Object.entries(filterButtons).map(([filterName, valuesArray]) =>
           valuesArray.map((value: string | boolean, index: number) => {
             const cleanedString = normalizeString(String(value))
@@ -66,6 +66,7 @@ export function Filters() {
 
             return (
               <Button
+                aria-pressed={isActive}
                 onPress={() => {
                   handlePress({
                     isActive,

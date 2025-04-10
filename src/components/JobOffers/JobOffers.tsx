@@ -21,13 +21,15 @@ export function JobOffers({ maximumItems = 2 }: { maximumItems?: number }) {
       <p className='m-5'>
         {jobData.length} {languagei18n[currentLanguage].charts.info}
       </p>
-      <section className='grid grid-cols-[repeat(auto-fit,minmax(290px,1fr))] gap-4 '>
-        {jobData.slice(0, maxItems).map((el, idx) => (
-          <article key={idx}>
-            <JobCard jobData={el} jobSalaryAvg={Number(average)} currency={currency || ''} />
-          </article>
-        ))}
-      </section>
+      <div aria-live='polite'>
+        <section className='grid grid-cols-[repeat(auto-fit,minmax(290px,1fr))] gap-4 '>
+          {jobData.slice(0, maxItems).map((el, idx) => (
+            <article key={idx}>
+              <JobCard jobData={el} jobSalaryAvg={Number(average)} currency={currency || ''} />
+            </article>
+          ))}
+        </section>
+      </div>
 
       {maxItems < jobData.length && (
         <Button

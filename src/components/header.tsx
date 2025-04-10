@@ -18,7 +18,7 @@ export function Header() {
     <header className='flex dark bg-background border-b-1 border-gray-500'>
       <div className=' ml-auto flex gap-4 p-2'>
         <Dropdown className='dark text-foreground border-1 '>
-          <DropdownTrigger>
+          <DropdownTrigger aria-label='Change language'>
             <Button isIconOnly className='bg-transparent'>
               <LanguageSVG className='w-10' />
             </Button>
