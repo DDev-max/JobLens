@@ -3,8 +3,8 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
-interface HorizontalBarChartProps {
-  data: [string, number][]
+interface HorizontalBarChartProps extends Partial<React.ComponentProps<typeof Bar>> {
+  matchesInfo: [string, number][]
   title: string
   yTitle: string
   xTitle: string
@@ -17,7 +17,7 @@ interface HorizontalBarChartProps {
 
 export function HorizontalBarChart({
   barColor = '#60a5fa',
-  data,
+  matchesInfo,
   textColor = '#9ca3af',
   title,
   yTitle,
@@ -25,21 +25,23 @@ export function HorizontalBarChart({
   xTitle,
   isMediumScreen,
   othersLabel,
+  ...rest
 }: HorizontalBarChartProps) {
-  const labels = data.map((el, index) => {
+  const labels = matchesInfo.map((el, index) => {
     const firstLetterUpperCase = el[0].charAt(0).toUpperCase() + el[0].slice(1)
-    if (index + 1 === data.length) {
+    if (index + 1 === matchesInfo.length) {
       return othersLabel
     }
 
     return el[0].length <= 10 ? firstLetterUpperCase : firstLetterUpperCase.slice(0, 10) + '...'
   })
-  const values: readonly number[] = data.map(el => el[1])
+  const values: readonly number[] = matchesInfo.map(el => el[1])
 
   const sumValues = values.reduce((accumulator, value) => accumulator + value)
 
   return (
     <Bar
+      {...rest}
       width={isMediumScreen ? sizePx * 3 : sizePx * 2}
       height={sizePx}
       options={{

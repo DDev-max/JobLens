@@ -46,7 +46,7 @@ export function DataVisualization() {
       <div className='overflow-x-auto max-sm:w-full max-sm:justify-center flex'>
         <HorizontalBarChart
           isMediumScreen={isMediumScreen}
-          data={skillsMatches}
+          matchesInfo={skillsMatches}
           title={languagei18n[currentLanguage].charts.skills.title}
           yTitle={languagei18n[currentLanguage].charts.skills.yTitle}
           xTitle={languagei18n[currentLanguage].charts.skills.xTitle}
@@ -67,7 +67,7 @@ export function DataVisualization() {
       <div className='overflow-x-auto max-sm:w-full max-sm:justify-center flex'>
         <HorizontalBarChart
           isMediumScreen={isMediumScreen}
-          data={locationsMatches}
+          matchesInfo={locationsMatches}
           title={languagei18n[currentLanguage].charts.location.title}
           yTitle={languagei18n[currentLanguage].charts.location.yTitle}
           xTitle={languagei18n[currentLanguage].charts.location.xTitle}
