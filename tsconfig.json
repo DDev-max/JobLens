@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
+    "types": ["@testing-library/jest-dom", "jest"],
+
     "target": "es2023",
     "useDefineForClassFields": true,
     "lib": ["es2023", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "#*": ["./src/*"]
     },
     "esModuleInterop": true,
 
@@ -22,6 +24,11 @@
     "strict": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": [
+    "src",
+    "src/Utils/getMostUsedCurrency",
+    "src/Utils/getAllMatches",
+    "src/Utils/salaryConversion"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

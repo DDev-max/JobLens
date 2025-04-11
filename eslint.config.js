@@ -11,7 +11,7 @@ import jestPlugin from 'eslint-plugin-jest'
 
 export default [
   ...tseslint.config(
-    { ignores: ['dist', 'vite.config.ts', 'coverage', ' src/__mocks__/fileMock.js'] },
+    { ignores: ['dist', 'vite.config.ts', 'coverage', ' src/shared/__mocks__/fileMock.js'] },
     {
       extends: [
         js.configs.recommended,
