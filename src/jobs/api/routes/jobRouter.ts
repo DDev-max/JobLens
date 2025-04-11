@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { validateJobRequest } from '../schemas/jobRequest'
+import { validateJobRequest } from '../schemas/jobRequest.ts'
 import { getJobInfo } from '#jobs/getJobInfo/getJobInfo.ts'
 
 export const jobRouter = Router()

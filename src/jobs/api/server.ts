@@ -13,5 +13,5 @@ app.use((_req, res) => {
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
-  console.log(`\n Server listening on port http://localhost:${PORT}/jobs`)
+  console.log(`\n Server listening on port http://localhost:${PORT}/jobs \n`)
 })

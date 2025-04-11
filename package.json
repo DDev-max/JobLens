@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "api": "node --loader ts-node/esm --env-file=.env src/api/server.ts",
+    "api": "node --loader ts-node/esm --env-file=.env src/jobs/api/server.ts",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "lint": "eslint .",
     "type-check": "tsc --noEmit",
