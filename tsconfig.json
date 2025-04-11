@@ -24,6 +24,11 @@
     "strict": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": [
+    "src",
+    "src/Utils/getMostUsedCurrency",
+    "src/Utils/getAllMatches",
+    "src/Utils/salaryConversion"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
