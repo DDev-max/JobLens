@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './globals.css'
+import '#globals.css'
 import { setupStore } from '#search/state/store.ts'
 import { HeroUIProvider } from '@heroui/system'
 import { Provider } from 'react-redux'

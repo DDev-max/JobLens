@@ -5,7 +5,7 @@ import { Filters } from '../Filters/Filters'
 import { useAppSelector } from '#search/state/actions/storeHooks.ts'
 import { languagei18n } from '../shared/language'
 
-export function JobOffers({ maximumItems = 2 }: { maximumItems?: number }) {
+export function JobOffers({ maximumItems = 8 }: { maximumItems?: number }) {
   const [maxItems, setMaxItems] = useState(maximumItems)
 
   const currentLanguage = useAppSelector(state => state.languageReducer.language)
