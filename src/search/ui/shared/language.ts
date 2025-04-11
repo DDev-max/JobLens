@@ -60,8 +60,8 @@ export const languagei18n: Record<SupportedLanguageKeys, PageText> = {
       positionError: 'Enter a valid job position.',
 
       locationLabel: 'Location',
-      locationPlaceHolder: 'San Francisco, Berlin, Bangalore',
-      locationError: 'Enter a valid location',
+      locationPlaceHolder: 'San Francisco, Berlin, Bengaluru',
+      locationError: 'Enter a valid location.',
 
       skillsLabel: 'Skills',
       skillsPlaceHolder: 'Python, SQL, Cloud Computing',
@@ -92,7 +92,7 @@ export const languagei18n: Record<SupportedLanguageKeys, PageText> = {
       others: 'Others',
     },
     jobCard: {
-      age: (ageString: string) => ['Published: ', `${ageString} ago`],
+      age: (ageString: string) => ['Posted: ', `${ageString} ago`],
       location: ['Location', 'Unknown'],
       salary: ['Salary', 'Unknown'],
       showMore: 'Show more',
@@ -108,11 +108,11 @@ export const languagei18n: Record<SupportedLanguageKeys, PageText> = {
     search: {
       positionLabel: 'Puesto',
       positionPlaceholder: 'Ingeniero de Software, DevOps, Científico de Datos',
-      positionError: 'Ingrese un puesto de trabajo válido',
+      positionError: 'Ingrese un puesto de trabajo válido.',
 
       locationLabel: 'Ubicación',
       locationPlaceHolder: 'Ciudad de México, Buenos Aires, Bogotá',
-      locationError: 'Ingrese una ubicacion válida.',
+      locationError: 'Ingrese una ubicación válida.',
 
       skillsLabel: 'Habilidades',
       skillsPlaceHolder: 'Python, SQL, Excel',
@@ -121,11 +121,11 @@ export const languagei18n: Record<SupportedLanguageKeys, PageText> = {
       info: 'Introduzca un puesto de trabajo y palabras clave para ver gráficos detallados e información sobre las ofertas.',
       loading: {
         firstMsg: 'Buscando las mejores ubicaciones...',
-        secondMsg: 'Leyendo las paginas de trabajo...',
+        secondMsg: 'Leyendo las páginas de trabajo...',
         thirdMsg: 'Graficando las ofertas...',
       },
       error: 'Ha ocurrido un error',
-      notFound: 'No se encontraron resultados. Intente otros los filtros o realizando otra busqueda.',
+      notFound: 'No se encontraron resultados. Intente con otros filtros o realice otra búsqueda.',
     },
     charts: {
       location: {
@@ -138,7 +138,7 @@ export const languagei18n: Record<SupportedLanguageKeys, PageText> = {
         xTitle: 'Frecuencia',
         yTitle: 'Habilidades',
       },
-      info: 'ofertas de trabajo han sido leidas',
+      info: 'ofertas de trabajo han sido leídas.',
       average: 'El salario promedio por mes es de: ',
       others: 'Otros',
     },

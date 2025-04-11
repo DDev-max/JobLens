@@ -38,12 +38,6 @@ export async function handleSubmit({
   if (formIsValid) {
     setFetchStatus({ error: '', isLoading: true })
 
-    // await new Promise(resolve => {
-    //   setTimeout(() => {
-    //     resolve('aaa')
-    //   }, 3 * 1000)
-    // })
-
     const jobInfo = await fetchData<JobDescription[]>({
       URL: `http://localhost:777/jobs?location=${formValues.location}&position=${formValues.position}`,
       responseType: 'json',

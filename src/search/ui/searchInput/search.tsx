@@ -15,10 +15,6 @@ import { languagei18n } from '../shared/language'
 export function Search() {
   const currentLanguage = useAppSelector(state => state.languageReducer.language)
 
-  // position: 'Example',
-  // skills: 'CSS,react, react  ',
-  // location: 'Remote,Toronto',
-
   const formInputs: Record<InputsSearchName, string> = {
     position: '',
     skills: '',

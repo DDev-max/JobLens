@@ -1,6 +1,5 @@
 import jsDom from 'jsdom'
 import type { JobDescription } from '#shared/types.ts'
-// import { HTML } from '../../shared/__mocks__/pageHtml.ts'
 import { getApiKey } from '#jobs/getApiKey.ts'
 import { getGlassDoorUrl } from '#jobs/getGlassDoorUrl/getGlassDoorUrl.ts'
 import { fetchData } from '#shared/fetchData/fetchData.ts'
@@ -19,7 +18,6 @@ export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps)
   const pageUrl = scraperApiUrl + 'encodedUrl' + '&premium_proxy=True'
 
   const htmlContent = await fetchData<string>({ URL: pageUrl, responseType: 'text', retries: 2 })
-  // const htmlContent = { data: HTML }
 
   if (!htmlContent?.data) return
   const { JSDOM } = jsDom

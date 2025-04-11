@@ -70,7 +70,6 @@ export function HorizontalBarChart({
 
                 return `${context.raw} (${percentageValues[context.dataIndex]}%)`
               },
-              // title: context => data[context[0].dataIndex][0],
             },
           },
         },
