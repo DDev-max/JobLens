@@ -28,3 +28,8 @@ pnpm-lock.yaml
 yarn.lock
 package-lock.json
 bun.lockb
+
+.env
+scrappedPage.html
+scrappingObj.ts
+coverage

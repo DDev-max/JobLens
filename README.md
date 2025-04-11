@@ -1,50 +1,57 @@
-# Vite & HeroUI Template
+# 🔍 JobLens
 
-This is a template for creating applications using Vite and HeroUI (v2).
+This platform helps people find jobs and makes it easier to choose which skills they should learn by creating charts and allowing users to filter job offers.
 
-[Try it on CodeSandbox](https://githubbox.com/frontio-ai/vite-template)
+To build it, I had to do a deep dive into how [Glassdoor](https://www.glassdoor.com/)
+ works. I analyzed the page’s fetch requests and figured out what each URL parameter meant. With that, I managed to get the data I needed. After that, I used web scraping to collect all the information and integrate it into my website.
 
-## Technologies Used
+ Keep in mind that the search process can take around 25 seconds. This is because the platform uses multiple APIs behind the scenes, including one that bypasses site security mechanisms and another that hides the frontend request to protect sensitive data. These extra layers add some delay but are essential to ensure both access and security.
 
-- [Vite](https://vitejs.dev/guide/)
-- [HeroUI](https://heroui.com)
-- [Tailwind CSS](https://tailwindcss.com)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org)
-- [Framer Motion](https://www.framer.com/motion)
 
-## How to Use
+🔗[View Live Site](github.com)
 
-To clone the project, run the following command:
+## **Tech Stack**
+
+- **Vite** – Fast build tool  
+- **TypeScript** – Static typing  
+- **Jest & Testing Library** – Unit and integration testing
+- **Chart.js** – Data visualization  
+- **Express** – Node.js backend  
+- **Redux** – State management  
+- **Tailwind** – Utility-first CSS  
+
+
+## Features
+
+✔️  **Multi-language support** – English and Spanish interface  
+✔️ **Accessible design** – Follows accessibility best practices (a11y)  
+✔️ **RESTful API** – Clean and well-structured backend API  
+✔️  **Well-documented code** – In-depth comments explaining key decisions and logic
+
+
+## **Installation & Setup**
+
+1️⃣ Clone this repository:
 
 ```bash
-git clone https://github.com/frontio-ai/vite-template.git
+git clone https://github.com/DDev-max/JobLens.git
 ```
 
-### Install dependencies
+2️⃣ Navigate into the project directory:
 
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
+```bash
+cd JobLens
+```
+
+3️⃣ Install dependencies:
 
 ```bash
 npm install
 ```
 
-### Run the development server
+4️⃣ Run the project locally:
 
 ```bash
 npm run dev
+npm run api
 ```
-
-### Setup pnpm (optional)
-
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
-
-```bash
-public-hoist-pattern[]=*@heroui/*
-```
-
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
-
-## License
-
-Licensed under the [MIT license](https://github.com/frontio-ai/vite-template/blob/main/LICENSE).
