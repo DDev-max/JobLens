@@ -138,7 +138,7 @@ export function Search() {
         />
       )}
       {fetchStatus.error && (
-        <p className='ml-auto mr-auto text-red-400 font-bold'>
+        <p className='ml-auto mr-auto text-red-400 font-bold text-center'>
           {languagei18n[currentLanguage].search.error} : {fetchStatus.error} :&#40;
         </p>
       )}
