@@ -5,6 +5,10 @@ const app = express()
 
 const PORT = process.env.PORT ?? 777
 
+app.use('/', (req, res) => {
+  res.send('PRUEBA')
+})
+
 app.use('/jobs', jobRouter)
 
 app.use((_req, res) => {
