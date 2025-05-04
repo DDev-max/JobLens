@@ -1,5 +1,5 @@
 import express from 'express'
-import { jobRouter } from './routes/jobRouter.ts'
+// import { jobRouter } from './routes/jobRouter.ts'
 
 const app = express()
 
@@ -9,7 +9,7 @@ app.use('/', (req, res) => {
   res.send('PRUEBA')
 })
 
-app.use('/jobs', jobRouter)
+// app.use('/jobs', jobRouter)
 
 app.use((_req, res) => {
   res.status(404).send('Not found')
