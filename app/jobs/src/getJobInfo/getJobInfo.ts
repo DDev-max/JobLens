@@ -1,6 +1,6 @@
 import jsDom from 'jsdom'
 import type { JobDescription } from 'global-shared-joblens'
-import { getApiKey } from '#getApiKey.ts'
+import { getApiKey } from '#getApiKey.js'
 // import { getGlassDoorUrl } from '#getGlassDoorUrl/getGlassDoorUrl.ts'
 // import { fetchData } from '../../../global-shared/fetchData/fetchData.ts'
 import { HTML } from 'global-shared-joblens'

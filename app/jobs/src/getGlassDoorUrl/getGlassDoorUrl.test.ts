@@ -1,4 +1,4 @@
-import { getGlassDoorUrl } from './getGlassDoorUrl.ts';
+import { getGlassDoorUrl } from './getGlassDoorUrl.js';
 import { locationApiJson as locationsMock } from 'global-shared-joblens';
 import { jest } from '@jest/globals';
 

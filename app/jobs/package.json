@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "build": "tsc",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "start": "node --loader ts-node/esm --env-file=.env src/api/index.ts",
     "lint": "eslint .",

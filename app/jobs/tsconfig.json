@@ -3,17 +3,16 @@
     "target": "es2023",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-
     "resolveJsonModule": true,
-    "allowImportingTsExtensions": true,
-    "noEmit": true,
+    "noEmit": false,
     "skipLibCheck": true,
     "paths": {
       "#*": ["./src/*"]
-    }
+    },
+    "outDir": "dist",
+    "rootDir": "src"
   }
 }

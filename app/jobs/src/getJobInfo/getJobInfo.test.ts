@@ -7,8 +7,8 @@ Object.assign(global, { TextDecoder, TextEncoder });
 jest.unstable_mockModule('../getApiKey', () => ({ getApiKey: jest.fn().mockReturnValue('fakeApiKey') }));
 jest.unstable_mockModule('#getGlassDoorUrl/getGlassDoorUrl.ts', () => ({ getGlassDoorUrl: jest.fn() }));
 
-const { getJobInfo } = await import('./getJobInfo.ts');
-const { getGlassDoorUrl } = await import('#getGlassDoorUrl/getGlassDoorUrl.ts');
+const { getJobInfo } = await import('./getJobInfo.js');
+const { getGlassDoorUrl } = await import('#getGlassDoorUrl/getGlassDoorUrl.js');
 
 global.fetch = jest.fn() as unknown as typeof fetch;
 const fakeFetch = fetch as jest.MockedFunction<typeof fetch>;
