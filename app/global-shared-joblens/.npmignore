@@ -1,0 +1,7 @@
+src/
+*.test.ts
+*.test.d.ts
+*.test.d.js
+*.test.js
+jest.config.cjs
+tsconfig*.json
