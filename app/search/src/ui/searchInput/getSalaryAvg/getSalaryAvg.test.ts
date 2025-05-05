@@ -1,4 +1,4 @@
-import { daysPerWeek, hoursPerDay, thousandAbbreviation, weeksPerMonth } from '#ui/shared/consts.ts';
+import { daysPerWeek, hoursPerDay, thousandAbbreviation, weeksPerMonth } from 'global-shared-joblens';
 import { getSalaryAvg } from './getSalaryAvg';
 
 const mostUsedCurrency = '$';

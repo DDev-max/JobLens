@@ -1,10 +1,9 @@
-import type { JobDescription } from '#globalShared/types.ts'
+import type { JobDescription } from 'global-shared-joblens'
+import { fetchData, salaryConversion } from 'global-shared-joblens'
 import { filterOffers } from '../Filters/logic/filterOffers'
 import type { useJobActions } from '#state/actions/useJobActions.ts'
-import { fetchData } from '#globalShared/fetchData/fetchData.ts'
 import { getSalaryAvg } from '#ui/searchInput/getSalaryAvg/getSalaryAvg.ts'
 import { getMostUsedCurrency } from '#ui/searchInput/getMostUsedCurrency/getMostUsedCurrency.ts'
-import { salaryConversion } from '#globalShared/salaryConversion/salaryConversion.ts'
 import type { FiltersType, InputsSearchName } from '#shared/types.ts'
 
 interface HandleSubmitarams {

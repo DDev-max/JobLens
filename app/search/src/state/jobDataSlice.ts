@@ -1,5 +1,5 @@
 import type { FiltersType } from '#shared/types.ts'
-import type { JobDescription } from '#globalShared/types.ts'
+import type { JobDescription } from 'global-shared-joblens'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
 

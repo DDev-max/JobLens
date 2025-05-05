@@ -8,7 +8,6 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "paths": {
-      "#globalShared/*": ["../global-shared/*"],
       "#*": ["./app/search/src/*"],
     },
     "esModuleInterop": true,

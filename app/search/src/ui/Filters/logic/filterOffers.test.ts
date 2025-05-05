@@ -1,10 +1,8 @@
 import { filterOffers } from './filterOffers';
-import dataNoSalary from '#globalShared/__mocks__/scrappedPage.json';
-import { normalizeString } from '#globalShared/normalizeString/normalizeString.ts';
+import { scrappedPageJson, normalizeString, salaryConversion } from 'global-shared-joblens'; 'global-shared-joblens'
 import type { FiltersType } from '#shared/types.ts';
-import { salaryConversion } from '#globalShared/salaryConversion/salaryConversion.ts';
 
-const dataWithSalaryAvg = dataNoSalary.map(job => {
+const dataWithSalaryAvg = scrappedPageJson.map(job => {
   job.salaryPerMonth = salaryConversion({
     currency: '$',
     salaryDescription: job.salary,

@@ -1,5 +1,5 @@
 import type { FiltersType } from '#shared/types.ts'
-import type { JobDescription } from '#globalShared/types.ts'
+import type { JobDescription } from 'global-shared-joblens'
 import type { SharedValues } from '../jobDataSlice'
 import { setCurrentFilters, setData, setGlobalValues } from '../jobDataSlice'
 import { useAppDispatch } from './storeHooks'

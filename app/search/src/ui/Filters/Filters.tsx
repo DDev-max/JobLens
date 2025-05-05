@@ -1,4 +1,4 @@
-import { normalizeString } from '#globalShared/normalizeString/normalizeString.ts'
+import { normalizeString } from 'global-shared-joblens'
 import type { ButtonProps } from '@heroui/button'
 import { Button } from '@heroui/button'
 import { useRef } from 'react'

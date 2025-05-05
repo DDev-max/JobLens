@@ -14,8 +14,7 @@
     "format:fix": "prettier --write ."
   },
   "imports": {
-    "#*": "./src/*",
-    "#globalShared*": "../global-shared/*"
+    "#*": "./src/*"
   },
   "dependencies": {
     "@heroui/button": "^2.2.16",
@@ -29,6 +28,7 @@
     "@reduxjs/toolkit": "^2.6.1",
     "chart.js": "^4.4.8",
     "framer-motion": "11.15.0",
+    "global-shared-joblens": "^1.0.8",
     "jest": "^29.7.0",
     "react": "18.3.1",
     "react-chartjs-2": "^5.3.0",

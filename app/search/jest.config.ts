@@ -29,7 +29,6 @@ const config: Config = {
   coverageProvider: 'v8',
 
   moduleNameMapper: {
-    '^#globalShared/(.*)$': '<rootDir>/../global-shared/$1',
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
     '^#(.*)$': '<rootDir>/src/$1',
     

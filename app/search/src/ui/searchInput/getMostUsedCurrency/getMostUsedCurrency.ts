@@ -1,4 +1,4 @@
-import { currencies, moneyRegex } from '#ui/shared/consts.ts'
+import { currencies, moneyRegex } from 'global-shared-joblens'
 
 interface GetMostUsedCurrencyParams {
   salaryDescription: string[]

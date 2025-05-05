@@ -1,9 +1,8 @@
 import userEvent from '@testing-library/user-event';
 import App from '#ui/App.tsx';
 import { renderWithProviders, simulateSubmitForm } from '#ui/shared/test-utils.tsx';
-import data from '#globalShared/__mocks__/scrappedPage.json';
+import {scrappedPageJson as data, HTML } from 'global-shared-joblens';
 import { screen } from '@testing-library/react';
-import { HTML } from '#globalShared/__mocks__/pageHtml';
 import { getGlassDoorUrl } from '../../../jobs/src/getGlassDoorUrl/getGlassDoorUrl';
 
 jest.mock('react-chartjs-2', () => ({ Bar: () => <div data-testid='chart-mock'></div> }));

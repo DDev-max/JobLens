@@ -1,5 +1,5 @@
 import { getAllMatches } from './getAllMatches';
-import data from '#globalShared/__mocks__/scrappedPage.json';
+import {scrappedPageJson as data } from 'global-shared-joblens';
 
 const language = 'EN';
 const propertyToSearch = 'skills';

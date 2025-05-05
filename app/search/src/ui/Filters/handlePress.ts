@@ -1,5 +1,5 @@
-import type { JobDescription } from '#globalShared/types.ts'
-import { normalizeString } from '#globalShared/normalizeString/normalizeString.ts'
+import type { JobDescription } from 'global-shared-joblens'
+import { normalizeString } from 'global-shared-joblens'
 import { filterOffers } from './logic/filterOffers'
 import type { useJobActions } from '#state/actions/useJobActions.ts'
 import type { FiltersType } from '#shared/types.ts'

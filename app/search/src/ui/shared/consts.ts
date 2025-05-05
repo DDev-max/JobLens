@@ -1,12 +1,5 @@
 import type { SupportedLanguageKeys } from '#shared/types.ts'
 
-export const currencies = '€¥₡₩$£'
-export const hoursPerDay = 8
-export const daysPerWeek = 5
-export const weeksPerMonth = 4
-
-export const thousandAbbreviation = 1000
-export const moneyRegex = new RegExp(`[${currencies}]\\S+`, 'g')
 export const grammarWords: Record<SupportedLanguageKeys, string[]> = {
   // prettier-ignore
   EN: ['and','such','to','ll','or','of','for','in','with','at','on','by','from','as','the','a','an','be','have','other','you','has','had','is','are','was','were','will','shall','should','etc','can','could','would','may','might','must','not','but','if','although','while','during','between','among','into','through','within','before','after','besides','along','under','over','above','below','without','except','unless','until','each','every','some','any','many','few','several','all','both','one','two','three','first','second','next','last','current','former','new','old','active','passive','essential','required','preferred','desired','expected','capable','able','responsible','dedicated','focused','qualified','professional','skilled','experienced','motivated','proficient','knowledgeable','strong','good','excellent','advanced','intermediate','basic',

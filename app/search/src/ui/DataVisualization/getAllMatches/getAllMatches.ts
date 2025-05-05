@@ -1,6 +1,6 @@
 import { grammarWords } from '#ui/shared/consts.ts'
-import type { JobDescription } from '#globalShared/types.ts'
-import { normalizeString } from '#globalShared/normalizeString/normalizeString.ts'
+import type { JobDescription } from 'global-shared-joblens'
+import { normalizeString } from 'global-shared-joblens'
 import type { SupportedLanguageKeys } from '#shared/types.ts'
 
 interface GetAllMatchesProps {

@@ -1,5 +1,4 @@
-import { moneyRegex } from '#ui/shared/consts.ts'
-import { salaryConversion } from '#globalShared/salaryConversion/salaryConversion'
+import { moneyRegex, salaryConversion } from 'global-shared-joblens'
 
 interface GetSalaryMeanProps {
   salaryDescription: string[]
