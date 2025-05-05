@@ -1,4 +1,4 @@
-import { fetchData } from '../../../global-shared/fetchData/fetchData.ts'
+import { fetchData } from 'global-shared-joblens'
 
 interface GetGlassDoorUrlProps {
   jobLocation: string

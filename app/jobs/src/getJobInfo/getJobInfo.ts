@@ -1,9 +1,9 @@
 import jsDom from 'jsdom'
-import type { JobDescription } from '../../../global-shared/types.ts'
+import type { JobDescription } from 'global-shared-joblens'
 import { getApiKey } from '#getApiKey.ts'
 // import { getGlassDoorUrl } from '#getGlassDoorUrl/getGlassDoorUrl.ts'
 // import { fetchData } from '../../../global-shared/fetchData/fetchData.ts'
-import { HTML } from '../../../global-shared/__mocks__/pageHtml.mts'
+import { HTML } from 'global-shared-joblens'
 
 interface GetJobStatsProps {
   jobPosition: string

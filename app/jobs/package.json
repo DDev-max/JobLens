@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "express": "^5.1.0",
-    "jest": "^29.7.0",
+    "global-shared-joblens": "^1.0.8",
     "jsdom": "^26.1.0",
     "zod": "^3.24.3"
   },
@@ -30,6 +30,7 @@
     "eslint-plugin-jest": "^28.11.0",
     "eslint-plugin-prettier": "^5.2.6",
     "globals": "^16.0.0",
+    "jest": "^29.7.0",
     "prettier": "^3.5.3",
     "ts-jest": "^29.3.2",
     "ts-node": "^10.9.2",

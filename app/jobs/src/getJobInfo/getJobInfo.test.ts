@@ -1,7 +1,6 @@
 import { TextEncoder, TextDecoder } from 'util';
 import { jest } from '@jest/globals';
-import { HTML } from '../../../global-shared/__mocks__/pageHtml.mts';
-import expectedJobInfo from '../../../global-shared/__mocks__/scrappedPage.json' with { type: 'json' };
+import { HTML, scrappedPageJson as expectedJobInfo } from 'global-shared-joblens';
 Object.assign(global, { TextDecoder, TextEncoder });
 // 👆 to avoid error from JSDom library: TextEncoder is not defined
 

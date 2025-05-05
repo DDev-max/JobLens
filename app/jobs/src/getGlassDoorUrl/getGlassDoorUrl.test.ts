@@ -1,5 +1,5 @@
 import { getGlassDoorUrl } from './getGlassDoorUrl.ts';
-import locationsMock from '../../../global-shared/__mocks__/locationApi.json' with { type: 'json' };
+import { locationApiJson as locationsMock } from 'global-shared-joblens';
 import { jest } from '@jest/globals';
 
 const jobLocation = 'Los angeles';
