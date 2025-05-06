@@ -41,7 +41,7 @@ export async function handleSubmit({
     const apiURL = getBackEndUrl()
 
     const jobInfo = await fetchData<JobDescription[]>({
-      URL: `${apiURL}/jobs?location=${formValues.location}&position=${formValues.position}`,
+      URL: `${apiURL}/jobs?location=${encodeURIComponent(formValues.location)}&position=${encodeURIComponent(formValues.position)}`,
       responseType: 'json',
       retries: 3,
     })
