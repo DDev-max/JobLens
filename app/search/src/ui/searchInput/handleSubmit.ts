@@ -37,8 +37,10 @@ export async function handleSubmit({
   if (formIsValid) {
     setFetchStatus({ error: '', isLoading: true })
 
+    const apiURL = import.meta.env.VITE_API_URL
+
     const jobInfo = await fetchData<JobDescription[]>({
-      URL: `http://localhost:777/jobs?location=${formValues.location}&position=${formValues.position}`,
+      URL: `${apiURL}/jobs?location=${formValues.location}&position=${formValues.position}`,
       responseType: 'json',
       retries: 3,
     })

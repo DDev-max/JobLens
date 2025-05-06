@@ -1,7 +1,5 @@
-// import type { SupportedLanguageKeys } from '#shared/types.ts'
 import type { SupportedLanguageKeys } from './../shared/types'
 import { SupportedLanguages } from '../shared/types'
-// import { SupportedLanguages } from '#shared/types.ts'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
 
