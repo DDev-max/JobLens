@@ -2,7 +2,6 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithProviders, simulateSubmitForm } from '#ui/shared/test-utils.tsx';
 import { Search } from './search';
-import { jest } from '@jest/globals';
 
 jest.mock('../../../../jobs/src/getApiKey', () => ({ getApiKey: () => 'fake-api-key' }));
 jest.mock('./getBackEndUrl', () => ({ getBackEndUrl: () => 'backEndUrl' }));
