@@ -1,6 +1,6 @@
 import { useAppSelector } from '#state/actions/storeHooks.ts'
 import { moneyRegex, salaryConversion } from 'global-shared-joblens'
-import type { JobDescription }from 'global-shared-joblens'
+import type { JobDescription } from 'global-shared-joblens'
 import { Card, CardBody, CardFooter, CardHeader } from '@heroui/card'
 import { Divider } from '@heroui/divider'
 import { languagei18n } from '#ui/shared/language.ts'

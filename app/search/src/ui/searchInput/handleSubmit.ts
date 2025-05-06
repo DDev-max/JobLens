@@ -5,6 +5,7 @@ import type { useJobActions } from '#state/actions/useJobActions.ts'
 import { getSalaryAvg } from '#ui/searchInput/getSalaryAvg/getSalaryAvg.ts'
 import { getMostUsedCurrency } from '#ui/searchInput/getMostUsedCurrency/getMostUsedCurrency.ts'
 import type { FiltersType, InputsSearchName } from '#shared/types.ts'
+import { getBackEndUrl } from './getBackEndUrl'
 
 interface HandleSubmitarams {
   e: React.FormEvent<HTMLFormElement>
@@ -37,7 +38,7 @@ export async function handleSubmit({
   if (formIsValid) {
     setFetchStatus({ error: '', isLoading: true })
 
-    const apiURL = import.meta.env.VITE_API_URL
+    const apiURL = getBackEndUrl()
 
     const jobInfo = await fetchData<JobDescription[]>({
       URL: `${apiURL}/jobs?location=${formValues.location}&position=${formValues.position}`,

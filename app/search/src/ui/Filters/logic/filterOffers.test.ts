@@ -1,5 +1,5 @@
 import { filterOffers } from './filterOffers';
-import { scrappedPageJson, normalizeString, salaryConversion } from 'global-shared-joblens'; 'global-shared-joblens'
+import { scrappedPageJson, normalizeString, salaryConversion } from 'global-shared-joblens';
 import type { FiltersType } from '#shared/types.ts';
 
 const dataWithSalaryAvg = scrappedPageJson.map(job => {

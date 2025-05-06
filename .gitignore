@@ -33,3 +33,5 @@ bun.lockb
 scrappedPage.html
 scrappingObj.ts
 coverage
+
+.vercel

@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event';
-import {scrappedPageJson as data } from 'global-shared-joblens';
+import { scrappedPageJson as data } from 'global-shared-joblens';
 import { screen } from '@testing-library/react';
 import { JobOffers } from './JobOffers';
 import { renderWithProviders } from '#ui/shared/test-utils.tsx';

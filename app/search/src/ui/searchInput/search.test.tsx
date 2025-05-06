@@ -2,8 +2,11 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithProviders, simulateSubmitForm } from '#ui/shared/test-utils.tsx';
 import { Search } from './search';
+import { jest } from '@jest/globals';
 
 jest.mock('../../../../jobs/src/getApiKey', () => ({ getApiKey: () => 'fake-api-key' }));
+jest.mock('./getBackEndUrl', () => ({ getBackEndUrl: () => 'backEndUrl' }));
+
 (global.fetch as jest.Mock) = jest.fn(() => ({
   ok: true,
   json: () => {},
@@ -69,8 +72,16 @@ it('should display a message when the search is loading', async () => {
 });
 
 it('should display an error message when the fetch fails', async () => {
-  (global.fetch as jest.Mock) = jest.fn().mockResolvedValue({ ok: false });
   const user = userEvent.setup();
+
+  (global.fetch as jest.Mock) = jest.fn(
+    () =>
+      new Promise(resolve =>
+        resolve({
+          ok: false,
+        })
+      )
+  );
 
   renderWithProviders(<Search />);
   await simulateSubmitForm({ user });

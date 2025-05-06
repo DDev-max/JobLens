@@ -16,9 +16,9 @@ export function Search() {
   const currentLanguage = useAppSelector(state => state.languageReducer.language)
 
   const formInputs: Record<InputsSearchName, string> = {
-    position: 'Hombre pingudo',
-    skills: 'react, css, node',
-    location: 'pingalandia',
+    position: '',
+    skills: '',
+    location: '',
   }
   const isInvalidInput: Record<InputsSearchName, boolean> = {
     position: false,

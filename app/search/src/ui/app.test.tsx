@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event';
 import App from '#ui/App.tsx';
 import { renderWithProviders, simulateSubmitForm } from '#ui/shared/test-utils.tsx';
-import {scrappedPageJson as data, HTML } from 'global-shared-joblens';
+import { scrappedPageJson as data, HTML } from 'global-shared-joblens';
 import { screen } from '@testing-library/react';
 import { getGlassDoorUrl } from '../../../jobs/src/getGlassDoorUrl/getGlassDoorUrl';
 
@@ -11,6 +11,7 @@ jest.spyOn(console, 'error').mockImplementation(() => console.log('Mock console 
 jest.mock('../../../jobs/src/getGlassDoorUrl/getGlassDoorUrl');
 (getGlassDoorUrl as jest.Mock).mockReturnValueOnce('https://example.com');
 
+jest.mock('./searchInput/getBackEndUrl', () => ({ getBackEndUrl: () => 'backEndUrl' }));
 jest.mock('../../../jobs/src/getApiKey', () => ({ getApiKey: () => 'fake-api-key' }));
 (global.fetch as jest.Mock) = jest.fn(() => ({
   ok: true,
