@@ -1,6 +1,6 @@
-import { getGlassDoorUrl } from './getGlassDoorUrl.js';
+import { getGlassDoorUrl } from './getGlassDoorUrl';
 import { locationApiJson as locationsMock } from 'global-shared-joblens';
-import { jest } from '@jest/globals';
+import { expect, it, jest } from '@jest/globals';
 
 const jobLocation = 'Los angeles';
 const jobPosition = 'Accountant';

@@ -1,14 +1,14 @@
 import { TextEncoder, TextDecoder } from 'util';
-import { jest } from '@jest/globals';
+import { expect, it, jest } from '@jest/globals';
 import { HTML, scrappedPageJson as expectedJobInfo } from 'global-shared-joblens';
 Object.assign(global, { TextDecoder, TextEncoder });
 // 👆 to avoid error from JSDom library: TextEncoder is not defined
 
 jest.unstable_mockModule('../getApiKey', () => ({ getApiKey: jest.fn().mockReturnValue('fakeApiKey') }));
-jest.unstable_mockModule('#getGlassDoorUrl/getGlassDoorUrl.ts', () => ({ getGlassDoorUrl: jest.fn() }));
+jest.unstable_mockModule('#getGlassDoorUrl/getGlassDoorUrl', () => ({ getGlassDoorUrl: jest.fn() }));
 
-const { getJobInfo } = await import('./getJobInfo.js');
-const { getGlassDoorUrl } = await import('#getGlassDoorUrl/getGlassDoorUrl.js');
+const { getJobInfo } = await import('./getJobInfo');
+const { getGlassDoorUrl } = await import('../getGlassDoorUrl/getGlassDoorUrl');
 
 global.fetch = jest.fn() as unknown as typeof fetch;
 const fakeFetch = fetch as jest.MockedFunction<typeof fetch>;

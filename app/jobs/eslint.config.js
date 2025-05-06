@@ -4,10 +4,13 @@ import tseslint from 'typescript-eslint'
 import jestPlugin from 'eslint-plugin-jest'
 import prettier from 'eslint-plugin-prettier'
 import eslintConfigPrettier from 'eslint-config-prettier'
-import { defineConfig } from 'eslint/config'
+import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
+  globalIgnores(['**/dist/**']),
+
   {
+    ignores: ['**/dist/**'],
     files: ['**/*.{js,mjs,cjs,ts}'],
     plugins: { js, jest: jestPlugin, prettier },
     rules: {
