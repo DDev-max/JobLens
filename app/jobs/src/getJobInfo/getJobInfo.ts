@@ -1,9 +1,9 @@
 import jsDom from 'jsdom'
 import type { JobDescription } from 'global-shared-joblens'
-// import { getApiKey } from '#getApiKey.js'
-// import { getGlassDoorUrl } from '#getGlassDoorUrl/getGlassDoorUrl.js'
-// import { fetchData } from 'global-shared-joblens'
-import { HTML } from 'global-shared-joblens'
+import { getApiKey } from '#getApiKey.js'
+import { getGlassDoorUrl } from '#getGlassDoorUrl/getGlassDoorUrl.js'
+import { fetchData } from 'global-shared-joblens'
+// import { HTML } from 'global-shared-joblens'
 
 interface GetJobStatsProps {
   jobPosition: string
@@ -11,15 +11,15 @@ interface GetJobStatsProps {
 }
 
 export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps) {
-  // const scraperApiUrl = `https://app.scrapingbee.com/api/v1/?api_key=${getApiKey()}&url=`
+  const scraperApiUrl = `https://api.scraperapi.com/?api_key=${getApiKey()}&url=`
 
-  // const encodedUrl = await getGlassDoorUrl({ jobLocation, jobPosition, scraperApiUrl })
-  // if (!encodedUrl) return
+  const encodedUrl = await getGlassDoorUrl({ jobLocation, jobPosition, scraperApiUrl })
+  if (!encodedUrl) return
 
-  // const pageUrl = scraperApiUrl + 'encodedUrl' + '&premium_proxy=True'
+  const pageUrl = scraperApiUrl + encodedUrl
 
-  // const htmlContent = await fetchData<string>({ URL: pageUrl, responseType: 'text', retries: 2 })
-  const htmlContent = { data: HTML }
+  const htmlContent = await fetchData<string>({ URL: pageUrl, responseType: 'text', retries: 2 })
+  // const htmlContent = { data: HTML }
 
   if (!htmlContent?.data) return
   const { JSDOM } = jsDom

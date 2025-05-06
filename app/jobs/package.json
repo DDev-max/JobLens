@@ -6,7 +6,6 @@
     "build": "tsc",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "start": "node dist/index.js",
-    "dev": "node --loader ts-node/esm --env-file=.env index.ts",
     "lint": "eslint .",
     "type-check": "tsc --noEmit",
     "format": "prettier --check .",
