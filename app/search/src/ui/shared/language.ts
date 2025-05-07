@@ -29,6 +29,7 @@ interface PageText {
     location: ChartStrings
     info: string
     average: string
+    noAverage: string
     others: string
   }
 
@@ -89,6 +90,7 @@ export const languagei18n: Record<SupportedLanguageKeys, PageText> = {
       },
       info: 'job offers have been read',
       average: 'The average monthly salary is: ',
+      noAverage: 'No salary data were found.',
       others: 'Others',
     },
     jobCard: {
@@ -140,6 +142,7 @@ export const languagei18n: Record<SupportedLanguageKeys, PageText> = {
       },
       info: 'ofertas de trabajo han sido leídas.',
       average: 'El salario promedio por mes es de: ',
+      noAverage: 'No se encontraron datos salariales',
       others: 'Otros',
     },
     jobCard: {

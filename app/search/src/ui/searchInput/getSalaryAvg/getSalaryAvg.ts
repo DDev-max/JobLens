@@ -6,6 +6,7 @@ interface GetSalaryMeanProps {
 }
 
 export function getSalaryAvg({ mostUsedCurrency, salaryDescription }: GetSalaryMeanProps) {
+  if (!mostUsedCurrency || !salaryDescription.length) return ''
   const salaries: string[][] = []
   salaryDescription.forEach(el => {
     const match = el.match(moneyRegex)

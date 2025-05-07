@@ -26,5 +26,5 @@ export function getMostUsedCurrency({ salaryDescription }: GetMostUsedCurrencyPa
 
   const sortedCurrencies = Object.entries(currenciesCoincidences).sort((a, b) => b[1] - a[1])
 
-  return sortedCurrencies[0][0]
+  return sortedCurrencies.length ? sortedCurrencies[0][0] : ''
 }

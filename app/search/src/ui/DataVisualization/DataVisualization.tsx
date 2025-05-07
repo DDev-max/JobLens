@@ -55,14 +55,17 @@ export function DataVisualization() {
         />
       </div>
 
-      {salaryInfo.average && (
-        <p className='text-4xl text-center flex-1 min-[1023px]:order-1 min-[1162px]:order-none my-8'>
-          {languagei18n[currentLanguage].charts.average}
-          <b className='text-green-300'>
-            {salaryInfo.currency + Number(salaryInfo.average).toLocaleString()}
-          </b>
-        </p>
-      )}
+      <p className='text-4xl text-center flex-1 min-[1023px]:order-1 min-[1162px]:order-none my-8'>
+        {salaryInfo.average && (
+          <>
+            <p> {languagei18n[currentLanguage].charts.average}</p>
+            <b className='text-green-300'>
+              {salaryInfo.currency + Number(salaryInfo.average).toLocaleString()}
+            </b>
+          </>
+        )}
+        {!salaryInfo.average && <p> {languagei18n[currentLanguage].charts.noAverage}</p>}
+      </p>
 
       <div className='overflow-x-auto max-sm:w-full max-sm:justify-center flex max-sm:block'>
         <HorizontalBarChart
