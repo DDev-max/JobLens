@@ -58,7 +58,7 @@ export function DataVisualization() {
       <p className='text-4xl text-center flex-1 min-[1023px]:order-1 min-[1162px]:order-none my-8'>
         {salaryInfo.average && (
           <>
-            <p> {languagei18n[currentLanguage].charts.average}</p>
+            <span> {languagei18n[currentLanguage].charts.average}</span>
             <b className='text-green-300'>
               {salaryInfo.currency + Number(salaryInfo.average).toLocaleString()}
             </b>
