@@ -38,7 +38,7 @@ export function Search() {
       return
     }
     const interval = setInterval(() => {
-      setLoadingValue(prev => Math.min(prev + 3.5, 99))
+      setLoadingValue(prev => Math.min(prev + 8, 99))
     }, 1 * 1000)
 
     return () => clearInterval(interval)
