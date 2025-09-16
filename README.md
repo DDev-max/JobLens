@@ -8,7 +8,7 @@ To build it, I had to do a deep dive into how [Glassdoor](https://www.glassdoor.
  Keep in mind that the search process can take around 20 seconds. This is because the platform uses multiple APIs behind the scenes, including one that bypasses site security mechanisms and another that hides the frontend request to protect sensitive data. These extra layers add some delay but are essential to ensure both access and security.
 
 
-🔗[View Live Site](https://search-xi-rosy.vercel.app/)
+🔗[View Live Site](https://job-lens-nu.vercel.app/)
 
 
 ## **Folder structure**
