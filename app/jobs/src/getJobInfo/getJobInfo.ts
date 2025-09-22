@@ -11,7 +11,7 @@ interface GetJobStatsProps {
 }
 
 export async function getJobInfo({ jobLocation, jobPosition }: GetJobStatsProps) {
-  const scraperApiUrl = `https://api.scraperapi.com/?api_key=${getApiKey()}&url=`
+  const scraperApiUrl = `https://api.scraperapi.com/?api_key=${getApiKey()}&premium=true&url=`
 
   const encodedUrl = await getGlassDoorUrl({ jobLocation, jobPosition, scraperApiUrl })
   if (!encodedUrl) return
